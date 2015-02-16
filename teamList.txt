@@ -1,2 +1,4 @@
 Paul Sinclair, s1337523
+Skills: HTML, CSS, JavaScript, Java, Python, PS
+
 Daniel Todorov, s1447357
