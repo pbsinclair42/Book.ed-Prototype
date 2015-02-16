@@ -3,3 +3,6 @@ Skills: HTML, CSS, JavaScript, Java, Python, PS
 
 Daniel Todorov, s1447357
 Skills: HTML, CSS, JavaScript, Java, Python
+
+Hans Christian Gregersen, s1310721
+Skills: HTML, CSS, Java, Python, python frameworks (Django, Flask)
