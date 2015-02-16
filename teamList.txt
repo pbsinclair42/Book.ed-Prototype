@@ -6,3 +6,6 @@ Skills: HTML, CSS, JavaScript, Java, Python
 
 Hans Christian Gregersen, s1310721
 Skills: HTML, CSS, Java, Python, python frameworks (Django, Flask)
+
+Damodar Sojka, s1354255
+Skills: HTML, CSS, JS (angular.js), firebase for backend if we need this
