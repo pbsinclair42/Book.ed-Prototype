@@ -4,6 +4,10 @@
 
 [MyEd API services](https://www.wiki.ed.ac.uk/pages/viewpage.action?pageId=251988936)
 
+[GitHub repo of old AT usage analyser](https://github.com/ball-hayden/AdverseWeather)
+
+[Website of Lancaster Uni's version](http://www.ombiel.com/#campusM)
+
 [Map of (some) study spaces](http://www.docs.is.ed.ac.uk/docs/Subjects/IS-Help/map.html)
 
 [Locations of other study spaces](http://www.ed.ac.uk/schools-departments/information-services/computing/desktop-personal/open-access/locations)
