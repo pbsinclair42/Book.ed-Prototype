@@ -68,7 +68,7 @@ print 'ordered list: \n', orderedList
 
 # return ordered list of places in central.
 central = []
-for y in q:
+for y in orderedList:
     if y['group'] == 'Central':
         central.append(y)
 
