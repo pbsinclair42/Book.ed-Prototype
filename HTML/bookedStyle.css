@@ -1,0 +1,35 @@
+* {
+ font-family: "Trebuchet MS", Helvetica, sans-serif
+}
+
+body{
+    background-color: #E0EEEE; //azure2
+}
+
+h1{
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+    font-size:25px;
+}
+
+button{
+    font-size:20px;
+}
+
+#floorplan{
+    display:none;
+}
+
+#map{
+    width:60%;
+    margin-left:5%;
+}
+
+#roominfo{
+    width:30%;
+    margin-right:5%;
+
+}
