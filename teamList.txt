@@ -12,3 +12,6 @@ Skills: HTML, CSS, JS (angular.js), firebase for backend if we need this
 
 Piotr Jander, s1455449
 Skills: HTML, CSS, Java, Python, SQL, HASKELL
+
+Vasiliki Nikolakopoulou, s1364564
+skills: Adobe Suite, 3d modeling, HTML, CSS
