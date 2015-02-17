@@ -9,3 +9,6 @@ Skills: HTML, CSS, Java, Python, python frameworks (Django, Flask)
 
 Damodar Sojka, s1354255
 Skills: HTML, CSS, JS (angular.js), firebase for backend if we need this
+
+Piotr Jander, s1455449
+Skills: HTML, CSS, Java, Python, SQL, HASKELL
