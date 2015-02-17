@@ -3,6 +3,16 @@ __author__ = 'hanschristus'
 import requests
 from xml.etree import ElementTree
 
+def getTree():
+    """
+    make api call to myed for xml on PC availability
+    :return: tree
+    """
+    r = requests.get(url='http://labmonitor.ucs.ed.ac.uk/myed/index.cfm?fuseaction=xml')
+
+    xmltree = ElementTree.fromstring(r.content)
+
+    return xmltree
 
 
 
@@ -16,9 +26,11 @@ def listOfDic(tree):
     for child in tree:
         if 'location' in child.keys():
             s.append({
+            'group': child.attrib['group'],
             'location': child.attrib['location'],
             'ratio': round( float(child.attrib['free']) / float(child.attrib['seats']), 3),
-            'group': child.attrib['group']
+            'freeComp': child.attrib['free']
+
             })
     return s
 
@@ -52,13 +64,23 @@ def ratingQSort(list):
 
 
 
+def groupSearch(list, group='Central'):
+    """
+    :param: ordered list,
+    :return: ordered list of dictionaries
+    """
+    ans = []
+    for y in list:
+        if y['group'] == group:
+            ans.append(y)
+    return ans
+
+
 
 # test calls:
 
 
-r = requests.get(url='http://labmonitor.ucs.ed.ac.uk/myed/index.cfm?fuseaction=xml')
-
-xmltree = ElementTree.fromstring(r.content)
+xmltree = getTree()
 
 list = listOfDic(xmltree)
 print 'list of dictionaries: \n', list
@@ -67,11 +89,7 @@ orderedList = ratingQSort(list)
 print 'ordered list: \n', orderedList
 
 # return ordered list of places in central.
-central = []
-for y in orderedList:
-    if y['group'] == 'Central':
-        central.append(y)
-
+central= groupSearch(orderedList)
 print 'list of dictionaries in Central:\n', central
 
 
