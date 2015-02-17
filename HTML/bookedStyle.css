@@ -1,5 +1,12 @@
 * {
- font-family: "Trebuchet MS", Helvetica, sans-serif
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+     -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor:default;
 }
 
 body{
@@ -10,9 +17,10 @@ h1{
     text-align: center;
 }
 
-h2{
+#decider{
     text-align: center;
-    font-size:25px;
+    font-size:35px;
+    margin: 0 0 20 0;
 }
 
 button {
@@ -29,6 +37,8 @@ button {
     color: #ffffff;
     font-size: 15px;
     padding: 10px 20px 10px 20px;
+    cursor:pointer;
+    
 }
 
 button:hover {
@@ -41,14 +51,12 @@ button:hover {
 }
 
 button:active{
-    background: #3498db;
-    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
-    background-image: -o-linear-gradient(top, #3498db, #2980b9);
-    background-image: linear-gradient(to bottom, #3498db, #2980b9);
-    padding: 8px 18px 8px 18px;
-    margin: 2px 2px 2px 2px;
+    background: #38A4EC;
+    background-image: -webkit-linear-gradient(top, #38A4EC, #2F8CCA);
+    background-image: -moz-linear-gradient(top, #38A4EC, #2F8CCA);
+    background-image: -ms-linear-gradient(top, #38A4EC, #2F8CCA);
+    background-image: -o-linear-gradient(top, #38A4EC, #2F8CCA);
+    background-image: linear-gradient(to bottom, #38A4EC, #2F8CCA);
 }
 
 #floorplan{
@@ -80,3 +88,23 @@ button:active{
     top:-300px;
 }
 
+#yesNoButtons{
+    height:37px;
+}
+
+#yesPls{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    left:-180;
+}
+
+#nahM8{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    left:-20px;
+    top:-37px;
+}
