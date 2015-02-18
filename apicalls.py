@@ -25,13 +25,20 @@ def listOfDic(tree):
     s = []
     for child in tree:
         if 'location' in child.keys():
-            s.append({
+
+            dict = {
             'group': child.attrib['group'],
             'location': child.attrib['location'],
             'ratio': round( float(child.attrib['free']) / float(child.attrib['seats']), 3),
-            'freeComp': child.attrib['free']
+            'freeComp': child.attrib['free'],
+            'capacityComp': child.attrib['seats']
+            }
+            if 'Holland House' in dict['location']:
+                dict['geo'] = #insert longitude and latitude
 
-            })
+
+
+            s.append(dict)
     return s
 
 
