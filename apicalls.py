@@ -70,6 +70,9 @@ def listOfDic(tree):
     # rooms is a list of dicts, each dict describes one room
     # dict entries are the same as the XML `room' element attributes:
     # free, seats, location, rid, group, closuremsg, info
+    # 
+    # root.findall("room") method returns a list of all root's children
+    # whose tag is "room" -- which is precisely what we what
     root = tree.getroot()
     rooms = [room.attrib for room in root.findall("room")]
 
@@ -87,7 +90,8 @@ def listOfDic(tree):
 
     return rooms
 
-    # old code
+    ## old code
+    # 
     # s = []
     # for child in tree:
     #     if 'location' in child.keys():
