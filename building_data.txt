@@ -1,0 +1,47 @@
+"Alison House"
+"Appleton Tower"
+"Business School"
+"Darwin"
+"High School Yards Labs"
+"Holland House"
+"Hugh Robson"
+"JCMB"
+"KB Centre"
+"Main Library"
+"Moray House"
+"Murray Library"
+"Teviot House"
+
+(55.946103, -3.186560)
+(55.944385, -3.186807)
+(55.943079, -3.187593)
+(55.921461, -3.171116)
+(55.948268, -3.183565)
+(55.938631, -3.169601)
+(55.944376, -3.189648)
+(55.921658, -3.174223)
+(55.923437, -3.175012)
+(55.942796, -3.188995)
+(55.950123, -3.179691)
+(55.922869, -3.175002)
+(55.944951, -3.188628)
+
+"08:00AM - 10:00PM"
+"08:00AM - 09:00PM"
+"07:30AM - 10:30PM"
+"07:45AM - 06:30PM"
+"24hr swipe card"
+"24hr swipe card"
+"24hr swipe card"
+"08.00AM - 21.00PM"
+"24hr swipe card"
+"07:30AM - 02:30AM"
+"07:30AM - 06:30PM"
+"08:30AM - 11:00PM"
+"??"
+
+["Alison House", "Appleton Tower", "Business School", "Darwin", "High School Yards Labs", "Holland House", "Hugh Robson", "JCMB", "KB Centre", "Main Library", "Moray House", "Murray Library", "Teviot House"]
+
+[(55.946103, -3.186560), (55.944385, -3.186807), (55.943079, -3.187593), (55.921461, -3.171116), (55.948268, -3.183565), (55.938631, -3.169601), (55.944376, -3.189648), (55.921658, -3.174223), (55.923437, -3.175012), (55.942796, -3.188995), (55.950123, -3.179691), (55.922869, -3.175002), (55.944951, -3.188628)]
+
+["08:00AM - 10:00PM", "08:00AM - 09:00PM", "07:30AM - 10:30PM", "07:45AM - 06:30PM", "24hr swipe card", "24hr swipe card", "24hr swipe card", "08.00AM - 21.00PM", "24hr swipe card", "07:30AM - 02:30AM", "07:30AM - 06:30PM", "08:30AM - 11:00PM", "??"]
