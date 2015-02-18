@@ -10,18 +10,9 @@
     color: #ffffff;
 }
 
-#background{
-    float:left;
-    position:fixed;
-    width:100%;
-    height:100%;
-    background-image: url('background.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-/*1e233d, c2d4f9*/
 #mainInterface{
     width:620px;
+	height:570px;
     background-color: rgba(16,50,76,0.8);
     display:block;
     margin-left: auto;
@@ -29,16 +20,18 @@
     padding:10 10 10 10;
 }
 
+#logo{
+	position:fixed;
+	z-index:-1;
+	left:0;
+	top:0;
+	width:200;
+}
+
 body{
-    
-    /*background-color: #E0EEEE; //azure2*/
-    margin: 0 0 0 0;
-    background: #1e233d;
-    background-image: -webkit-linear-gradient(top, #1e233d, #c2d4f9);
-    background-image: -moz-linear-gradient(top, #1e233d, #c2d4f9);
-    background-image: -ms-linear-gradient(top, #1e233d, #c2d4f9);
-    background-image: -o-linear-gradient(top, #1e233d, #c2d4f9);
-    background-image: linear-gradient(to bottom, #1e233d, #c2d4f9);
+    background-image: url('background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 h1{
@@ -71,6 +64,10 @@ button {
     padding: 10px 20px 10px 20px;
     cursor:pointer;
     
+}
+
+button:focus{
+    outline: 0;
 }
 
 button:hover {
@@ -122,22 +119,60 @@ button:active{
 
 #yesNoButtons{
     height:37px;
+	position:relative;
 }
 
 #yesPls{
-    display:block;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    left:30;
+	position:absolute;
+    left:270px;
 }
 
 #nahM8{
-    display:block;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    left:180px;
-    top:-37px;
+    position:absolute;
+	left:445px;
 }
 
+#options{
+	position:relative;
+	height:37px;
+}
+
+#privateBtn{
+	position:absolute;
+	left:0px;
+}
+
+#quietBtn{
+	position:absolute;
+	left:115px;
+}
+
+#closeBtn{
+	position:absolute;
+	left:220px;
+}
+
+#groupBtn{
+	position:absolute;
+	left:335px;
+}
+
+#lateBtn{
+	position:absolute;
+	right:0px;
+}
+
+#moreOptions{
+	position:relative;
+	top:10;
+}
+
+#inBtn{
+	position:absolute;
+	left:200px;
+}
+
+#gotBtn{
+	position:absolute;
+	left:350px;
+}
