@@ -12,7 +12,7 @@
 
 #mainInterface{
     width:620px;
-	height:570px;
+	height:620px;
     background-color: rgba(16,50,76,0.8);
     display:block;
     margin-left: auto;
@@ -139,40 +139,66 @@ button:active{
 
 #privateBtn{
 	position:absolute;
-	left:0px;
+	left:30px;
 }
 
 #quietBtn{
 	position:absolute;
-	left:115px;
+	left:190px;
 }
 
 #closeBtn{
 	position:absolute;
-	left:220px;
-}
-
-#groupBtn{
-	position:absolute;
-	left:335px;
+	left:330px;
 }
 
 #lateBtn{
 	position:absolute;
-	right:0px;
+	right:30px;
 }
 
-#moreOptions{
+#inOptions{
 	position:relative;
-	top:10;
+	top:15;
+	height:37px;
 }
 
 #inBtn{
 	position:absolute;
-	left:200px;
+	left:274px;
+}
+
+#gotOptions{
+	position:relative;
+	top:25px;
+	heigh:37px;
 }
 
 #gotBtn{
 	position:absolute;
-	left:350px;
+	left:269px;
+}
+
+#computerBtn{
+	position: absolute;
+	left:30px;
+	display:none;
+}
+
+#whiteboardBtn{
+	position:absolute;
+	left:170px;
+	display:none;
+}
+
+#groupSpaceBtn{
+	position: absolute;
+	left:330px;
+	display:none;
+}
+
+#printerBtn{
+	position: absolute;
+	right:30px;
+	display:none;
 }

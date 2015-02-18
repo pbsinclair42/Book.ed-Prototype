@@ -35,6 +35,13 @@ $(document).ready(function(){
 	$('#inBtn').click(function(){
 		
 	});
+	$('#gotBtn').click(function(){
+		$(this).hide();
+		$('#computerBtn').show();
+		$('#whiteboardBtn').show();
+		$('#groupSpaceBtn').show();
+		$('#printerBtn').show();
+	})
 });
 
 //change the display to show details of the new suggestion{
