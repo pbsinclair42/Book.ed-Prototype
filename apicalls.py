@@ -3,6 +3,51 @@ __author__ = 'hanschristus'
 import requests
 from xml.etree import ElementTree
 
+
+# global var buildings: list of dicts; building name, coordinates,
+# and opening hours
+buildings = [
+ {'coordinates': (55.946103, -3.18656),
+  'name': 'Alison House',
+  'opening hours': '08:00AM - 10:00PM'},
+ {'coordinates': (55.944385, -3.186807),
+  'name': 'Appleton Tower',
+  'opening hours': '08:00AM - 09:00PM'},
+ {'coordinates': (55.943079, -3.187593),
+  'name': 'Business School',
+  'opening hours': '07:30AM - 10:30PM'},
+ {'coordinates': (55.921461, -3.171116),
+  'name': 'Darwin',
+  'opening hours': '07:45AM - 06:30PM'},
+ {'coordinates': (55.948268, -3.183565),
+  'name': 'High School Yards Labs',
+  'opening hours': '24hr swipe card'},
+ {'coordinates': (55.938631, -3.169601),
+  'name': 'Holland House',
+  'opening hours': '24hr swipe card'},
+ {'coordinates': (55.944376, -3.189648),
+  'name': 'Hugh Robson',
+  'opening hours': '24hr swipe card'},
+ {'coordinates': (55.921658, -3.174223),
+  'name': 'JCMB',
+  'opening hours': '08.00AM - 21.00PM'},
+ {'coordinates': (55.923437, -3.175012),
+  'name': 'KB Centre',
+  'opening hours': '24hr swipe card'},
+ {'coordinates': (55.942796, -3.188995),
+  'name': 'Main Library',
+  'opening hours': '07:30AM - 02:30AM'},
+ {'coordinates': (55.950123, -3.179691),
+  'name': 'Moray House',
+  'opening hours': '07:30AM - 06:30PM'},
+ {'coordinates': (55.922869, -3.175002),
+  'name': 'Murray Library',
+  'opening hours': '08:30AM - 11:00PM'},
+ {'coordinates': (55.944951, -3.188628),
+  'name': 'Teviot House',
+  'opening hours': '??'}]
+
+
 def getTree():
     """
     make api call to myed for xml on PC availability
@@ -15,34 +60,53 @@ def getTree():
     return xmltree
 
 
-
 def listOfDic(tree):
     """
     takes a ElementTree and returns a list of dict of ratio and location
     :param tree:
     :return list of dict {ratio with 3 digits, location}:
     """
-    s = []
-    for child in tree:
-        if 'location' in child.keys():
 
-            dict = {
-            'group': child.attrib['group'],
-            'location': child.attrib['location'],
-            'ratio': round( float(child.attrib['free']) / float(child.attrib['seats']), 3),
-            'freeComp': child.attrib['free'],
-            'capacityComp': child.attrib['seats']
-            }
-            if 'Holland House' in dict['location']:
-                dict['geo'] = #insert longitude and latitude
+    # rooms is a list of dicts, each dict describes one room
+    # dict entries are the same as the XML `room' element attributes:
+    # free, seats, location, rid, group, closuremsg, info
+    root = tree.getroot()
+    rooms = [room.attrib for room in root.findall("room")]
+
+    # compute free seats percentage and add coordinates
+    for room in rooms:
+        room["free_to_total_ratio"] = float(room["free"]) / room["seats"]
+        r = room["free_to_total_ratio"]
+        room["free_to_total_ratio"] = round(r, 2)
+
+        for b in buildings:
+            if b['name'] in room["location"]:
+                room["coordinates"] = b['coordinates']
+                room['opening hours'] = b['opening hours']
+                break
+
+    return rooms
+
+    # old code
+    # s = []
+    # for child in tree:
+    #     if 'location' in child.keys():
+
+    #         dict = {
+    #         'group': child.attrib['group'],
+    #         'location': child.attrib['location'],
+    #         'ratio': round( float(child.attrib['free']) / float(child.attrib['seats']), 3),
+    #         'freeComp': child.attrib['free'],
+    #         'capacityComp': child.attrib['seats']
+    #         }
+    #         if 'Holland House' in dict['location']:
+    #             dict['geo'] = #insert longitude and latitude
+
+    #         s.append(dict)
+    # return s
 
 
-
-            s.append(dict)
-    return s
-
-
-""" capacity, opening times, address, stuff like board piano. """
+# """ capacity, opening times, address, stuff like board piano. """
 
 
 def ratingQSort(list):
