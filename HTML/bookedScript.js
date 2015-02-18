@@ -4,7 +4,7 @@ var notThese = [];
 var userLatitude;
 var userLongitude;
 
-var currentSuggestion = {roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',computers:28,current:12, hasComputer:false,hasWhiteboard:true,hasGroupSpace:false, hasPrinter:false,openingHours:'7.30am-2.30am'};
+var currentSuggestion = {roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',computers:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am'};
 
 $(document).ready(function(){
 	getLocation();
@@ -37,9 +37,9 @@ $(document).ready(function(){
 	});
 });
 
-//change the display to show details of the new suggestion
+//change the display to show details of the new suggestion{
 function displaySuggestion(){
-	document.getElementById('map').src= 'https://maps.googleapis.com/maps/api/staticmap?zoom=16&size=400x300&key=AIzaSyBcrXTgUVxfXVLj3rh5gIUWyYRpveHMmEs&markers=size:medium%7Clabel:A%7C'+userLatitude+','+userLongitude+'&markers=size:medium%7Clabel:B%7C'+ currentSuggestion.latitude+','+ currentSuggestion.longitude;
+	document.getElementById('map').src= 'https://maps.googleapis.com/maps/api/staticmap?zoom='+calculateZoom()+calculateViewpoint()+'&size=400x300&key=AIzaSyBcrXTgUVxfXVLj3rh5gIUWyYRpveHMmEs&markers=size:medium%7Clabel:A%7C'+userLatitude+','+userLongitude+'&markers=size:medium%7Clabel:B%7C'+ currentSuggestion.latitude+','+ currentSuggestion.longitude;
 	$('#buildingName').text(currentSuggestion.building);
 	$('#capacityValue').text(currentSuggestion.computers);
 	$('#usageValue').text(currentSuggestion.current);
@@ -48,7 +48,26 @@ function displaySuggestion(){
 		$('#facilitiesValue').text('None, just a room!')
 	}
 	$('#openingValue').text(currentSuggestion.openingHours);
+	$('#decider').text("Why not "+currentSuggestion.roomName+'?');
 }
+function calculateZoom(){
+	var distance = getDistanceFromLatLonInKm(userLatitude,userLongitude,currentSuggestion.latitude,currentSuggestion.longitude);
+	if (distance<0.25){
+		return 16;
+	}else if (distance<0.4){
+		return 15;
+	}else if (distance<1){
+		return 14;
+	}
+	return 15;
+}
+function calculateViewpoint(){
+	if (getDistanceFromLatLonInKm(userLatitude,userLongitude,currentSuggestion.latitude,currentSuggestion.longitude)>=1){
+		return 'center='+currentSuggestion.latitude,currentSuggestion.longitude;
+	}
+	return '';
+}
+//change the display to show details of the new suggestion}
 
 // functions to do with getting user location {
 function getLocation() {
@@ -79,3 +98,23 @@ function showError(error) {
 	userLongitude=-3.1868348;
 }
 // functions to do with getting user location }
+
+// functions to do with calculating distances {
+function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+  var dLon = deg2rad(lon2-lon1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; // Distance in km
+  return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
+// functions to do with calculating distances }
