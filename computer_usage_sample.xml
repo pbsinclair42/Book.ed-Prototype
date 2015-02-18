@@ -1,0 +1,39 @@
+<rooms>
+<last-updated>Wednesday 18 February 2015 at 12:13</last-updated>
+<room free="24" seats="32" location="Accommodation Services Holland House - MicroLab" rid="PLKH_PLAB" group="Accommodation Services" closuremsg="" info=""/>
+<room free="3" seats="4" location="Accommodation Services Holland House - Study Pods" rid="PLKH_SPOD" group="Accommodation Services" closuremsg="" info=""/>
+<room free="10" seats="19" location="Business School Business School - HUB RC" rid="HUB_UEBS" group="Business School" closuremsg="" info=""/>
+<room free="10" seats="11" location="Business School Business School - MBA Suite" rid="17BP_UEBS" group="Business School" closuremsg="" info=""/>
+<room free="13" seats="17" location="Business School Business School - PG Labs" rid="PGLAB_UEBS" group="Business School" closuremsg="" info=""/>
+<room free="17" seats="20" location="Business School Business School - Synd Rooms" rid="SYND_UEBS" group="Business School" closuremsg="" info=""/>
+<room free="35" seats="42" location="Business School Business School - Teach Lab" rid="TLAB_UEBS" group="Business School" closuremsg="" info=""/>
+<room free="18" seats="19" location="Business School Business School - UG Lab" rid="UGLAB_UEBS" group="Business School" closuremsg="" info=""/>
+<room free="15" seats="18" location="Central Alison House" rid="ALHS_PLAB" group="Central" closuremsg="" info=""/>
+<room free="29" seats="30" location="Central Appleton Tower Foyer - Cafe" rid="ATL0_CAFE" group="Central" closuremsg="" info=""/>
+<room free="22" seats="22" location="Central Appleton Tower Level 1 (Mezzanine)" rid="ATL1_PLAB" group="Central" closuremsg="" info=""/>
+<room free="54" seats="65" location="Central Hugh Robson Bldg Basement A" rid="HRBA_PLAB" group="Central" closuremsg="" info=""/>
+<room free="113" seats="139" location="Central Hugh Robson Bldg Basement B" rid="HRBB_PLAB" group="Central" closuremsg="" info=""/>
+<room free="22" seats="28" location="Central Main Library - Cafe" rid="MLB0_CAFE" group="Central" closuremsg="" info=""/>
+<room free="5" seats="30" location="Central Main Library Ground" rid="mlb0_plab" group="Central" closuremsg="" info=""/>
+<room free="12" seats="14" location="Central Main Library Ground - Quick Use" rid="MLB0_QUSE" group="Central" closuremsg="" info=""/>
+<room free="8" seats="84" location="Central Main Library Level 1" rid="MLB1_PLAB" group="Central" closuremsg="" info=""/>
+<room free="53" seats="157" location="Central Main Library Level 2" rid="MLB2_PLAB" group="Central" closuremsg="" info=""/>
+<room free="43" seats="82" location="Central Main Library Level 3" rid="MLB3_PLAB" group="Central" closuremsg="" info=""/>
+<room free="74" seats="152" location="Central Main Library Level 4" rid="MLB4_PLAB" group="Central" closuremsg="" info=""/>
+<room free="11" seats="12" location="Central Teviot House - Cafe" rid="TEVH_CAFE" group="Central" closuremsg="" info=""/>
+<room free="52" seats="61" location="Holyrood and High School Yards High School Yards Lab" rid="HSY0_PLAB" group="Holyrood and High School Yards" closuremsg="" info=""/>
+<room free="27" seats="32" location="Holyrood and High School Yards Moray House Library Ground Floor" rid="MHL0_PLAB" group="Holyrood and High School Yards" closuremsg="" info=""/>
+<room free="22" seats="27" location="Holyrood and High School Yards Moray House Library Level 1" rid="MHL1_PLAB" group="Holyrood and High School Yards" closuremsg="" info=""/>
+<room free="76" seats="91" location="KB Labs Darwin L and T Cluster" rid="SWAN_PLAB" group="KB Labs" closuremsg="" info=""/>
+<room free="25" seats="25" location="KB Labs JCMB - Cafe" rid="jcmb_cafe" group="KB Labs" closuremsg="" info=""/>
+<room free="40" seats="42" location="KB Labs JCMB L and T Cluster" rid="JCMB_PLAB" group="KB Labs" closuremsg="" info=""/>
+<room free="4" seats="5" location="KB Labs KB Centre Level 1" rid="KBC1_PLAB" group="KB Labs" closuremsg="" info=""/>
+<room free="54" seats="58" location="KB Labs KB Centre Level 2 - Main" rid="KB2A_PLAB" group="KB Labs" closuremsg="" info=""/>
+<room free="13" seats="16" location="KB Labs KB Centre Level 2 - Side 16 Seat" rid="KB2B_PLAB" group="KB Labs" closuremsg="" info=""/>
+<room free="23" seats="25" location="KB Labs KB Centre Level 2 - Side 25 Seat" rid="KB2C_PLAB" group="KB Labs" closuremsg="" info=""/>
+<room free="84" seats="99" location="KB Labs KB Centre Level 3" rid="KBC3_PLAB" group="KB Labs" closuremsg="" info=""/>
+<room free="6" seats="8" location="KB Labs Murray Library Ground - Cafe" rid="KBL0_CAFE" group="KB Labs" closuremsg="" info=""/>
+<room free="6" seats="13" location="KB Labs Murray Library Level 1" rid="KBL1_PLAB" group="KB Labs" closuremsg="" info=""/>
+<room free="8" seats="8" location="KB Labs Murray Library Level 1 - Quick Use" rid="KBL1_QUSE" group="KB Labs" closuremsg="" info=""/>
+<room free="5" seats="10" location="KB Labs Murray Library Level 2" rid="KBL2_PLAB" group="KB Labs" closuremsg="" info=""/>
+</rooms>
