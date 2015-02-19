@@ -1,5 +1,6 @@
 <head>
     <title>Book.ed</title>
+	<meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
     <link rel="stylesheet" href="bookedStyle.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="bookedScript.js"></script>
@@ -40,15 +41,22 @@
         	<button id = 'closeBtn'>Close</button>
         	<button id = 'lateBtn'>Open til late</button>
     	</div>
-		<div id='inOptions'>
+		<div id='inMenu'>
     		<button id = 'inBtn'>In...</button>
+			<div id='inDropdown'>
+				<button id = 'libraryBtn'>Main Library</button>
+				<button id = 'centralBtn'>Central Campus</button>
+				<button id = 'kingsBtn'>King's Buildings</button>
+			</div>
 		</div>
-		<div id='gotOptions'>
+		<div id='gotMenu'>
     		<button id = 'gotBtn'>Got...</button>
-			<button id = 'computerBtn'>Computer</button>
-			<button id = 'whiteboardBtn'>Whiteboard</button>
-			<button id = 'groupSpaceBtn'>Group Space</button>
-			<button id = 'printerBtn'>Printer</button>
+			<div id = 'gotDropdown'>
+				<button id = 'computerBtn'>Computer</button>
+				<button id = 'whiteboardBtn'>Whiteboard</button>
+				<button id = 'groupSpaceBtn'>Group Space</button>
+				<button id = 'printerBtn'>Printer</button>
+			</div>
 		</div>
     </div>
 </body>
