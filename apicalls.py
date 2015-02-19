@@ -2,6 +2,15 @@ __author__ = 'hanschristus'
 
 import requests
 from xml.etree import ElementTree
+import math
+
+
+
+
+class User_data:
+    def __init__(self, latitude=0, longitude=0):
+        self.la = latitude
+        self.lo = longitude
 
 
 # global var buildings: list of dicts; building name, coordinates,
@@ -46,6 +55,8 @@ buildings = [
  {'coordinates': (55.944951, -3.188628),
   'name': 'Teviot House',
   'opening hours': '09:00AM - 12:00AM'}]
+
+
 
 
 def getTree():
@@ -96,6 +107,44 @@ def listOfDic(tree):
     return s
 
 
+def euclideanDistance(user, room):
+    """
+    return room with distance attribute with respect to user.
+    :param room (dictionary of room attributes):
+    :return: the euclidean distance as an attributes in the
+    """
+    distance = math.sqrt(((user.la - room['coordinates'][0])**2) + ((user.lo - room['coordinates'][1])**2))
+    room['distance'] = distance
+    return room
+
+
+def ratingDistQSort(user, list):
+
+
+    less = []
+    pivotList = []
+    more = []
+
+    if len(list) <= 1:
+        return list
+    else:
+        pivot = euclideanDistance(user, list[0])['distance']
+        for i in list:
+            if euclideanDistance(user, i)['distance'] > pivot:
+                less.append(i)
+            elif euclideanDistance(user, i)['distance'] < pivot:
+                more.append(i)
+            else:
+                pivotList.append(i)
+        less = ratingQSort(less)
+        more = ratingQSort(more)
+        return less + pivotList + more
+
+
+
+
+
+
 def ratingQSort(list):
     """
     :param listOfDic:
@@ -122,6 +171,9 @@ def ratingQSort(list):
 
 
 
+
+
+
 def groupSearch(list, group='Central'):
     """
     :param: ordered list,
@@ -135,13 +187,32 @@ def groupSearch(list, group='Central'):
 
 
 
+
+def bestPlace(user):
+    list = listOfDic(getTree())
+    orderedList = ratingQSort()
+
+
 # test calls:
+
+
+user = User_data(55.946103, -3.18656)
+
+
+room = {'ratio': 0.844, 'coordinates': (55.938631, -3.169601), 'capacityComp': '32', 'freeComp': '27', 'opening hours': '24hr swipe card', 'group': 'Accommodation Services', 'location': 'Accommodation Services Holland House - MicroLab'}
+
+print room['coordinates'][0]
+
 
 
 xmltree = getTree()
 
 list = listOfDic(xmltree)
 print 'list of dictionaries: \n', list
+
+#distanceList = ratingDistQSort(user, list)
+
+# print 'ordered list w.r.t. distance \n', distanceList
 
 orderedList = ratingQSort(list)
 print 'ordered list: \n', orderedList
