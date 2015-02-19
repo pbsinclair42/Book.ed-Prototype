@@ -3,9 +3,11 @@ var userLongitude;
 var optionsExpanded=false;
 var inExpanded=false;
 var gotExpanded=false;
-var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+//var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 
 var currentSuggestion = {roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',capacity:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am', type:'lab'};
+
+var requests = {close:true,quiet:true,private:false,late:true,in:'Main Library',computer:true,whiteboard:true,groupSpace:true,printer:true}
 
 $(document).ready(function(){
 	getLocation();
@@ -91,7 +93,7 @@ function displaySuggestion(){
 		$('#facilitiesValue').text('None, just a room!')
 	}
 	$('#openingValue').text(currentSuggestion.openingHours);
-	$('#decider').text("Why not "+currentSuggestion.roomName+'?');
+	$('#roomName').text(currentSuggestion.roomName);
 }
 function calculateZoom(){
 	var distance = getDistanceFromLatLonInKm(userLatitude,userLongitude,currentSuggestion.latitude,currentSuggestion.longitude);
