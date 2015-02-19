@@ -38,8 +38,8 @@ def index():
 
 @app.route('/user_coordinates')
 def getCoordinates():
-    longitude = request.args.get('la', 0, type=int)
-    latitude = request.args.get('lo', 0, type=int)
+    longitude = request.args.get('la', 0, type=float)
+    latitude = request.args.get('lo', 0, type=float)
 
     user = apicalls.User_data(longitude, latitude)
     closestPlace = apicalls.closestPlace(user)[0]
@@ -49,8 +49,8 @@ def getCoordinates():
 
 @app.route('/detailed_suggestion')
 def giveSuggestion(user):
-    longitude = request.args.get('la', 0, type=int)
-    latitude = request.args.get('lo', 0, type=int)
+    longitude = request.args.get('la', 0, type=float)
+    latitude = request.args.get('lo', 0, type=float)
     user = apicalls.User_data(longitude, latitude)
 
     user.previousSuggestion = request.args.get('suggestions')
@@ -59,13 +59,15 @@ def giveSuggestion(user):
 
     ans=None
     for x in returnObject:
-        if not x in user.previousSuggestion:
+        if not (x in user.previousSuggestion):
             ans = x
+            break
 
     if ans == None:
         ans = returnObject[0]
 
     return jsonify(ans)
+
 
 
 
