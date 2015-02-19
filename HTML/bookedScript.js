@@ -169,9 +169,17 @@ function deg2rad(deg) {
 // sends cords and waits for data back, which is just success 
 function sendUserCords() {
   $.getJSON(SCRIPT_ROOT + '/user_coordinates', {
-        la: $(userLatitude).val(),
-        lo: $(userLongitude).val()
+        la: userLatitude,
+        lo: userLongitude
       }, function(data) {
         console.log(data);
       });
+} 
+
+function getDetailed(details) {
+  details.lo = userLongitude;
+  details.la = userLatitude;
+  $.getJSON(SCRIPT_ROOT + '/detailed_suggestion', details, function(data) {
+    console.log(data);
+  });
 } 
