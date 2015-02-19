@@ -187,33 +187,29 @@ def closestPlace(user):
 
 # test calls:
 
-
-user = User_data(55.946103, -3.18656)
-
-
-daRoom = {'ratio': 0.844, 'coordinates': (55.938631, -3.169601), 'capacityComp': '32', 'freeComp': '27', 'opening hours': '24hr swipe card', 'group': 'Accommodation Services', 'location': 'Accommodation Services Holland House - MicroLab'}
-
-
-
-
-
-xmltree = getTree()
-
-list = listOfDic(xmltree)
-print 'list of dictionaries: \n', list
-
-distanceList = ratingDistQSort(user, list)
-
-print 'ordered list w.r.t. distance \n', distanceList
-
-orderedList = ratingQSort(list)
-print 'ordered list: \n', orderedList
-
-# return ordered list of places in central.
-central= groupSearch(orderedList)
-print 'list of dictionaries in Central:\n', central
-
-print 'closestPlace(): ', closestPlace(user)
-
-
-
+#
+# user = User_data(55.946103, -3.18656)
+#
+#
+#
+#
+# xmltree = getTree()
+#
+# list = listOfDic(xmltree)
+# print 'list of dictionaries: \n', list
+#
+# distanceList = ratingDistQSort(user, list)
+#
+# print 'ordered list w.r.t. distance \n', distanceList
+#
+# orderedList = ratingQSort(list)
+# print 'ordered list: \n', orderedList
+#
+# # return ordered list of places in central.
+# central= groupSearch(orderedList)
+# print 'list of dictionaries in Central:\n', central
+#
+# print 'closestPlace(): ', closestPlace(user)
+#
+#
+#

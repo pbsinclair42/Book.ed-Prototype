@@ -31,32 +31,43 @@ def teardown_request(exception):
 
 
 @app.route('/')
-    def index():
-        return render_template('index.html')
+def index():
+    return render_template('index.html')
 
 
 
-@app.route('/user_coordinates', methods=['POST', 'GET'])
+@app.route('/user_coordinates')
 def getCoordinates():
     longitude = request.args.get('la', 0, type=int)
     latitude = request.args.get('lo', 0, type=int)
 
-
     user = apicalls.User_data(longitude, latitude)
     closestPlace = apicalls.closestPlace(user)[0]
 
+    return jsonify(closestPlace)
 
-
-
-    flash('ok, it worked')
 
 @app.route('/detailed_suggestion')
 def giveSuggestion(user):
-    bestPlace = distanceMetric(user)[0]
+    longitude = request.args.get('la', 0, type=int)
+    latitude = request.args.get('lo', 0, type=int)
+    user = apicalls.User_data(longitude, latitude)
+
+    user.previousSuggestion = request.args.get('suggestions')
+
+    returnObject = apicalls.closestPlace(user)
+
+    ans=None
+    for x in returnObject:
+        if not x in user.previousSuggestion:
+            ans = x
+
+    if ans == None:
+        ans = returnObject[0]
+
+    return jsonify(ans)
 
 
-
-    return render_template('index.html')
 
 
 if __name__ == "__main__":
