@@ -5,7 +5,7 @@ var inExpanded=false;
 var gotExpanded=false;
 //var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 
-var suggestion = [{roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',capacity:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am', type:'lab'}]
+//var suggestion = [{roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',capacity:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am', type:'lab'}]
 
 var currentSuggestion = suggestion[0];
 
