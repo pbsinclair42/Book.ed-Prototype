@@ -150,14 +150,14 @@ function calculateViewpoint(){
 //change the display to show details of the new suggestion}
 
 function createRequest(){
-	var close=$('#closeBtn').hasClass('selected');
-	var quiet=$('#quietBtn').hasClass('selected');
-	var private=$('#privateBtn').hasClass('selected');
-	var late=$('#lateBtn').hasClass('selected');
-	var computer=$('#computerBtn').hasClass('selected');
-	var whiteboard=$('#whiteboardBtn').hasClass('selected');
-	var groupSpace=$('#groupBtn').hasClass('selected');
-	var printer=$('#printerBtn').hasClass('selected');
+	var close=($('#closeBtn').hasClass('selected')?1:0);
+	var quiet=($('#quietBtn').hasClass('selected')?1:0);
+	var private=($('#privateBtn').hasClass('selected')?1:0);
+	var late=($('#lateBtn').hasClass('selected')?1:0);
+	var computer=($('#computerBtn').hasClass('selected')?1:0);
+	var whiteboard=($('#whiteboardBtn').hasClass('selected')?1:0);
+	var groupSpace=($('#groupBtn').hasClass('selected')?1:0);
+	var printer=($('#printerBtn').hasClass('selected')?1:0);
 	var inVar;
 	if($('#libraryBtn').hasClass('selected')){
 		inVar = 'Main Library';
