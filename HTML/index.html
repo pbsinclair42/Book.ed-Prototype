@@ -6,26 +6,43 @@
     <script src="bookedScript.js"></script>
 </head> 
 <body>
-	<img id='logo' src="logo_bg.jpg"></img>
+	<img id='logo' src="logo.png"></img>
+	<div id='header'></div>
     <div id = 'mainInterface'>
-        <h2 id='decider'>Why not AT 2.02?</h2>
         <div id='suggestion'>
-            <img id="map" src="https://maps.googleapis.com/maps/api/staticmap?zoom=16&size=400x300&key=AIzaSyBcrXTgUVxfXVLj3rh5gIUWyYRpveHMmEs&markers=size:medium%7Clabel:B%7C55.9444163,-3.1868348&markers=size:medium%7Clabel:A%7C55.944781,-3.187288"></img>
-            <table id='roomInfo' class="bordered">
+			<h2 id='whatAbout'>What about:</h2>
+			<h2 id='roomName'>AT 2.02</h2>
+			<img id="map" src="https://maps.googleapis.com/maps/api/staticmap?zoom=16&size=400x300&key=AIzaSyBcrXTgUVxfXVLj3rh5gIUWyYRpveHMmEs&markers=size:medium%7Clabel:B%7C55.9444163,-3.1868348&markers=size:medium%7Clabel:A%7C55.944781,-3.187288"></img>
+            <table id='roomInfo'>
                 <tr>
-                    <td><p1 style='font-weight:bold'>Building: </p1><p1 id='buildingName'>Appleton Tower</p1></td>
+					<td>
+                    	<p1 style='font-weight:bold'>Building: </p1>
+						<p2 id='buildingName'>Appleton Tower</p2>
+                	</td>
+				</tr>
+				<tr>
+					<td>
+                    <p1 style='font-weight:bold' id='capacityLabel'>Number of computers: </p1>
+						<p2 id = 'capacityValue'>10</p2>
+					</td>
+				</tr>
+                <tr>
+					<td>
+						<p1 style='font-weight:bold' id='usageLabel'>Current number of computers used: </p1>
+						<p2 id='usageValue'>1</p2>
+					</td>
+				</tr>
+                <tr>
+                    <td>
+						<p1 style='font-weight:bold'>Facilities: </p1>
+						<p2 id='facilitiesValue'>Computer, Whiteboard</p2>
+					</td>
                 </tr>
                 <tr>
-                    <td><p1 style='font-weight:bold' id='capacityLabel'>Number of computers: </p1><p1 id = 'capacityValue'>10</p1></td>
-                </tr>
-                <tr>
-                    <td><p1 style='font-weight:bold' id='usageLabel'>Current number of computers used: </p1><p1 id='usageValue'>1</p1></td>
-                </tr>
-                <tr>
-                    <td><p1 style='font-weight:bold'>Facilities: </p1><p1 id='facilitiesValue'>Computer, Whiteboard</p1></td>
-                </tr>
-                <tr>
-                    <td><p1 style='font-weight:bold'>Opening times: </p1><p1 id='openingValue'>9am - 6pm</p1></td>
+                    <td>
+						<p1 style='font-weight:bold'>Opening times: </p1>
+						<p2 id='openingValue'>9am - 6pm</p2>
+					</td>
                 </tr>
             </table>
         </div>

@@ -10,39 +10,19 @@
     color: #ffffff;
 }
 
-body{
-    background-image: url('background.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-	height:750px;
-}
-
-#mainInterface{
-    width:620px;
-	height:420px;
-    background-color: rgba(16,50,76,0.8);
-    display:block;
-    margin-left: auto;
-    margin-right: auto;
-    padding:10 10 10 10;
-}
-
-#logo{
-	position:fixed;
-	z-index:-1;
-	left:0;
-	top:0;
-	width:200;
-}
-
 h2{
     text-align: center;
 }
 
-#decider{
-    text-align: center;
-    font-size:35px;
-    margin: 0 0 20 0;
+p1{
+	font-size:14px;
+}
+
+p2{
+	font-size:14px;
+	position:relative;
+	right:0px;
+	float:right;
 }
 
 button {
@@ -85,23 +65,67 @@ button:active{
     background-image: linear-gradient(to bottom, #38A4EC, #2F8CCA);
 }
 
-#suggestion{
-    height:300px;
+body{
+    background-image: url('background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+	height:750px;
 }
 
-#map{
+#header{
+	width:100%;
+	height:90px;
+	background-color: rgb(4,24,39);
+	position:fixed;
+	z-index: -2;
+	left:0px;
+	top:0px;
+}
+
+#logo{
+	position:fixed;
+	z-index:-1;
+	left:0;
+	top:0;
+	width:200px;
+}
+
+#mainInterface{
+    width:600px;
+	height:420px;
+    background-color: rgba(16,50,76,0.8);
     display:block;
     margin-left: auto;
     margin-right: auto;
-    height:300px;
-    width:400px;
-    position: relative;
-    left:105;
+    padding:10 10 10 10;
+	position: relative;
+	top:90px;
+}
+
+#suggestion{
+	height: 300px;
+	width: 600px;
+}
+
+#whatAbout{
+	width:190px;
+	position:relative;
+	margin:0 0 10 0;
+}
+
+#roomName{
+	text-align: center;
+    font-size:30px;
+	width:190px;
+	height:35px;
+	position: relative;
+	margin:0 0 10 0;
+	color:rgb(247,84,72);
 }
 
 #roominfo{
-    height:300px;
-    width:200px;
+	margin-top: 5px;
+    width:190px;
     display:block;
     margin-left: auto;
     margin-right: auto;
@@ -110,11 +134,13 @@ button:active{
     top:-300px;
 }
 
-.bordered{
-    border-style: solid;
-    border-color: white;
-    border-width: 3px;
-    padding-left: 3px;
+#map{
+    display:block;
+    height:300px;
+    width:400px;
+    position: relative;
+	left:200px;
+	top:-69px
 }
 
 #yesNoButtons{
