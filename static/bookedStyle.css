@@ -7,7 +7,7 @@
     -ms-user-select: none;
     user-select: none;
     cursor:default;
-    color: #ffffff;
+    color: #91bbdb;
 }
 
 h2{
@@ -46,7 +46,7 @@ button {
     border:none;
     color: #ffffff;
     font-size: 15px;
-    padding: 10px 20px 10px 20px;
+    padding: 5px 10px 5px 10px;
     cursor:pointer;
     
 }
@@ -100,7 +100,7 @@ body{
 
 #mainInterface{
     width:600px;
-	height:420px;
+	height:330px;
     background-color: rgba(16,50,76,0.8);
     display:block;
     margin-left: auto;
@@ -118,7 +118,7 @@ body{
 #whatAbout{
 	width:190px;
 	position:relative;
-	margin:0 0 10 0;
+	margin: 0 0 10 0;
 }
 
 #roomName{
@@ -133,22 +133,19 @@ body{
 
 #roominfo{
 	margin-top: 5px;
-    width:190px;
+    width:210px;
     display:block;
-    margin-left: auto;
-    margin-right: auto;
-    position:relative;
-    left:-205;
-    top:-300px;
+	position: relative;
+	top:-340px;
 }
 
 #map{
     display:block;
-    height:300px;
-    width:400px;
+    height:330px;
+    width:380px;
     position: relative;
-	left:200px;
-	top:-69px
+	left:220px;
+	top:-83px
 }
 
 #yesNoButtons{
@@ -158,26 +155,32 @@ body{
 
 #yesPls{
 	position:absolute;
-    left:220px;
+    left:30px;
+	top:-100px;
+	width:130px;
 }
 
 #nahM8{
     position:absolute;
-	left:371px;
+	left:30px;
+	top:-60px;
+	width:130px
 }
 
 #mooore{
 	position: absolute;
-	left:515px;
+	left:30px;
+	top:-20px;
+	width:130px;
+}
+
+#moreOptions{
+	display:none;
 }
 
 #options{
 	position:relative;
 	height:37px;
-}
-
-#moreOptions{
-	display:none;
 }
 
 #privateBtn{

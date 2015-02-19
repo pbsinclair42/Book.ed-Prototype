@@ -3,11 +3,11 @@ var userLongitude;
 var optionsExpanded=false;
 var inExpanded=false;
 var gotExpanded=false;
-var SCRIPT_ROOT =  'http://ilw.data.ed.ac.uk/book.ed';
+//var SCRIPT_ROOT =  'http://ilw.data.ed.ac.uk/book.ed';
 
-var suggestion = [];
+//var suggestion = [];
 
-//var suggestion = [{roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',capacity:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am', type:'lab'}]
+var suggestion = [{roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',capacity:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am', type:'room'}]
 
 var currentSuggestion = suggestion[0];
 
@@ -15,7 +15,7 @@ var requests = {close:true,quiet:true,private:false,late:true,in:'Main Library',
 
 $(document).ready(function(){
 	getLocation();
-	sendUserCords();
+	//sendUserCords();
     $("#yesPls").click(function(){
 		// go to booking/maps as required
 	});
@@ -31,7 +31,7 @@ $(document).ready(function(){
 		}else{
 			optionsExpanded=false;
 			$('#moreOptions').hide();
-			$('#mainInterface').height(420);
+			$('#mainInterface').height(335);
 		}
 		
 	});
@@ -73,14 +73,13 @@ $(document).ready(function(){
 			gotExpanded=false;
 			$('#gotDropdown').hide();
 			$('#mainInterface').height($('#mainInterface').height() - 45);
-			$('#gotMenu').removeClass('bordered');
 		}
 	})
 });
 
 //change the display to show details of the new suggestion{
 function displaySuggestion(){
-	document.getElementById('map').src= 'https://maps.googleapis.com/maps/api/staticmap?zoom='+calculateZoom()+calculateViewpoint()+'&size=400x300&key=AIzaSyBcrXTgUVxfXVLj3rh5gIUWyYRpveHMmEs&markers=size:medium%7Clabel:A%7C'+userLatitude+','+userLongitude+'&markers=size:medium%7Clabel:B%7C'+ currentSuggestion.latitude+','+ currentSuggestion.longitude;
+	document.getElementById('map').src= 'https://maps.googleapis.com/maps/api/staticmap?zoom='+calculateZoom()+calculateViewpoint()+'&size=380x330&key=AIzaSyBcrXTgUVxfXVLj3rh5gIUWyYRpveHMmEs&markers=size:medium%7Clabel:A%7C'+userLatitude+','+userLongitude+'&markers=size:medium%7Clabel:B%7C'+ currentSuggestion.latitude+','+ currentSuggestion.longitude;
 	$('#buildingName').text(currentSuggestion.building);
 	$('#capacityValue').text(currentSuggestion.capacity);
 	$('#usageValue').text(currentSuggestion.current);
@@ -89,8 +88,8 @@ function displaySuggestion(){
 		$('#usageLabel').text('Current availability: ');
 		$('#usageValue').text('Not booked');
 	}else{
-		$('#capacityLabel').text('Number of computers: ');
-		$('#usageLabel').text('Current number of computers used: ');
+		$('#capacityLabel').text('Computers: ');
+		$('#usageLabel').text('Computers in use: ');
 	}
 	$('#facilitiesValue').text( '' +  (((currentSuggestion.hasComputer&&currentSuggestion.type=='room'?', Computer':'')+(currentSuggestion.hasPrinter?', Printer':'')+(currentSuggestion.hasWhiteboard?', Whiteboard':'')+(currentSuggestion.hasGroupSpace?', Group Space':'')).slice(2)) );
 	if ($('#facilitiesValue').text()===""){
