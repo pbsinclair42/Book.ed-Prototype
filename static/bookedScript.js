@@ -9,15 +9,14 @@ var currentSuggestion;
 
 //var suggestion = [];
 
-var suggestion = [{roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',capacity:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am', type:'lab'}]
+var suggestion=[]; //[{roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',capacity:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am', type:'lab'}]
 
-var currentSuggestion = suggestion[0];
+//var currentSuggestion = suggestion[0];
 
-var requests={close:false,quiet:false,private:false,late:false,in:'Main Library',computer:true,whiteboard:true,groupSpace:true,printer:true};
+var requests = {close:true,quiet:true,private:false,late:true,in:'Main Library',computer:true,whiteboard:true,groupSpace:true,printer:true};
 
 $(document).ready(function(){
 	getLocation();
-	//sendUserCords();
 	
 	$('.selectable').click(function(){
 		if (!$(this).hasClass('selected')){
@@ -169,7 +168,7 @@ function createRequest(){
 	}else{
 		inVar=0;
 	}
-	requests = {close:close, quiet:quiet, private:private, late:late, in:inVar ,computer:computer, whiteboard:whiteboard, groupSpace:groupSpace, printer:printer, suggestions:suggestion,longitude:userLongitude,latitude:userLatitude};
+	requests = {close:close, quiet:quiet, private:private, late:late, in:inVar ,computer:computer, whiteboard:whiteboard, groupSpace:groupSpace, printer:printer};
 
 }
 
@@ -235,7 +234,6 @@ function sendUserCords() {
 
 function getDetailed() {
 	getLocation();
-	details=requests;
     var details = {};
 	details.lo = userLongitude;
 	details.la = userLatitude;
