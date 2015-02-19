@@ -1,7 +1,8 @@
 __author__ = 'hanschristiangregersen'
 from flask import Flask, request, session, g, redirect, url_for, \
-    abort, render_template, flash
+    abort, render_template, flash, jsonify
 import sqlite3
+import apicalls
 
 # configuration
 DATABASE = '/Users/hanschristiangregersen/PycharmProjects/ILWHack2015/stat.db'
@@ -27,21 +28,24 @@ def teardown_request(exception):
         db.close()
 
 
-class User_data:
-    def __init__(self, longitude=0, latitude=0):
-        self.lo = longitude
-        self.la = latitude
 
 
-    def extract_location(self):
-        return self.lo, self.la
+@app.route('/')
+    def index():
+        return render_template('index.html')
 
 
 
-@app.route("/", methods=['POST', 'GET'])
-def index():
-    longitude = request.args.get('lo', 0, type=int)
-    latitude = request.args.get('la', 0, type=int)
+@app.route('/user_coordinates', methods=['POST', 'GET'])
+def getCoordinates():
+    longitude = request.args.get('la', 0, type=int)
+    latitude = request.args.get('lo', 0, type=int)
+
+    user = User_data(longitude, latitude)
+
+    flash('ok, it worked')
+
+
 
     return render_template('index.html')
 
