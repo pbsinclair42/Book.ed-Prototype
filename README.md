@@ -13,11 +13,19 @@
 #### Usage over time:
 
 - Get database for storing info working
+- Set up automatic database input every 15 minutes
 - Create basic graph using this info
 - Finish basic 3D model of library
 - Change colour of floors based on how busy they were over time
 - Add usage view to website
 
+#### Long term plans (which we could start investigating if we finish the rest):
+
+- Include tutorial rooms in suggestions
+- Add ability to book tutorial rooms through website
+- Include tutorial rooms in stored database
+- Create 2D map of usage over time
+- Create 3D models of more buildings
 
 
 ## Useful links
