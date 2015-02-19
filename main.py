@@ -94,6 +94,7 @@ def detailed_suggestion():
 
 
 @app.route('/main')
+def rMain():
     return render_template('main.html')
     
     
