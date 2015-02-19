@@ -154,8 +154,8 @@ function deg2rad(deg) {
 // sends cords and waits for data back, which is just success 
 function sendUserCords() {
   $.getJSON(SCRIPT_ROOT + '/user_coordinates', {
-        userLatitude: $(userLatitude).val(),
-        userLongitude: $(userLongitude).val()
+        la: $(userLatitude).val(),
+        lo: $(userLongitude).val()
       }, function(data) {
         console.log(data);
       });
