@@ -6,20 +6,20 @@ var userLongitude;
 var inExpanded=false;
 var gotExpanded=false;
 
-var currentSuggestion = {roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',computers:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am'};
+var currentSuggestion = {roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',capacity:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am', type:'room'};
 
 $(document).ready(function(){
 	getLocation();
+	window.setInterval(getLocation,10000);
     $("#yesPls").click(function(){
 		// go to booking/maps as required
 	});
-	
+
 	$("#nahM8").click(function(){
 		displaySuggestion();
-		// save current suggestion to 'nosuggest' list, then generate new suggestion
 	});
 	$("#privateBtn").click(function(){
-		// generate bookable room
+		alert('Suggestions of bookable tutorial rooms are not included in the alpha version'); // generate bookable room
 	});
 	$('#quietBtn').click(function(){
 		// generate empty room
@@ -39,7 +39,7 @@ $(document).ready(function(){
 			inExpanded=true;
 			$('#inDropdown').show();
 			$('#mainInterface').height($('#mainInterface').height() + 45);
-			$('#inMenu').css({'background-color': 'rgba(16,50,76,0.9)','height':'83px'});
+			$('#inMenu').css({'background-color': 'rgba(16,50,76,0.5)','height':'83px'});
 		}else{
 			inExpanded=false;
 			$('#inDropdown').hide();
@@ -52,12 +52,11 @@ $(document).ready(function(){
 			gotExpanded=true;
 			$('#gotDropdown').show();
 			$('#mainInterface').height($('#mainInterface').height() + 45);
-			$('#gotMenu').css({'background-color': 'rgba(16,50,76,0.9)'});
 		}else{
 			gotExpanded=false;
 			$('#gotDropdown').hide();
 			$('#mainInterface').height($('#mainInterface').height() - 45);
-			$('#gotMenu').css({'background-color': 'rgba(16,50,76,0)'});
+			$('#gotMenu').removeClass('bordered');
 		}
 	})
 });
@@ -66,9 +65,17 @@ $(document).ready(function(){
 function displaySuggestion(){
 	document.getElementById('map').src= 'https://maps.googleapis.com/maps/api/staticmap?zoom='+calculateZoom()+calculateViewpoint()+'&size=400x300&key=AIzaSyBcrXTgUVxfXVLj3rh5gIUWyYRpveHMmEs&markers=size:medium%7Clabel:A%7C'+userLatitude+','+userLongitude+'&markers=size:medium%7Clabel:B%7C'+ currentSuggestion.latitude+','+ currentSuggestion.longitude;
 	$('#buildingName').text(currentSuggestion.building);
-	$('#capacityValue').text(currentSuggestion.computers);
+	$('#capacityValue').text(currentSuggestion.capacity);
 	$('#usageValue').text(currentSuggestion.current);
-	$('#facilitiesValue').text( '' +  (((currentSuggestion.hasComputer?', Computer':'')+(currentSuggestion.hasPrinter?', Printer':'')+(currentSuggestion.hasWhiteboard?', Whiteboard':'')+(currentSuggestion.hasGroupSpace?', Group Space':'')).slice(2)) );
+	if(currentSuggestion.type=='room'){
+		$('#capacityLabel').text('Capacity: ');
+		$('#usageLabel').text('Current availability: ');
+		$('#usageValue').text('Not booked');
+	}else{
+		$('#capacityLabel').text('Number of computers: ');
+		$('#usageLabel').text('Current number of computers used: ');
+	}
+	$('#facilitiesValue').text( '' +  (((currentSuggestion.hasComputer&&currentSuggestion.type=='room'?', Computer':'')+(currentSuggestion.hasPrinter?', Printer':'')+(currentSuggestion.hasWhiteboard?', Whiteboard':'')+(currentSuggestion.hasGroupSpace?', Group Space':'')).slice(2)) );
 	if ($('#facilitiesValue').text()===""){
 		$('#facilitiesValue').text('None, just a room!')
 	}

@@ -35,10 +35,6 @@ body{
 	height:800px;
 }
 
-h1{
-    text-align: center;
-}
-
 h2{
     text-align: center;
 }
@@ -112,6 +108,9 @@ button:active{
     position:relative;
     left:-205;
     top:-300px;
+}
+
+.bordered{
     border-style: solid;
     border-color: white;
     border-width: 3px;
