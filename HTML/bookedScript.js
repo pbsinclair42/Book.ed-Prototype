@@ -13,7 +13,6 @@ var requests = {close:true,quiet:true,private:false,late:true,in:'Main Library',
 
 $(document).ready(function(){
 	getLocation();
-	window.setInterval(getLocation,10000);
     $("#yesPls").click(function(){
 		// go to booking/maps as required
 	});
@@ -165,7 +164,6 @@ function deg2rad(deg) {
 }
 // functions to do with calculating distances }
 
-
 // sends cords and waits for data back, which is just success 
 function sendUserCords() {
   $.getJSON(SCRIPT_ROOT + '/user_coordinates', {
@@ -174,12 +172,15 @@ function sendUserCords() {
       }, function(data) {
         console.log(data);
       });
-} 
+}
 
 function getDetailed(details) {
-  details.lo = userLongitude;
-  details.la = userLatitude;
-  $.getJSON(SCRIPT_ROOT + '/detailed_suggestion', details, function(data) {
-    console.log(data);
-  });
+	getLocation();
+	details.lo = userLongitude;
+	details.la = userLatitude;
+	details.suggestions=suggestion;
+	$.getJSON(SCRIPT_ROOT + '/detailed_suggestion', details, function(data) {
+		//May need format change etc
+		suggestion.push(data);
+	});
 } 
