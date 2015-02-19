@@ -1,6 +1,3 @@
-var noSuggest = [];
-var locations = [];
-var notThese = [];
 var userLatitude;
 var userLongitude;
 var optionsExpanded=false;
@@ -158,7 +155,6 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
   var d = R * c; // Distance in km
   return d;
 }
-
 function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
