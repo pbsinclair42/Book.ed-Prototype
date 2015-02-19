@@ -10,9 +10,16 @@
     color: #ffffff;
 }
 
+body{
+    background-image: url('background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+	height:800px;
+}
+
 #mainInterface{
     width:620px;
-	height:645px;
+	height:420px;
     background-color: rgba(16,50,76,0.8);
     display:block;
     margin-left: auto;
@@ -26,13 +33,6 @@
 	left:0;
 	top:0;
 	width:200;
-}
-
-body{
-    background-image: url('background.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-	height:800px;
 }
 
 h2{
@@ -124,17 +124,26 @@ button:active{
 
 #yesPls{
 	position:absolute;
-    left:270px;
+    left:220px;
 }
 
 #nahM8{
     position:absolute;
-	left:445px;
+	left:371px;
+}
+
+#mooore{
+	position: absolute;
+	left:515px;
 }
 
 #options{
 	position:relative;
 	height:37px;
+}
+
+#moreOptions{
+	display:none;
 }
 
 #privateBtn{
