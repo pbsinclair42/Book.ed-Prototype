@@ -7,11 +7,12 @@
     -ms-user-select: none;
     user-select: none;
     cursor:default;
-    color: #91bbdb;
+    color: #2490e2;
 }
 
 h2{
     text-align: center;
+	margin:0;
 }
 
 p1{
@@ -43,12 +44,20 @@ button {
     -webkit-border-radius: 28;
     -moz-border-radius: 28;
     border-radius: 28px;
-    border:none;
+    
+	border-style: solid;
+	border-width: 2px;
+	border-color: 090909;
+	padding: 8 18 8 18;
     color: #ffffff;
     font-size: 15px;
-    padding: 5px 10px 5px 10px;
+    padding: 10px 20px 10px 20px;
     cursor:pointer;
     
+}
+
+button.thin{
+	padding: 5px 10px 5px 10px;
 }
 
 button:focus{
@@ -73,11 +82,19 @@ button:active{
     background-image: linear-gradient(to bottom, #38A4EC, #2F8CCA);
 }
 
+button.selectable{
+	opacity:0.3;
+}
+
+button.selected{
+	opacity:1;
+}
+
 body{
     background-image: url('../static/background.png');
     background-repeat: no-repeat;
     background-size: cover;
-	height:750px;
+	height:780px;
 }
 
 #header{
@@ -100,8 +117,8 @@ body{
 
 #mainInterface{
     width:600px;
-	height:330px;
-    background-color: rgba(16,50,76,0.8);
+	height:350px;
+    background-color: rgba(16,50,76,0.5);
     display:block;
     margin-left: auto;
     margin-right: auto;
@@ -111,8 +128,10 @@ body{
 }
 
 #suggestion{
-	height: 300px;
-	width: 600px;
+	height: 330px;
+	width: 580px;
+	padding:10px;
+	background-color: rgba(4,24,39,0.9);
 }
 
 #whatAbout{
@@ -137,6 +156,7 @@ body{
     display:block;
 	position: relative;
 	top:-340px;
+	left:-5px;
 }
 
 #map{
@@ -144,7 +164,7 @@ body{
     height:330px;
     width:380px;
     position: relative;
-	left:220px;
+	left:200px;
 	top:-83px
 }
 
@@ -156,31 +176,37 @@ body{
 #yesPls{
 	position:absolute;
     left:30px;
-	top:-100px;
+	top:-140px;
 	width:130px;
 }
 
 #nahM8{
     position:absolute;
 	left:30px;
-	top:-60px;
+	top:-100px;
 	width:130px
 }
 
 #mooore{
 	position: absolute;
 	left:30px;
-	top:-20px;
+	top:-60px;
 	width:130px;
 }
 
 #moreOptions{
+	position:relative;
+	top:-40px;
 	display:none;
+	background-color: rgba(4,24,39,0.9);
+	height:210px;
+	padding:5;
 }
 
 #options{
 	position:relative;
 	height:37px;
+	padding-top:10px;
 }
 
 #privateBtn{
