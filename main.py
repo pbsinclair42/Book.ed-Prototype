@@ -93,6 +93,9 @@ def detailed_suggestion():
     return jsonify(ans)
 
 
+@app.route('/main')
+    return render_template('main.html')
+
 
 
 
