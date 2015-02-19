@@ -78,9 +78,8 @@ def listOfDic(tree):
 
     # compute free seats percentage and add coordinates
     for room in rooms:
-        room["free_to_total_ratio"] = float(room["free"]) / room["seats"]
-        r = room["free_to_total_ratio"]
-        room["free_to_total_ratio"] = round(r, 2)
+        ratio = float(room["free"]) / room["seats"]
+        room["ratio"] = round(r, 2)
 
         for b in buildings:
             if b['name'] in room["location"]:
