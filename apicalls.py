@@ -182,6 +182,37 @@ def closestPlace(user):
     list = listOfDic(getTree())
     orderedList = ratingDistQSort(user, list)
     return orderedList
+def libraryPercentageUsage():
+  l = listOfDic(getTree())
+  d = {}
+  for i in l:
+    if i["location"] == "Central Main Library Level 1":
+      d['1'] = (1 - i['ratio'])*100
+    if i['location'] == "Central Main Library Level 2":
+      d['2'] = (1 - i['ratio'])*100
+    if i['location'] == "Central Main Library Level 3":
+      d['3'] = (1 - i['ratio'])*100
+    if i['location'] == "Central Main Library Level 4":
+      d['4'] = (1 - i['ratio'])*100
+    if i['location'] == "Central Main Library Ground":
+      d['g'] = (1 - i['ratio'])*100
+      d['g_pcnum'] = float(i['capacityComp'])
+    if i['location'] == "Central Main Library Ground - Quick Use":
+      d['gq'] = (1 - i['ratio'])*100
+      d['gq_pcnum'] = float(i['capacityComp'])
+    if i['location'] == 'Central Main Library - Cafe':
+      d['gc']= (1-i['ratio'])*100
+      d['gc_pcnum'] = float(i['capacityComp'])
+ # print type(d['g_pcnum'])
+  ground_weighted_avg = (d['g']*d['g_pcnum']+d['gq']*d['gq_pcnum']+d['gc']*d['gc_pcnum'] )/(d['g_pcnum']+d['gc_pcnum']+d['gq_pcnum'])
+  r = {
+    '1':d['1'],
+    '2':d['2'],
+    '3':d['3'],
+    '4':d['4'],
+    'g':ground_weighted_avg
+  };
+  return r
 
 
 
