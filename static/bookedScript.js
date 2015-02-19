@@ -11,7 +11,7 @@ var suggestion = [{roomName:'Library Cafe',latitude:55.942705,longitude:-3.18914
 
 var currentSuggestion = suggestion[0];
 
-var requests = {close:true,quiet:true,private:false,late:true,in:'Main Library',computer:true,whiteboard:true,groupSpace:true,printer:true,suggestions:suggestion,longitude:userLongitude,latitude:userLatitude};
+var requests;//= {close:true,quiet:true,private:false,late:true,in:'Main Library',computer:true,whiteboard:true,groupSpace:true,printer:true,suggestions:suggestion,longitude:userLongitude,latitude:userLatitude};
 
 $(document).ready(function(){
 	getLocation();
@@ -30,6 +30,8 @@ $(document).ready(function(){
 	});
 
 	$("#nahM8").click(function(){
+		createRequest();
+		//sendRequest();
 		displaySuggestion();
 	});
 	$('#mooore').click(function(){
@@ -143,6 +145,29 @@ function calculateViewpoint(){
 	return '';
 }
 //change the display to show details of the new suggestion}
+
+function createRequest(){
+	var close=$('#closeBtn').hasClass('selected');
+	var quiet=$('#quietBtn').hasClass('selected');
+	var private=$('#privateBtn').hasClass('selected');
+	var late=$('#lateBtn').hasClass('selected');
+	var computer=$('#computerBtn').hasClass('selected');
+	var whiteboard=$('#whiteboardBtn').hasClass('selected');
+	var groupSpace=$('#groupBtn').hasClass('selected');
+	var printer=$('#printerBtn').hasClass('selected');
+	var inVar;
+	if($('#libraryBtn').hasClass('selected')){
+		inVar = 'Main Library';
+	}else if($('#centralBtn').hasClass('selected')){
+		inVar = 'Central';
+	}else if ($('#kingsBtn').hasClass('selected')){
+		inVar = 'Kings';
+	}else{
+		inVar=0;
+	}
+	requests = {close:close, quiet:quiet, private:private, late:late, in:inVar ,computer:computer, whiteboard:whiteboard, groupSpace:groupSpace, printer:printer, suggestions:suggestion,longitude:userLongitude,latitude:userLatitude};
+
+}
 
 // functions to do with getting user location {
 function getLocation() {
