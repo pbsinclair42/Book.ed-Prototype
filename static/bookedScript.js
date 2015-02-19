@@ -249,4 +249,8 @@ function getDetailed() {
         console.log(data)
         currentSuggestion = suggestion[suggestion.length-1];
 	});
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/master
