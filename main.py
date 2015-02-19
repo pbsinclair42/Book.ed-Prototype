@@ -99,7 +99,7 @@ def detailed_suggestion():
     
 @app.route('/get_usage')
 def getUsage():
-    return jsonify(libraryPercentageUsage())
+    return jsonify(apicalls.libraryPercentageUsage())
 
 
 
