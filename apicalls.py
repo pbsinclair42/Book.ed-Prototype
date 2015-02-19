@@ -29,7 +29,7 @@ buildings = [
   'name': 'Darwin',
   'opening hours': '07:45AM - 06:30PM'},
  {'coordinates': (55.948268, -3.183565),
-  'name': 'High School Yards Labs',
+  'name': 'Holyrood and High School',
   'opening hours': '24hr swipe card'},
  {'coordinates': (55.938631, -3.169601),
   'name': 'Holland House',
@@ -113,32 +113,38 @@ def euclideanDistance(user, room):
     :param room (dictionary of room attributes):
     :return: the euclidean distance as an attributes in the
     """
-    distance = math.sqrt(((user.la - room['coordinates'][0])**2) + ((user.lo - room['coordinates'][1])**2))
-    room['distance'] = distance
+    if 'coordinates' in room.keys():
+        distance = math.sqrt(((user.la - room['coordinates'][0])**2) + ((user.lo - room['coordinates'][1])**2))
+        room['distance'] = distance
+    else:
+        room['distance'] = 999999999
     return room
 
 
 def ratingDistQSort(user, list):
 
+    for x
 
-    less = []
-    pivotList = []
-    more = []
 
-    if len(list) <= 1:
-        return list
-    else:
-        pivot = euclideanDistance(user, list[0])['distance']
-        for i in list:
-            if euclideanDistance(user, i)['distance'] > pivot:
-                less.append(i)
-            elif euclideanDistance(user, i)['distance'] < pivot:
-                more.append(i)
-            else:
-                pivotList.append(i)
-        less = ratingQSort(less)
-        more = ratingQSort(more)
-        return less + pivotList + more
+    # less = []
+    # pivotList = []
+    # more = []
+    #
+    # if len(list) <= 1:
+    #     return list
+    # else:
+    #     pivot = euclideanDistance(user, list[0])['distance']
+    #     print 'pivot:', pivot
+    #     for i in list:
+    #         if euclideanDistance(user, i)['distance'] < pivot:
+    #             less.append(i)
+    #         elif euclideanDistance(user, i)['distance'] > pivot:
+    #             more.append(i)
+    #         else:
+    #             pivotList.append(i)
+    #     less = ratingQSort(less)
+    #     more = ratingQSort(more)
+    #     return less + pivotList + more
 
 
 
@@ -199,9 +205,9 @@ def bestPlace(user):
 user = User_data(55.946103, -3.18656)
 
 
-room = {'ratio': 0.844, 'coordinates': (55.938631, -3.169601), 'capacityComp': '32', 'freeComp': '27', 'opening hours': '24hr swipe card', 'group': 'Accommodation Services', 'location': 'Accommodation Services Holland House - MicroLab'}
+daRoom = {'ratio': 0.844, 'coordinates': (55.938631, -3.169601), 'capacityComp': '32', 'freeComp': '27', 'opening hours': '24hr swipe card', 'group': 'Accommodation Services', 'location': 'Accommodation Services Holland House - MicroLab'}
 
-print room['coordinates'][0]
+
 
 
 
@@ -210,9 +216,9 @@ xmltree = getTree()
 list = listOfDic(xmltree)
 print 'list of dictionaries: \n', list
 
-#distanceList = ratingDistQSort(user, list)
+distanceList = ratingDistQSort(user, list)
 
-# print 'ordered list w.r.t. distance \n', distanceList
+print 'ordered list w.r.t. distance \n', distanceList
 
 orderedList = ratingQSort(list)
 print 'ordered list: \n', orderedList

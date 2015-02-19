@@ -41,9 +41,16 @@ def getCoordinates():
     longitude = request.args.get('la', 0, type=int)
     latitude = request.args.get('lo', 0, type=int)
 
-    user = User_data(longitude, latitude)
+    bestPlace = distanceMetric(user)[0]
+    user = apicalls.User_data(longitude, latitude)
+
+
 
     flash('ok, it worked')
+
+@app.route('/detailed_suggestion')
+def giveSuggestion(user):
+    bestPlace = distanceMetric(user)[0]
 
 
 
