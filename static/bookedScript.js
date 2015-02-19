@@ -5,11 +5,13 @@ var inExpanded=false;
 var gotExpanded=false;
 //var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 
+var suggestion = [];
+
 //var suggestion = [{roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',capacity:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am', type:'lab'}]
 
 var currentSuggestion = suggestion[0];
 
-var requests = {close:true,quiet:true,private:false,late:true,in:'Main Library',computer:true,whiteboard:true,groupSpace:true,printer:true,suggestions:suggestion}
+var requests = {close:true,quiet:true,private:false,late:true,in:'Main Library',computer:true,whiteboard:true,groupSpace:true,printer:true,suggestions:suggestion};
 
 $(document).ready(function(){
 	getLocation();
@@ -178,7 +180,7 @@ function getDetailed(details) {
 	getLocation();
 	details.lo = userLongitude;
 	details.la = userLatitude;
-	details.suggestions=suggestion;
+	details.details=requests;
 	$.getJSON(SCRIPT_ROOT + '/detailed_suggestion', details, function(data) {
 		//May need format change etc
 		suggestion.push(data);
