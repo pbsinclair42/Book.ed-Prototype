@@ -235,22 +235,22 @@ def libraryPercentageUsage():
 # test calls:
 
 #
-# user = User_data(55.946103, -3.18656)
+#user = User_data(55.946103, -3.18656)
 #
 #
 #
 #
-# xmltree = getTree()
+#xmltree = getTree()
 #
-# list = listOfDic(xmltree)
+#list = listOfDic(xmltree)
 # print 'list of dictionaries: \n', list
 #
-# distanceList = ratingDistQSort(user, list)
+#distanceList = ratingDistQSort(user, list)
 #
 # print 'ordered list w.r.t. distance \n', distanceList
 #
-# orderedList = ratingQSort(list)
-# print 'ordered list: \n', orderedList
+#orderedList = ratingQSort(list)
+#print 'ordered list: \n', orderedList
 #
 # # return ordered list of places in central.
 # central= groupSearch(orderedList)

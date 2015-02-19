@@ -53,18 +53,23 @@ def detailed_suggestion():
     longitude = request.args.get('la', 0, type=float)
     latitude = request.args.get('lo', 0, type=float)
     quiet = request.args.get('quiet', type=bool)
+    print 'quiet', quiet
 
 
     user = apicalls.User_data(longitude, latitude)
 
+
     user.previousSuggestions = json.loads(request.args.get('suggestions'))
-    user.previousSuggestions = ast.literal_eval(json.dumps(user.previousSuggestions))
+    user.previousSuggestions = json.dumps(user.previousSuggestions).replace("false", "False").replace("true", "True")
+    user.previousSuggestions = ast.literal_eval(user.previousSuggestions)
+
+    print user.previousSuggestions
 
 
     if quiet:
         bestPlaces = apicalls.quietPlace(user)
     else:
-        bestPlaces = closestPlaces = apicalls.closestPlace(user)
+        bestPlaces = apicalls.closestPlace(user)
 
 
     ans = None
@@ -93,7 +98,7 @@ def detailed_suggestion():
     return jsonify(ans)
 
 
-@app.route('/main')
+@app.route('/main.html')
 def rMain():
     return render_template('main.html')
     
