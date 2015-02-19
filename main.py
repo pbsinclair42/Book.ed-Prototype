@@ -95,6 +95,11 @@ def detailed_suggestion():
 
 @app.route('/main')
     return render_template('main.html')
+    
+    
+@app.route('/get_usage')
+def getUsage():
+    return jsonify(libraryPercentageUsage())
 
 
 
