@@ -3,6 +3,7 @@ from flask import Flask, request, session, g, redirect, url_for, \
     abort, render_template, flash, jsonify
 import sqlite3
 import apicalls
+import json, ast
 
 # configuration
 DATABASE = '/Users/hanschristiangregersen/PycharmProjects/ILWHack2015/stat.db'
@@ -48,23 +49,46 @@ def getCoordinates():
 
 
 @app.route('/detailed_suggestion')
-def giveSuggestion(user):
+def detailed_suggestion():
     longitude = request.args.get('la', 0, type=float)
     latitude = request.args.get('lo', 0, type=float)
+    quiet = request.args.get('quiet', type=bool)
+
+
     user = apicalls.User_data(longitude, latitude)
 
-    user.previousSuggestion = request.args.get('suggestions')
+    user.previousSuggestions = json.loads(request.args.get('suggestions'))
+    user.previousSuggestions = ast.literal_eval(json.dumps(user.previousSuggestions))
 
-    returnObject = apicalls.closestPlace(user)
 
-    ans=None
-    for x in returnObject:
-        if not (x in user.previousSuggestion):
-            ans = x
-            break
+    if quiet:
+        bestPlaces = apicalls.quietPlace(user)
+    else:
+        bestPlaces = closestPlaces = apicalls.closestPlace(user)
+
+
+    ans = None
+
+    if user.previousSuggestions:
+        print 'user.previousSuggestions', user.previousSuggestions
+
+        notVisited = True
+
+        for x in bestPlaces:
+            for y in user.previousSuggestions:
+                print 'x[location]', x['location'], 'y[location]', y['location']
+                if x['location'] == y['location']:
+                    print "x['location'] == y['location']", x['location'] == y['location']
+                    notVisited = False
+                    break
+            if notVisited:
+                ans = x
+                break
+            notVisited = True
 
     if ans == None:
-        ans = returnObject[0]
+        print 'ans==none is true'
+        ans = bestPlaces[0]
 
     return jsonify(ans)
 
