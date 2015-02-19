@@ -1,0 +1,83 @@
+<head>
+    <title>Book.ed</title>
+	<meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
+    <link rel="stylesheet" href="
+    ../static/bookedStyle.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../static/bookedScript.js"></script>
+</head>
+<body>
+	<img id='logo' src="../static/logo.png"></img>
+	<div id='header'></div>
+    <div id = 'mainInterface'>
+        <div id='suggestion'>
+			<h2 id='whatAbout'>What about:</h2>
+			<h2 id='roomName'>AT 2.02</h2>
+			<img id="map" src="https://maps.googleapis.com/maps/api/staticmap?zoom=16&size=380x330&key=AIzaSyBcrXTgUVxfXVLj3rh5gIUWyYRpveHMmEs&markers=size:medium%7Clabel:B%7C55.9444163,-3.1868348&markers=size:medium%7Clabel:A%7C55.944781,-3.187288"></img>
+            <table id='roomInfo'>
+                <tr>
+					<td>
+                    	<p1 style='font-weight:bold'>Building: </p1>
+						<p2 id='buildingName'>Appleton Tower</p2>
+                	</td>
+				</tr>
+				<tr>
+					<td>
+                    <p1 style='font-weight:bold' id='capacityLabel'>Computers: </p1>
+						<p2 id = 'capacityValue' style='/float:right'>10</p2>
+					</td>
+				</tr>
+                <tr>
+					<td>
+						<p1 style='font-weight:bold' id='usageLabel'>Computers in use: </p1>
+						<p2 id='usageValue' style='/float:right'>1</p2>
+					</td>
+				</tr>
+                <tr>
+                    <td>
+						<p1 style='font-weight:bold'>Facilities:  </p1>
+						<p2 id='facilitiesValue'>Computer, Whiteboard</p2>
+					</td>
+                </tr>
+                <tr>
+                    <td>
+						<p1 style='font-weight:bold'>Opening times: </p1>
+						<p2 id='openingValue'>9am - 6pm</p2>
+					</td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div id='yesNoButtons'>
+            <button id='yesPls' class='thin'>Sounds good!</button>
+        	<button id='nahM8' class='thin'>Not this one</button>
+			<button id='mooore' class='thin'>Options</button>
+		</div>
+		<div id='moreOptions'>
+    		<h2>No, find me one that's...</h2>
+    		<div id='options'>
+        		<button id='privateBtn' style='opacity:0.3'>Private</button><!--replace style with class later-->
+        		<button id = 'quietBtn' class='selectable'>Quiet</button>
+        		<button id = 'closeBtn' class='selectable'>Close</button>
+				<button id = 'lateBtn' class='selectable'>Open til late</button>
+    		</div>
+			<div id='inMenu'>
+    			<button id = 'inBtn' class='selectable'>In...</button>
+				<div id='inDropdown'>
+					<button id = 'libraryBtn' class='selectable'>Main Library</button>
+					<button id = 'centralBtn' class='selectable'>Central Campus</button>
+					<button id = 'kingsBtn' class='selectable'>King's Buildings</button>
+				</div>
+			</div>
+			<div id='gotMenu'>
+    			<button id = 'gotBtn' class='selectable'>Got...</button>
+				<div id = 'gotDropdown'>
+					<button id = 'computerBtn' class='selectable'>Computer</button>
+					<button id = 'whiteboardBtn' class='selectable'>Whiteboard</button>
+					<button id = 'groupSpaceBtn' class='selectable'>Group Space</button>
+					<button id = 'printerBtn' class='selectable'>Printer</button>
+				</div>
+			</div>
+		</div>
+    </div>
+</body>

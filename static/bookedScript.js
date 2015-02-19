@@ -3,6 +3,8 @@ var userLongitude;
 var optionsExpanded=false;
 var inExpanded=false;
 var gotExpanded=false;
+var SCRIPT_ROOT = 'http://127.0.0.1:5000';
+var currentSuggestion;
 //var SCRIPT_ROOT =  'http://ilw.data.ed.ac.uk/book.ed';
 
 //var suggestion = [];
@@ -11,7 +13,7 @@ var suggestion = [{roomName:'Library Cafe',latitude:55.942705,longitude:-3.18914
 
 var currentSuggestion = suggestion[0];
 
-var requests;//= {close:true,quiet:true,private:false,late:true,in:'Main Library',computer:true,whiteboard:true,groupSpace:true,printer:true,suggestions:suggestion,longitude:userLongitude,latitude:userLatitude};
+var requests;//={close:false,quiet:false,private:false,late:false,in:'Main Library',computer:true,whiteboard:true,groupSpace:true,printer:true,suggestions:suggestion,lo:userLongitude,la:userLatitude};
 
 $(document).ready(function(){
 	getLocation();
@@ -32,6 +34,9 @@ $(document).ready(function(){
 	$("#nahM8").click(function(){
 		createRequest();
 		//sendRequest();
+		
+        getDetailed();
+		
 		displaySuggestion();
 	});
 	$('#mooore').click(function(){
@@ -194,8 +199,6 @@ function showError(error) {
             alert("An unknown error occurred.");
             break;
     }
-	userLatitude=55.9444163;
-	userLongitude=-3.1868348;
 }
 // functions to do with getting user location }
 
@@ -220,20 +223,30 @@ function deg2rad(deg) {
 
 // sends cords and waits for data back, which is just success 
 function sendUserCords() {
-	getLocation();
+    getLocation()
   $.getJSON(SCRIPT_ROOT + '/user_coordinates', {
         la: userLatitude,
         lo: userLongitude
       }, function(data) {
+      suggestion.push(data)
         console.log(data);
+      currentSuggestion = suggestion[suggestion.length-1];
       });
 }
 
-function getDetailed(details) {
+function getDetailed() {
 	getLocation();
 	details=requests;
+    var details = {};
+	details.lo = userLongitude;
+	details.la = userLatitude;
+	details.requests=requests;
+    details.suggestions = JSON.stringify(suggestion);
+    //details = JSON.stringify(details);
 	$.getJSON(SCRIPT_ROOT + '/detailed_suggestion', details, function(data) {
 		//May need format change etc
-		suggestion.push(data);
+		suggestion.push(data)
+        console.log(data)
+        currentSuggestion = suggestion[suggestion.length-1];
 	});
-} 
+}
