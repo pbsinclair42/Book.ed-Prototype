@@ -3,6 +3,8 @@ var locations = [];
 var notThese = [];
 var userLatitude;
 var userLongitude;
+var inExpanded=false;
+var gotExpanded=false;
 
 var currentSuggestion = {roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',computers:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am'};
 
@@ -33,14 +35,30 @@ $(document).ready(function(){
 		//generate room that's open for the next x hrs
 	});
 	$('#inBtn').click(function(){
-		
+		if(!inExpanded){
+			inExpanded=true;
+			$('#inDropdown').show();
+			$('#mainInterface').height($('#mainInterface').height() + 45);
+			$('#inMenu').css({'background-color': 'rgba(16,50,76,0.9)','height':'83px'});
+		}else{
+			inExpanded=false;
+			$('#inDropdown').hide();
+			$('#mainInterface').height($('#mainInterface').height() - 45);
+			$('#inMenu').css({'background-color': 'rgba(16,50,76,0)','height':'37px'});
+		}
 	});
 	$('#gotBtn').click(function(){
-		$(this).hide();
-		$('#computerBtn').show();
-		$('#whiteboardBtn').show();
-		$('#groupSpaceBtn').show();
-		$('#printerBtn').show();
+		if(!gotExpanded){
+			gotExpanded=true;
+			$('#gotDropdown').show();
+			$('#mainInterface').height($('#mainInterface').height() + 45);
+			$('#gotMenu').css({'background-color': 'rgba(16,50,76,0.9)'});
+		}else{
+			gotExpanded=false;
+			$('#gotDropdown').hide();
+			$('#mainInterface').height($('#mainInterface').height() - 45);
+			$('#gotMenu').css({'background-color': 'rgba(16,50,76,0)'});
+		}
 	})
 });
 

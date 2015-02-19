@@ -12,7 +12,7 @@
 
 #mainInterface{
     width:620px;
-	height:620px;
+	height:645px;
     background-color: rgba(16,50,76,0.8);
     display:block;
     margin-left: auto;
@@ -32,6 +32,7 @@ body{
     background-image: url('background.png');
     background-repeat: no-repeat;
     background-size: cover;
+	height:800px;
 }
 
 h1{
@@ -157,10 +158,11 @@ button:active{
 	right:30px;
 }
 
-#inOptions{
+#inMenu{
 	position:relative;
 	top:15;
 	height:37px;
+	padding:5px;
 }
 
 #inBtn{
@@ -168,10 +170,33 @@ button:active{
 	left:274px;
 }
 
-#gotOptions{
+#inDropdown{
+	height:37px;
 	position:relative;
-	top:25px;
-	heigh:37px;
+	top: 45px;
+	display:none;
+}
+
+#libraryBtn{
+	position: absolute;
+	left:25px;
+}
+
+#centralBtn{
+	position: absolute;
+	left:230px;
+}
+
+#kingsBtn{
+	position: absolute;
+	right:25px;
+}
+
+#gotMenu{
+	position:relative;
+	top:30px;
+	height:83px;
+	padding:5px;
 }
 
 #gotBtn{
@@ -179,26 +204,29 @@ button:active{
 	left:269px;
 }
 
+#gotDropdown{
+	height:37px;
+	position:relative;
+	top:45px;
+	display:none;
+}
+
 #computerBtn{
 	position: absolute;
-	left:30px;
-	display:none;
+	left:25px;
 }
 
 #whiteboardBtn{
 	position:absolute;
 	left:170px;
-	display:none;
 }
 
 #groupSpaceBtn{
 	position: absolute;
 	left:330px;
-	display:none;
 }
 
 #printerBtn{
 	position: absolute;
-	right:30px;
-	display:none;
+	right:25px;
 }
