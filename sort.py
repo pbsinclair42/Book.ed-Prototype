@@ -10,18 +10,17 @@ def cmpbylocation(user):
 		return int(euclidian_distance(user,x['coordinates'])-euclidian_distance(user,y['coordinates']))
 	return closer
 
-def cmpbyrank(user):
-	def rankcmp(x,y):
-		return int(float(x['rank'])<float('y.rank'))
+def cmpbyratio(user):
+	def ratiocmp(x,y):
+		return int(float(x['ratio'])<float(y['ratio']))
 	return rankcmp
 
 def  sorter(locs,user, comparfunc):
-	l=locs
 	l=sorted(locs,cmp=comparfunc(user));
 	return l
 
-def sortByRank(locs,user):
-	return sorter(locs,user,cmpbyrank)
+def sortByRatio(locs):
+	return sorter(locs,(0.0,0.0),cmpbyratio)
 def sortByLocation(locs,user):
 	return sorter(locs,user,cmpbylocation)
 #ld = apicalls.listOfDic(apicalls.getTree())

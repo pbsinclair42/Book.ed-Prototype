@@ -41,8 +41,10 @@ def getCoordinates():
     longitude = request.args.get('la', 0, type=int)
     latitude = request.args.get('lo', 0, type=int)
 
-    bestPlace = distanceMetric(user)[0]
+
     user = apicalls.User_data(longitude, latitude)
+    closestPlace = apicalls.closestPlace(user)[0]
+
 
 
 

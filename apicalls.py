@@ -122,33 +122,12 @@ def euclideanDistance(user, room):
 
 
 def ratingDistQSort(user, list):
+    ans = []
+    for x in list:
+        ans.append(euclideanDistance(user, x))
 
-    for x
-
-
-    # less = []
-    # pivotList = []
-    # more = []
-    #
-    # if len(list) <= 1:
-    #     return list
-    # else:
-    #     pivot = euclideanDistance(user, list[0])['distance']
-    #     print 'pivot:', pivot
-    #     for i in list:
-    #         if euclideanDistance(user, i)['distance'] < pivot:
-    #             less.append(i)
-    #         elif euclideanDistance(user, i)['distance'] > pivot:
-    #             more.append(i)
-    #         else:
-    #             pivotList.append(i)
-    #     less = ratingQSort(less)
-    #     more = ratingQSort(more)
-    #     return less + pivotList + more
-
-
-
-
+    ans = sorted(ans, key=lambda k: k['distance'])
+    return ans
 
 
 def ratingQSort(list):
@@ -194,9 +173,16 @@ def groupSearch(list, group='Central'):
 
 
 
-def bestPlace(user):
+def closestPlace(user):
+    """
+    returns an ordered list of the closest places to user.
+    :param user:
+    :return: list of close places
+    """
     list = listOfDic(getTree())
-    orderedList = ratingQSort()
+    orderedList = ratingDistQSort(user, list)
+    return orderedList
+
 
 
 # test calls:
@@ -227,6 +213,7 @@ print 'ordered list: \n', orderedList
 central= groupSearch(orderedList)
 print 'list of dictionaries in Central:\n', central
 
+print 'closestPlace(): ', closestPlace(user)
 
 
 
