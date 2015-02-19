@@ -13,7 +13,9 @@ var suggestion=[]; //[{roomName:'Library Cafe',latitude:55.942705,longitude:-3.1
 
 //var currentSuggestion = suggestion[0];
 
-var requests = {close:true,quiet:true,private:false,late:true,in:'Main Library',computer:true,whiteboard:true,groupSpace:true,printer:true};
+var requests = {distance:0.0001433252,ratio:0.2345,coordinates:(55.2346,-3.342),capacityComp:'11',freeComp:'3',opening hours:'9-5', group:'busness', location:'busnessloc'}
+
+//{distance:0.0001433252,ratio:0.2345,coordinates:(55.2346,-3.342),capacityComp:'11',freeComp:'3',opening hours:'9-5', group:'busness', location:'busnessloc'}
 
 $(document).ready(function(){
 	getLocation();
@@ -31,7 +33,7 @@ $(document).ready(function(){
 	});
 
 	$("#nahM8").click(function(){
-		createRequest();
+		//createRequest();
 		
         getDetailed();
 		
