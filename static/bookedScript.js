@@ -3,7 +3,7 @@ var userLongitude;
 var optionsExpanded=false;
 var inExpanded=false;
 var gotExpanded=false;
-var SCRIPT_ROOT = 'http://ilw.data.ed.ac.uk/book.ed/templates';
+var SCRIPT_ROOT =  'http://ilw.data.ed.ac.uk/book.ed';
 
 var suggestion = [];
 
