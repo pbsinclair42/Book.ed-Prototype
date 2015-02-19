@@ -15,6 +15,7 @@ var requests = {close:true,quiet:true,private:false,late:true,in:'Main Library',
 
 $(document).ready(function(){
 	getLocation();
+	sendUserCords();
     $("#yesPls").click(function(){
 		// go to booking/maps as required
 	});
@@ -168,6 +169,7 @@ function deg2rad(deg) {
 
 // sends cords and waits for data back, which is just success 
 function sendUserCords() {
+	getLocation();
   $.getJSON(SCRIPT_ROOT + '/user_coordinates', {
         la: userLatitude,
         lo: userLongitude
