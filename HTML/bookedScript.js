@@ -1,10 +1,13 @@
+var noSuggest = [];
+var locations = [];
+var notThese = [];
 var userLatitude;
 var userLongitude;
-var optionsExpanded=false;
 var inExpanded=false;
 var gotExpanded=false;
+var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 
-var currentSuggestion = {roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',capacity:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am', type:'lab'};
+var currentSuggestion = {roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',capacity:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am', type:'room'};
 
 $(document).ready(function(){
 	getLocation();
@@ -15,18 +18,6 @@ $(document).ready(function(){
 
 	$("#nahM8").click(function(){
 		displaySuggestion();
-	});
-	$('#mooore').click(function(){
-		if (!optionsExpanded){
-			optionsExpanded=true;
-			$('#moreOptions').show();
-			$('#mainInterface').height(645+(inExpanded?45:0)+(gotExpanded?45:0));
-		}else{
-			optionsExpanded=false;
-			$('#moreOptions').hide();
-			$('#mainInterface').height(420);
-		}
-		
 	});
 	$("#privateBtn").click(function(){
 		alert('Suggestions of bookable tutorial rooms are not included in the alpha version'); // generate bookable room
@@ -49,12 +40,12 @@ $(document).ready(function(){
 			inExpanded=true;
 			$('#inDropdown').show();
 			$('#mainInterface').height($('#mainInterface').height() + 45);
-			$('#inMenu').css({'height':'83px'});
+			$('#inMenu').css({'background-color': 'rgba(16,50,76,0.5)','height':'83px'});
 		}else{
 			inExpanded=false;
 			$('#inDropdown').hide();
 			$('#mainInterface').height($('#mainInterface').height() - 45);
-			$('#inMenu').css({'height':'37px'});
+			$('#inMenu').css({'background-color': 'rgba(16,50,76,0)','height':'37px'});
 		}
 	});
 	$('#gotBtn').click(function(){
@@ -155,7 +146,20 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
   var d = R * c; // Distance in km
   return d;
 }
+
 function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
+
+// sends cords and waits for data back, which is just success 
+function sendUserCords() {
+  $.getJSON(SCRIPT_ROOT + '/user_coordinates', {
+        userLatitude: $(userLatitude).val(),
+        userLongitude: $(userLongitude).val()
+      }, function(data) {
+        console.log(data);
+      });
+} 
+
+  
 // functions to do with calculating distances }
