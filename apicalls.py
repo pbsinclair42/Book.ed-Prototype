@@ -45,7 +45,7 @@ buildings = [
   'opening hours': '08:30AM - 11:00PM'},
  {'coordinates': (55.944951, -3.188628),
   'name': 'Teviot House',
-  'opening hours': '??'}]
+  'opening hours': '09:00AM - 12:00AM'}]
 
 
 def getTree():
