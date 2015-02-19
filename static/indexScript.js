@@ -3,9 +3,9 @@ var userLongitude=0;
 
 $(document).ready(function(){
 	getLocation();
-	alert(userLatitude+','+userLongitude);
-	if(userLatitude!=0&&userLongitude!=0){
-		$('#locationAlert').hide();
+	console.log(userLatitude);
+	if(userLatitude===0){
+		$("#locationAlert").hide();
 	}
 	$("#privateBtn").click(function(){
 		alert('Suggestions of bookable tutorial rooms are not included in the alpha version'); //we'll include them when the timetabling department give us access to their data (hint hint pls)
@@ -34,18 +34,14 @@ function goToMain(){
 function getLocation() {
 	
     if (navigator.geolocation) {
-		
-		alert('1');
 		navigator.geolocation.getCurrentPosition( showPosition,showError );
     }
 }
 function showPosition(position) {
-	alert('2');
     userLatitude = position.coords.latitude;
 	userLongitude =  position.coords.longitude;
 }
 function showError(error) {
-	alert('3');
     switch(error.code) {
         case error.PERMISSION_DENIED:
             alert("Geolocation required for this app.")
