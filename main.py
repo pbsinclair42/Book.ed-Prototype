@@ -4,25 +4,14 @@ from flask import Flask, request, session, g, redirect, url_for, \
 import sqlite3
 
 # configuration
+DATABASE = '/Users/hanschristiangregersen/PycharmProjects/ILWHack2015/stat.db'
+DEBUG = True
+SECRET_KEY = 'key'
+USERNAME = 'admin'
+PASSWORD = 'default'
 
 app = Flask(__name__)
-app.config.from_envvar('FLASKR_SETTINGS', silent=True)
-
-
-def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = connect_to_database()
-    return db
-
-
-@app.teardown_appcontext
-def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
-
-
+app.config.from_object(__name__)
 
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
@@ -32,17 +21,29 @@ def before_request():
     g.db = connect_db()
 
 @app.teardown_request
-def teardown_request(exeption):
-    db = getatt(g, 'db', None)
+def teardown_request(exception):
+    db = getattr(g, 'db', None)
     if db is not None:
         db.close()
 
 
+class User_data:
+    def __init__(self, longitude=0, latitude=0):
+        self.lo = longitude
+        self.la = latitude
 
 
-@app.route("/")
-def hello():
-    return "Hello World"
+    def extract_location(self):
+        return self.lo, self.la
+
+
+
+@app.route("/", methods=['POST', 'GET'])
+def index():
+    longitude = request.args.get('lo', 0, type=int)
+    latitude = request.args.get('la', 0, type=int)
+
+    return render_template('index.html')
 
 
 if __name__ == "__main__":

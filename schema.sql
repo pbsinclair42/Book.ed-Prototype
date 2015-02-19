@@ -5,5 +5,7 @@ create table entries (
   ratio real,
   groups text not null,
   freeComp integer,
-  capacityComp integer
+  capacityComp integer,
+  geo text,
+  opening text
 );

@@ -73,43 +73,27 @@ def listOfDic(tree):
     # 
     # root.findall("room") method returns a list of all root's children
     # whose tag is "room" -- which is precisely what we what
-    root = tree.getroot()
-    rooms = [room.attrib for room in root.findall("room")]
 
-    # compute free seats percentage and add coordinates
-    for room in rooms:
-        ratio = float(room["free"]) / room["seats"]
-        room["ratio"] = round(r, 2)
+    s = []
+    for child in tree:
+        if 'location' in child.keys():
 
-        for b in buildings:
-            if b['name'] in room["location"]:
-                room["coordinates"] = b['coordinates']
-                room['opening hours'] = b['opening hours']
-                break
+            dict = {
+                'group': child.attrib['group'],
+                'location': child.attrib['location'],
+                'ratio': round( float(child.attrib['free']) / float(child.attrib['seats']), 3),
+                'freeComp': child.attrib['free'],
+                'capacityComp': child.attrib['seats']
+             }
 
-    return rooms
+            for b in buildings:
+                if b['name'] in dict['location']:
+                    dict['coordinates'] = b['coordinates']
+                    dict['opening hours'] = b['opening hours']
+                    break
+            s.append(dict)
 
-    ## old code
-    # 
-    # s = []
-    # for child in tree:
-    #     if 'location' in child.keys():
-
-    #         dict = {
-    #         'group': child.attrib['group'],
-    #         'location': child.attrib['location'],
-    #         'ratio': round( float(child.attrib['free']) / float(child.attrib['seats']), 3),
-    #         'freeComp': child.attrib['free'],
-    #         'capacityComp': child.attrib['seats']
-    #         }
-    #         if 'Holland House' in dict['location']:
-    #             dict['geo'] = #insert longitude and latitude
-
-    #         s.append(dict)
-    # return s
-
-
-# """ capacity, opening times, address, stuff like board piano. """
+    return s
 
 
 def ratingQSort(list):
