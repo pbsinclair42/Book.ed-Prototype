@@ -9,7 +9,7 @@ var currentSuggestion;
 
 //var suggestion = [];
 
-var suggestion=[]; //[{roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',capacity:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am', type:'lab'}]
+var suggestion=[{distance:0.0001433252,ratio:0.2345,coordinates:(55.2346,-3.342),capacityComp:'11',freeComp:'3',opening hours:'9-5', group:'busness', location:'busnessloc'}]; //[{roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',capacity:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am', type:'lab'}]
 
 //var currentSuggestion = suggestion[0];
 
