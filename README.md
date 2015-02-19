@@ -1,5 +1,25 @@
 # ILWHack2015
 
+## Still to do:
+
+#### Room suggestions:
+
+- Get front end to talk to back end
+- Make functions in back end which generate the best suggestion for the user based on what they've asked for
+- Prettify front end more?
+- Link to more info when a room is chosen
+- Push website to sandbox
+
+#### Usage over time:
+
+- Get database for storing info working
+- Create basic graph using this info
+- Finish basic 3D model of library
+- Change colour of floors based on how busy they were over time
+- Add usage view to website
+
+
+
 ## Useful links
 
 [File dump](https://drive.google.com/folderview?id=0B0Sf-og_VzkdRmRMVXVoRTBVWGc&usp=sharing)
