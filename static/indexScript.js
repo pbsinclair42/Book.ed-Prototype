@@ -34,15 +34,18 @@ function goToMain(){
 function getLocation() {
 	
     if (navigator.geolocation) {
-		alert('getting location...');
-        navigator.geolocation.getCurrentPosition( showPosition,showError );
+		
+		alert('1');
+		navigator.geolocation.getCurrentPosition( showPosition,showError );
     }
 }
 function showPosition(position) {
+	alert('2');
     userLatitude = position.coords.latitude;
 	userLongitude =  position.coords.longitude;
 }
 function showError(error) {
+	alert('3');
     switch(error.code) {
         case error.PERMISSION_DENIED:
             alert("Geolocation required for this app.")

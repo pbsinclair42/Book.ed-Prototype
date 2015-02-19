@@ -13,7 +13,7 @@ var suggestion = [{roomName:'Library Cafe',latitude:55.942705,longitude:-3.18914
 
 var currentSuggestion = suggestion[0];
 
-var requests;//={close:false,quiet:false,private:false,late:false,in:'Main Library',computer:true,whiteboard:true,groupSpace:true,printer:true,suggestions:suggestion,lo:userLongitude,la:userLatitude};
+var requests={close:false,quiet:false,private:false,late:false,in:'Main Library',computer:true,whiteboard:true,groupSpace:true,printer:true};
 
 $(document).ready(function(){
 	getLocation();
@@ -33,7 +33,6 @@ $(document).ready(function(){
 
 	$("#nahM8").click(function(){
 		createRequest();
-		//sendRequest();
 		
         getDetailed();
 		
@@ -242,7 +241,6 @@ function getDetailed() {
 	details.la = userLatitude;
 	details.requests=requests;
     details.suggestions = JSON.stringify(suggestion);
-    //details = JSON.stringify(details);
 	$.getJSON(SCRIPT_ROOT + '/detailed_suggestion', details, function(data) {
 		//May need format change etc
 		suggestion.push(data)
