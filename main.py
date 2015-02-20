@@ -29,8 +29,6 @@ def teardown_request(exception):
         db.close()
 
 
-
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -79,30 +77,28 @@ def detailed_suggestion():
 
     #Return a list of the best places best on given parameters
     bestPlaces = apicalls.returnBestPlaces(quiet, close, user)
-    print bestPlaces
+    print 'bestPlaces:', bestPlaces
 
 
+    # return the bestPlace that is not featuring is user.previousSuggestions
     ans = None
     if user.previousSuggestions:
-        print 'user.previousSuggestions', user.previousSuggestions
-
         notVisited = True
-
-
-        # answer is the best ranked of bestPlaces that has not been seen before
 
         for x in apicalls.stillOpen(bestPlaces): #should only query over places that are currenly open
             for y in user.previousSuggestions:
-                #print 'x[location]', x['location'], 'y[location]', y['location']
+
+                # if match, then suggestion is a previous suggestion, and should not be given as an answer.
                 if x['location'] == y['location']:
-                    #print "x['location'] == y['location']", x['location'] == y['location']
                     notVisited = False
                     break
+            # The suggestion has not been seen before, and is hence returned.
             if notVisited:
                 ans = x
                 break
-            notVisited = True
+            notVisited = True #for re-initialization.
 
+    # if the above didn't work, just return the best one.
     if ans == None:
         print 'ans==none is true'
         ans = bestPlaces[0]
@@ -126,7 +122,6 @@ def getAvg2Dates():
 @app.route('/visualisation.html')
 def getVis():
     return render_template('visualisation.html')
-
 
 
 
