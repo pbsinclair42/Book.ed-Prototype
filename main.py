@@ -52,7 +52,7 @@ def getCoordinates():
 def detailed_suggestion():
     longitude = request.args.get('la', 0, type=float)
     latitude = request.args.get('lo', 0, type=float)
-    quiet = request.args.get('quiet', type=bool)
+    quiet = request.args.get('quiet')
     print 'quiet', quiet
 
 

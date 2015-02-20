@@ -190,7 +190,7 @@ def quietPlace(user):
     :return: ordered list dictionaries
     """
     list = listOfDic(getTree())
-    orderedList = ratingQSort(user, list)
+    orderedList = ratingQSort(list)
     return orderedList
 
 
