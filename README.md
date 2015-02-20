@@ -34,9 +34,7 @@
 
 [MyEd API services](https://www.wiki.ed.ac.uk/pages/viewpage.action?pageId=251988936)
 
-[GitHub repo of old AT usage analyser](https://github.com/ball-hayden/AdverseWeather)
-
-[Website of Lancaster Uni's version](http://www.ombiel.com/#campusM)
+[Sandbox login](https://chostt.is.ed.ac.uk:2083/)
 
 [Map of (some) study spaces](http://www.docs.is.ed.ac.uk/docs/Subjects/IS-Help/map.html)
 
