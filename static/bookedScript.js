@@ -8,7 +8,7 @@ var gotExpanded=false; //whether the 'in...' menu is currently expanded
 var currentSuggestion; //the suggestion as returned by the server
 var newSuggestion; //the suggestion in the appropriate format for populating the html
 
-var SCRIPT_ROOT = 'http://127.0.0.1:5000'; //the root of the server TODO UPDATE
+var SCRIPT_ROOT = 'ilw.data.ed.uk/ILWHack2015/ILWHack2015'; //the root of the server TODO UPDATE
 //var SCRIPT_ROOT =  'http://ilw.data.ed.ac.uk/book.ed';
 
 //dummy currentSuggestion:
