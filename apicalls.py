@@ -2,7 +2,7 @@ __author__ = 'hanschristus'
 
 import requests
 from xml.etree import ElementTree
-import math
+import math, time
 
 
 
@@ -39,7 +39,7 @@ buildings = [
   'opening hours': '24hr swipe card'},
  {'coordinates': (55.921658, -3.174223),
   'name': 'JCMB',
-  'opening hours': '08.00AM - 21.00PM'},
+  'opening hours': '08.00AM - 09:00PM'},
  {'coordinates': (55.923437, -3.175012),
   'name': 'KB Centre',
   'opening hours': '24hr swipe card'},
@@ -205,12 +205,32 @@ def quietPlaceList(list):
 
     # not done yet! 
 # def stillOpen():
-#
+#     current_time = time
+#     c = time
 #     l = []
 #     list = listOfDic(getTree())
 #     for x in list:
 #         if x['opening hours'] == '24hr swipe card':
 #             l.append(x)
+#         else:
+#
+#             print x['opening hours'][10:-5]
+#             closeTime = int(x['opening hours'][10:-5])
+#
+#
+#
+#             print x['opening hours'][15:]
+#             if x['opening hours'][15:] == 'PM':
+#                 closeTime += 12
+#
+#             print 'closeTime:', closeTime
+#
+#             print 'c.asctime()', c.asctime()[11:13]
+#             if int(c.asctime()[11:13]) < closeTime:
+#                 l.append(x)
+#
+#
+#
 #
 #     return l
 
@@ -274,6 +294,10 @@ print 'list of dictionaries: \n', list
 # print 'list of dictionaries in Central:\n', central
 #
 # print 'closestPlace(): ', closestPlace(user)
+
+ordList = stillOpen()
+print 'list of time: \n', ordList
+
 #
 #
 #
