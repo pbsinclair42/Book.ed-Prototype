@@ -5,6 +5,17 @@
     ../static/bookedStyle.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="../static/indexScript.js"></script>
+	<!--
+	<script type="text/javascript">
+	var _yoData = {
+		"username": "BOOKED",
+		"trigger": "the library has study space"
+	};
+	var s = document.createElement("script");
+	s.type = "text/javascript";
+	s.src = "//yoapp.s3.amazonaws.com/js/yo-button.js";
+	(document.head || document.getElementsByTagName("head")[0]).appendChild(s);
+</script>-->
 </head>
 <body>
 	<img id='logo' src="../static/logo.png"></img>
@@ -15,6 +26,7 @@
         	<h1>Book.ed</h1>
 			<p1 id='locationAlert' style='position: absolute;
 left: 138px'>Location services must be allowed to use this website.</p1>
+			<!--<div id="yo-button" style='margin-left:270px;margin-top:30px;position:absolute; cursor:pointer background-color:'></div>-->
 			<h2 style='font-size:30px; margin-bottom:20px; margin-top:75px'>Find me somewhere...</h2>
 			<button id='privateBtn'>Private</button><!--replace style with class later-->
         		<button id = 'quietBtn'>Quiet</button>
