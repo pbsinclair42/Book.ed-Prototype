@@ -54,6 +54,13 @@ def detailed_suggestion():
     latitude = request.args.get('lo', 0, type=float)
     quiet = request.args.get('quiet', 0, type=int)
     close = request.args.get('close', 0, type=int)
+    printer = request.args.get('printer', 0, type=int)
+    group = request.args.get('group', 0, type=int)
+    whiteboard = request.args.get('whiteboard', 0, type=int)
+    daller = request.args.get('in')
+    
+
+
     print 'quiet', quiet
     print 'close', close
 
@@ -85,8 +92,9 @@ def detailed_suggestion():
         notVisited = True
 
 
-        #
-        for x in apicalls.stillOpen(bestPlaces): #should only query over places that are currenly open!
+        # answer is the best ranked of bestPlaces that has not been seen before
+
+        for x in apicalls.stillOpen(bestPlaces): #should only query over places that are currenly open
             for y in user.previousSuggestions:
                 #print 'x[location]', x['location'], 'y[location]', y['location']
                 if x['location'] == y['location']:

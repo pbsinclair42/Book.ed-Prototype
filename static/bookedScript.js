@@ -34,6 +34,7 @@ $(document).ready(function(){
 	//get the suggestion from the server
 	//display the suggestion
 	getLocation();
+    getSuggestion();
 	
 	//hyperlink to visualisation
 	$('#visulisationLogo').click(function(){
@@ -74,6 +75,7 @@ $(document).ready(function(){
 		//get the suggestion from the server
 		//display the suggestion
         getLocation();
+        getSuggestion();
 	});
 	
 	//if they want to generate another specific suggestion,
@@ -82,6 +84,7 @@ $(document).ready(function(){
 		//get the suggestion from the server
 		//display the suggestion
         getLocation();
+        getSuggestion();
 		window.scrollTo(0,0);
 		$('#mooore').click();
 	});
@@ -247,7 +250,6 @@ function getLocation() {
 function showPosition(position) {
     userLatitude = position.coords.latitude;
 	userLongitude =  position.coords.longitude;
-	getSuggestion();
 }
 //if impossible to get user's current coordinates, display a relevant error message
 function showError(error) {
@@ -291,7 +293,7 @@ function deg2rad(deg) {
 //get a suggestion from the server
 function getSuggestion() {
 	// dummy data TODO DELETE
-	currentSuggestion = {'building': 'Holland House', 'hasGroupSpace': 0, 'ratio': 0.688, 'hasPrinter': 1, 'coordinates': (55.938631, -3.169601), 'roomName': 'MicroLab', 'capacityComp': '32', 'freeComp': '22', 'opening hours': '24hr swipe card', 'group': 'Accommodation Services', 'hasWhiteboard': 0, 'location': 'Accommodation Services Holland House - MicroLab'}
+	//currentSuggestion = {'building': 'Holland House', 'hasGroupSpace': 0, 'ratio': 0.688, 'hasPrinter': 1, 'coordinates': (55.938631, -3.169601), 'roomName': 'MicroLab', 'capacityComp': '32', 'freeComp': '22', 'opening hours': '24hr swipe card', 'group': 'Accommodation Services', 'hasWhiteboard': 0, 'location': 'Accommodation Services Holland House - MicroLab'}
 	//create the JSON to send to the server{
     var details = {};
 	details.lo = userLongitude;
@@ -322,7 +324,7 @@ function getSuggestion() {
 		suggestion.push(data)
         console.log(data)
         currentSuggestion = suggestion[suggestion.length-1];
-		//displaySuggestion();
+		displaySuggestion();
 	});
-	displaySuggestion();//TODO DELETE?
+	//displaySuggestion();//TODO DELETE?
 }
