@@ -77,6 +77,7 @@ def detailed_suggestion():
 
     #Return a list of the best places best on given parameters
     bestPlaces = apicalls.returnBestPlaces(quiet, close, user)
+    #Test print
     print 'bestPlaces:', bestPlaces
 
 

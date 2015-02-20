@@ -57,7 +57,7 @@ buildings = [
   'opening hours': '09:00AM - 03:00AM'}]
 
 
-
+# Global dictionary of hardcoded building features.
 featuresBuilding = [{'building': 'Alison House',
   'hasGroupSpace': 0,
   'hasPrinter': 1,
@@ -296,13 +296,6 @@ def listOfDic(tree):
     :return list of dict {ratio with 3 digits, location}:
     """
 
-    # rooms is a list of dicts, each dict describes one room
-    # dict entries are the same as the XML `room' element attributes:
-    # free, seats, location, rid, group, closuremsg, info
-    # 
-    # root.findall("room") method returns a list of all root's children
-    # whose tag is "room" -- which is precisely what we what
-
     s = []
     for child in tree:
         if 'location' in child.keys():
@@ -464,21 +457,60 @@ def stillOpen(list):
 
     return l
 
+def openLate(list):
+    """
+    given a list of places, returns locations that are open now.
+    :param list:
+    :return: list
+    """
+    c = time
+    l = []
+    for x in list:
+        if x['opening hours'] == '24hr swipe card':
+            l.append(x)
+        else:
+
+            closeTime = int(x['opening hours'][10:-5])
+
+            if x['opening hours'][15:] == 'AM':
+                closeTime += 24
+
+            if x['opening hours'][15:] == 'PM':
+                closeTime += 12
+
+            currentTime = int(c.ctime()[11:13])
+            if currentTime < 12:
+                currentTime+= 24
+
+            if currentTime+3 < closeTime:
+                l.append(x)
+
+    return l
 
 
 
+# TODO implement more parameters..
 def returnBestPlaces(quiet, close, user):
+    """
+    given parameters returns a list of bestPlaces
+    :param quiet:
+    :param close:
+    :param user:
+    :return: ordered list
+    """
     if quiet == 1 and close == 0:
-        bestPlaces = apicalls.quietPlace()
+        bestPlaces = quietPlace()
     elif quiet==1 and close==1:
         tenClosest = closestPlace(user)[0:10]
         bestPlaces = quietPlaceList(tenClosest)
     else:
         bestPlaces = closestPlace(user)
 
+
     return bestPlaces
     
-    
+
+# for visualisation
 def libraryPercentageUsage():
   l = listOfDic(getTree())
   d = {}
@@ -520,9 +552,10 @@ def libraryPercentageUsage():
 #
 #
 #
-#xmltree = getTree()
+xmltree = getTree()
 
-#list = listOfDic(xmltree)
+list = listOfDic(xmltree)
+print 'openlist', openLate(list)
 #print 'list of dictionaries: \n', list
 #
 # distanceList = ratingDistQSort(user, list)
