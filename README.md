@@ -6,7 +6,6 @@
 
 - Make more functions in back end which generate the best suggestion for the user based on what they've asked for
 - Push website to sandbox
-- Create 'visualisations' logo
 - Ensure names aren't too big
 
 #### Visualisations:
