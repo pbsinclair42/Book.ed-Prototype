@@ -5,6 +5,7 @@ var inExpanded=false;
 var gotExpanded=false;
 var SCRIPT_ROOT = 'http://127.0.0.1:5000';
 var currentSuggestion;
+var newSuggestion;
 //var SCRIPT_ROOT =  'http://ilw.data.ed.ac.uk/book.ed';
 var detailsDatabase = [
 	{id:'Central Alison House', roomName:'Alison House',
@@ -147,11 +148,9 @@ $(document).ready(function(){
 	});
 
 	$("#nahM8").click(function(){
-		//createRequest();
-		
         getDetailed();
-		
-		//displaySuggestion();
+		currentSuggestion = {'distance': 0.003695571674313784, 'ratio': 1.0, 'coordinates': [55.948268, -3.183565], 'capacityComp': '61', 'freeComp': '61', 'opening hours': '24hr swipe card', 'group': 'Holyrood and High School Yards', 'location': 'Holyrood and High School Yards High School Yards Lab'};
+		displaySuggestion();
 	});
 	$('#mooore').click(function(){
 		if (!optionsExpanded){
@@ -197,7 +196,7 @@ $(document).ready(function(){
 			$('#moreOptions').height($('#moreOptions').height()-45);
 			deselectGots();
 		}
-	})
+	});
 	$('#libraryBtn').click(function(){
 		deselectIns();
 		$(this).addClass('selected');
@@ -227,11 +226,12 @@ function deselectGots(){
 
 //change the display to show details of the new suggestion{
 function displaySuggestion(){
-	document.getElementById('map').src= 'https://maps.googleapis.com/maps/api/staticmap?zoom='+calculateZoom()+calculateViewpoint()+'&size=380x330&key=AIzaSyBcrXTgUVxfXVLj3rh5gIUWyYRpveHMmEs&markers=size:medium%7Clabel:A%7C'+userLatitude+','+userLongitude+'&markers=size:medium%7Clabel:B%7C'+ currentSuggestion.latitude+','+ currentSuggestion.longitude;
-	$('#buildingName').text(currentSuggestion.building);
-	$('#capacityValue').text(currentSuggestion.capacity);
-	$('#usageValue').text(currentSuggestion.current);
-	if(currentSuggestion.type=='room'){
+	newSuggestion = addDetails();
+	document.getElementById('map').src= 'https://maps.googleapis.com/maps/api/staticmap?zoom='+calculateZoom()+calculateViewpoint()+'&size=380x330&key=AIzaSyBcrXTgUVxfXVLj3rh5gIUWyYRpveHMmEs&markers=size:medium%7Clabel:A%7C'+userLatitude+','+userLongitude+'&markers=size:medium%7Clabel:B%7C'+ newSuggestion.latitude+','+ newSuggestion.longitude;
+	$('#buildingName').text(newSuggestion.building);
+	$('#capacityValue').text(newSuggestion.capacity);
+	$('#usageValue').text(newSuggestion.current);
+	if(newSuggestion.type=='room'){
 		$('#capacityLabel').text('Capacity: ');
 		$('#usageLabel').text('Current availability: ');
 		$('#usageValue').text('Not booked');
@@ -239,12 +239,12 @@ function displaySuggestion(){
 		$('#capacityLabel').text('Computers: ');
 		$('#usageLabel').text('Computers in use: ');
 	}
-	$('#facilitiesValue').text( '' +  (((currentSuggestion.hasComputer&&currentSuggestion.type=='room'?', Computer':'')+(currentSuggestion.hasPrinter?', Printer':'')+(currentSuggestion.hasWhiteboard?', Whiteboard':'')+(currentSuggestion.hasGroupSpace?', Group Space':'')).slice(2)) );
+	$('#facilitiesValue').text( '' +  (((newSuggestion.hasComputer&&newSuggestion.type=='room'?', Computer':'')+(newSuggestion.hasPrinter?', Printer':'')+(newSuggestion.hasWhiteboard?', Whiteboard':'')+(newSuggestion.hasGroupSpace?', Group Space':'')).slice(2)) );
 	if ($('#facilitiesValue').text()===""){
 		$('#facilitiesValue').text('None, just a room!')
 	}
-	$('#openingValue').text(currentSuggestion.openingHours);
-	$('#roomName').text(currentSuggestion.roomName);
+	$('#openingValue').text(newSuggestion.openingHours);
+	$('#roomName').text(newSuggestion.roomName);
 }
 
 function addDetails(){
@@ -256,18 +256,26 @@ function addDetails(){
 	newSuggestion.openingHours = currentSuggestion.openingHours;
 	newSuggestion.type='lab';
 	newSuggestion.hasComputer='true';
-	
-	
-		
-	//{group:'busness', location:'busnessloc'}
-		
-	//{roomName:'Library Cafe',building:'Main Library',hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true}
+	fromDatabase=$.grep(detailsDatabase,function(e){ return e.id==currentSuggestion.location});
+	if(fromDatabase.length==0){
+		alert('location not found: ' + currentSuggestion.location);
+		newSuggestion.roomName='?';
+		newSuggestion.building='?';
+		newSuggestion.hasWhiteboard='?';
+		newSuggestion.hasGroupSpace='?';
+		newSuggestion.hasPrinter='?';
+	}else{
+		newSuggestion.roomName=fromDatabase[0].roomName;
+		newSuggestion.building=fromDatabase[0].building;
+		newSuggestion.hasWhiteboard=fromDatabase[0].hasWhiteboard;
+		newSuggestion.hasGroupSpace=fromDatabase[0].hasGroupSpace;
+		newSuggestion.hasPrinter=fromDatabase[0].hasPrinter;
+	}
+	return newSuggestion;
 }
 
-
-
 function calculateZoom(){
-	var distance = getDistanceFromLatLonInKm(userLatitude,userLongitude,currentSuggestion.latitude,currentSuggestion.longitude);
+	var distance = getDistanceFromLatLonInKm(userLatitude,userLongitude,newSuggestion.latitude,newSuggestion.longitude);
 	if (distance<0.25){
 		return 16;
 	}else if (distance<0.4){
@@ -278,35 +286,12 @@ function calculateZoom(){
 	return 15;
 }
 function calculateViewpoint(){
-	if (getDistanceFromLatLonInKm(userLatitude,userLongitude,currentSuggestion.latitude,currentSuggestion.longitude)>=1){
-		return 'center='+currentSuggestion.latitude,currentSuggestion.longitude;
+	if (getDistanceFromLatLonInKm(userLatitude,userLongitude,newSuggestion.latitude,newSuggestion.longitude)>=1){
+		return 'center='+newSuggestion.latitude,newSuggestion.longitude;
 	}
 	return '';
 }
 //change the display to show details of the new suggestion}
-
-function createRequest(){
-	var close=($('#closeBtn').hasClass('selected')?1:0);
-	var quiet=($('#quietBtn').hasClass('selected')?1:0);
-	var private=($('#privateBtn').hasClass('selected')?1:0);
-	var late=($('#lateBtn').hasClass('selected')?1:0);
-	var computer=($('#computerBtn').hasClass('selected')?1:0);
-	var whiteboard=($('#whiteboardBtn').hasClass('selected')?1:0);
-	var groupSpace=($('#groupBtn').hasClass('selected')?1:0);
-	var printer=($('#printerBtn').hasClass('selected')?1:0);
-	var inVar;
-	if($('#libraryBtn').hasClass('selected')){
-		inVar = 'Main Library';
-	}else if($('#centralBtn').hasClass('selected')){
-		inVar = 'Central';
-	}else if ($('#kingsBtn').hasClass('selected')){
-		inVar = 'Kings';
-	}else{
-		inVar=0;
-	}
-	requests = {close:close, quiet:quiet, private:private, late:late, in:inVar ,computer:computer, whiteboard:whiteboard, groupSpace:groupSpace, printer:printer};
-
-}
 
 // functions to do with getting user location {
 function getLocation() {
