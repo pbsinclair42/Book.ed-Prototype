@@ -90,7 +90,7 @@ def avgratiobylocandtime(loc,time):
 	l = ratiosbylocandtime(loc,time)
 	if len(l) == 0:
 		return 0.0
-	return sum(l)/float(len())
+	return sum(l)/float(len(l))
 
 def ratiobytimeanddate(loc, datetime):
 	dbconnect = sqlite3.connect("records.db")
@@ -115,8 +115,8 @@ def dictfordate(loc, datejs):
 	for i in range(0,23):
 		for j in [10,25,40,55]:
 			d.append({
-				'time': str(i)+':'+str(j)
-				'ratio':ratiobytimeanddate(loc, date + ' ' +str(i).zfill(2) + ':' + str(j) + ':%')
+				'time': str(i)+':'+str(j),
+				'ratio': ratiobytimeanddate(loc, date + ' ' +str(i).zfill(2) + ':' + str(j) + ':%')
 				})
 	return d
 
@@ -125,10 +125,10 @@ def dictforavgs(loc):
 	for i in range(0,23):
 		for j in [10,25,40,55]:
 			d.append({
-				'time':str(i)+':'str(j)
+				'time':str(i)+':'+str(j),
 				'ratio':avgratiobylocandtime(loc,str(i).zfill(2)+':'+str(j))
 				})
-
+	return d
 
 #update_labs()              #call this at the start of the app
 #scheduled_updates()			#updatedb.py takes care of this
