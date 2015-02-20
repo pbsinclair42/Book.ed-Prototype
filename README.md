@@ -6,13 +6,12 @@
 
 - Make more functions in back end which generate the best suggestion for the user based on what they've asked for
 - Push website to sandbox
-- Ensure names aren't too big
 
 #### Visualisations:
 
-- Prettify 3D visualisation on website (make it a webpage of its own right)
+- Fix HTML/CSS of 3D visualisation on website
+- Add graph to main website
 - Add slider to allow you to view historic data on library as well as current
-- Create basic graph(s) using info from database (?)
 
 #### Other:
 
