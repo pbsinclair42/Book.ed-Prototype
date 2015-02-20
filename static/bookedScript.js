@@ -11,119 +11,6 @@ var newSuggestion; //the suggestion in the appropriate format for populating the
 var SCRIPT_ROOT = 'http://127.0.0.1:5000'; //the root of the server TODO UPDATE
 //var SCRIPT_ROOT =  'http://ilw.data.ed.ac.uk/book.ed';
 
-// the information missing from the api data
-// all had to be manually entered by hand, so there may be some mistakes still
-var detailsDatabase = [
-	{id:'Central Alison House', roomName:'Alison House',
-	building:'Alison House', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'Central Appleton Tower Foyer - Cafe', roomName:'Foyer Cafe',
-	building:'Appleton', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'Central Appleton Tower Level 1 (Mezzanine)', roomName:'Mezzanine labs',
-	building:'Alison House', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'Central Teviot House - Cafe', roomName:'Teviot Study',
-	building:'Teviot', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:false},
-	{id:'Central Hugh Robson Bldg Basement A', roomName:'Basement A',
-	building:'Hugh Robson', hasWhiteboard:false,
-	hasGroupSpace:true, hasPrinter:true},
-	{id:'Central Hugh Robson Bldg Basement B', roomName:'Basement B',
-	building:'Hugh Robson', hasWhiteboard:false,
-	hasGroupSpace:true, hasPrinter:true},
-	{id:'Central Main Library - Cafe', roomName:'Cafe labs',
-	building:'Main Library', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:false},
-	{id:'Central Main Library Ground', roomName:'Ground floor',
-	building:'Main Library', hasWhiteboard:true,
-	hasGroupSpace:true, hasPrinter:true},
-	{id:'Central Main Library Ground - Quick Use', roomName:'Quick use labs',
-	building:'Main Library', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'Central Main Library Level 1', roomName:'Level 1',
-	building:'Main Library', hasWhiteboard:true,
-	hasGroupSpace:true, hasPrinter:true},
-	{id:'Central Main Library Level 2', roomName:'Level 2',
-	building:'Main Library', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'Central Main Library Level 3', roomName:'Level 3',
-	building:'Main Library', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'Central Main Library Level 4', roomName:'Level 4',
-	building:'Main Library', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'Business School Business School - HUB RC', roomName:'Hub',
-	building:'Business School', hasWhiteboard:true,
-	hasGroupSpace:true, hasPrinter:true},
-	{id:'Business School Business School - MBA Suite', roomName:'MBA Suite',
-	building:'Business School', hasWhiteboard:true,
-	hasGroupSpace:true, hasPrinter:true},
-	{id:'Business School Business School - PG Labs', roomName:'PG Labs',
-	building:'Business School', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'Business School Business School - Synd Rooms', roomName:'Synd Rooms',
-	building:'Business School', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'Business School Business School - Teach Lab', roomName:'Synd Rooms',
-	building:'Business School', hasWhiteboard:true,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'Business School Business School - UG Lab', roomName:'Synd Rooms',
-	building:'Business School', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'Holyrood and High School Yards High School Yards Lab', roomName:'HSY Labs',
-	building:'High School Yards', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'Holyrood and High School Yards Moray House Library Ground Floor', roomName:'Ground Floor',
-	building:'Moray House Library', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'Holyrood and High School Yards Moray House Library Level 1', roomName:'Level 1',
-	building:'Moray House Library', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'Accommodation Services Holland House - MicroLab', roomName:'MicroLab',
-	building:'Holland House', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'Accommodation Services Holland House - Study Pods', roomName:'Study Pods',
-	building:'Holland House', hasWhiteboard:true,
-	hasGroupSpace:true, hasPrinter:true},
-	{id:'KB Labs KB Centre Level 1', roomName:'Level 1',
-	building:'KB Centre Library', hasWhiteboard:true,
-	hasGroupSpace:true, hasPrinter:false},
-	{id:'KB Labs KB Centre Level 2 - Main', roomName:'Level 2 Main',
-	building:'KB Centre Library', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'KB Labs KB Centre Level 2 - Side 16 Seat', roomName:'Level 2 Wee Side',
-	building:'KB Centre Library', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'KB Labs KB Centre Level 2 - Side 25 Seat', roomName:'Level 2 Big Side',
-	building:'KB Centre Library', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'KB Labs KB Centre Level 3', roomName:'Level 3',
-	building:'KB Centre Library', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'KB Labs Murray Library Ground - Cafe', roomName:'Cafe Labs',
-	building:'Murray Library', hasWhiteboard:false,
-	hasGroupSpace:true, hasPrinter:true},
-	{id:'KB Labs Murray Library Level 1', roomName:'Level 1',
-	building:'Murray Library', hasWhiteboard:false,
-	hasGroupSpace:true, hasPrinter:true},
-	{id:'KB Labs Murray Library Level 1 - Quick Use', roomName:'Quick use labs',
-	building:'Murray Library', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'KB Labs Murray Library Level 2', roomName:'Level 2',
-	building:'Murray Library', hasWhiteboard:false,
-	hasGroupSpace:true, hasPrinter:true},
-	{id:'KB Labs JCMB - Cafe', roomName:'Cafe labs',
-	building:'JCMB', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'KB Labs JCMB L and T Cluster', roomName:'Room 3210',
-	building:'JCMB', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-	{id:'KB Labs Darwin L and T Cluster', roomName:'L&T Cluster',
-	building:'JCMB', hasWhiteboard:true,
-	hasGroupSpace:true, hasPrinter:true},
-];
-
 //dummy currentSuggestion:
 var suggestion=[{distance:0.0001433252,ratio:0.2345,coordinates:[55.2346,-3.342],capacityComp:'11',freeComp:'3',openingHours:'9-5', group:'busness', location:'busnessloc'}]; 
 
@@ -314,25 +201,12 @@ function addDetails(){
 	newSuggestion.type='lab';                //for now, all we have data on are computer labs so we know they are all labs...
 	newSuggestion.hasComputer='true';        //and they all have computers, so we add them directly
 	
-	//search the local database for the room matching the one sent by the server
-	fromDatabase=$.grep(detailsDatabase,function(e){ return e.id==currentSuggestion.location});
-	//if you didn't find it, throw an error
-	if(fromDatabase.length==0){
-		alert('location not found: ' + currentSuggestion.location);
-		newSuggestion.roomName='?';
-		newSuggestion.building='?';
-		newSuggestion.hasWhiteboard='?';
-		newSuggestion.hasGroupSpace='?';
-		newSuggestion.hasPrinter='?';
-	}else{
-		//otherwise, copy the other details from the local database{
-		newSuggestion.roomName=fromDatabase[0].roomName;
-		newSuggestion.building=fromDatabase[0].building;
-		newSuggestion.hasWhiteboard=fromDatabase[0].hasWhiteboard;
-		newSuggestion.hasGroupSpace=fromDatabase[0].hasGroupSpace;
-		newSuggestion.hasPrinter=fromDatabase[0].hasPrinter;
-		//otherwise, copy the other details from the local database}
-	}
+	newSuggestion.roomName=currentSuggestion.roomName;
+	newSuggestion.building=currentSuggestion.building;
+		newSuggestion.hasWhiteboard=currentSuggestion.hasWhiteboard;
+		newSuggestion.hasGroupSpace=currentSuggestion.hasGroupSpace;
+		newSuggestion.hasPrinter=currentSuggestion.hasPrinter;
+		//otherwise, copy the other details from the local database
 	
 	return newSuggestion;
 }
@@ -416,7 +290,7 @@ function deg2rad(deg) {
 
 //get a suggestion from the server
 function getSuggestion() {
-	//dummy data TODO DELETE
+	//old fashioned dummy data TODO DELETE
 	//currentSuggestion = {'distance': 0.003695571674313784, 'ratio': 1.0, 'coordinates': [55.948268, -3.183565], 'capacityComp': 27, 'freeComp': '27', 'opening hours': '24hr swipe card', 'group': 'Holyrood and High School Yards', 'location': 'Holyrood and High School Yards Moray House Library Level 1'};
 	//create the JSON to send to the server{
     var details = {};
