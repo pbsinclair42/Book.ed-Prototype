@@ -30,9 +30,10 @@ $(document).ready(function(){
 		$('#lateBtn').addClass('selected');
 	}//otherwise just keep it as it is, with closeBtn selected
 	if(window.name!=""){
-		userLatitude=window.name.slice(6,window.name.indexOf('-'));
+		userLatitude=window.name.slice(5,window.name.indexOf('-'));
 		userLongitude=window.name.slice(window.name.indexOf('-'));
 	}
+	alert(userLatitude+','+userLongitude);
 	//clear the data used in the hack
 	window.data="";
 	
