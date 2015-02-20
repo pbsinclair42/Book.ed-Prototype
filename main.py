@@ -81,9 +81,9 @@ def detailed_suggestion():
 
         for x in bestPlaces:
             for y in user.previousSuggestions:
-                print 'x[location]', x['location'], 'y[location]', y['location']
+                #print 'x[location]', x['location'], 'y[location]', y['location']
                 if x['location'] == y['location']:
-                    print "x['location'] == y['location']", x['location'] == y['location']
+                    #print "x['location'] == y['location']", x['location'] == y['location']
                     notVisited = False
                     break
             if notVisited:
@@ -106,6 +106,11 @@ def rMain():
 @app.route('/get_usage')
 def getUsage():
     return jsonify(apicalls.libraryPercentageUsage())
+
+@app.route('/visualisation.html')
+
+def getVis():
+    return render_template('visualisation.html')
 
 
 
