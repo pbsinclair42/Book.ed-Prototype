@@ -10,7 +10,8 @@
   <body>
     <script>
       $(function() {
-        var change = $.getJSON('http://127.0.0.1:5000' + '/get_usage', {}, function(data) {
+        var change = function(){
+          $.getJSON('http://127.0.0.1:5000' + '/get_usage', {}, function(data) {
             function getGreenToRed(percent){
               return ''+percent/100+' '+ (100-percent)/100+' '+0;
             }
@@ -24,7 +25,8 @@
             console.log(data['4'])
             $('material[DEF=MA_mat_ground]').attr('diffuseColor', getGreenToRed(data['g']))//'0.8 0.175 0.8'
             console.log(data['g'])
-        });
+          });
+        }
         change()
         window.setInterval(function(){
           change()
