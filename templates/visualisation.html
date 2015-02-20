@@ -16,15 +16,19 @@
               return ''+percent/100+' '+ (100-percent)/100+' '+0;
             }
             $('material[DEF=MA_mat_firts]').attr('diffuseColor', getGreenToRed(data['1']))//'0.8 0.175 0.8'
+            console.log(getGreenToRed(data['1']))
             $('material[DEF=MA_mat_second]').attr('diffuseColor', getGreenToRed(data['2']))//'0.8 0.175 0.8'
+            console.log(getGreenToRed(data['2']))
             $('material[DEF=MA_mat_third]').attr('diffuseColor', getGreenToRed(data['3']))//'0.8 0.175 0.8'
+            console.log(getGreenToRed(data['3']))
             $('material[DEF=MA_mat_fourth]').attr('diffuseColor', getGreenToRed(data['4']))//'0.8 0.175 0.8'
+            console.log(getGreenToRed(data['4']))
             $('material[DEF=MA_mat_ground]').attr('diffuseColor', getGreenToRed(data['g']))//'0.8 0.175 0.8'
+            console.log(getGreenToRed(data['g']))
           });
         }, 5000);
     })   
     </script>
-    <button id="button">button</button>
     <x3d id='someUniqueId' showStat='false' showLog='false' x='0px' y='0px' width='600px' height='400px'>
       <scene>
         <navigationInfo avatarSize='0.25 1.75 0.75' headlight='false' type='"EXAMINE" "ANY"'></navigationInfo>
