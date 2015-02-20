@@ -6,6 +6,26 @@ var gotExpanded=false;
 var SCRIPT_ROOT = 'http://127.0.0.1:5000';
 var currentSuggestion;
 //var SCRIPT_ROOT =  'http://ilw.data.ed.ac.uk/book.ed';
+var detailsDatabase = [
+	{id:'Central Alison House', roomName:'Alison House',
+	building:'Alison House', hasWhiteboard:false,
+	hasGroupSpace:false, hasPrinter:true},
+	{id:'Central Appleton Tower Foyer - Cafe', roomName:'Foyer Cafe',
+	building:'Appleton', hasWhiteboard:false,
+	hasGroupSpace:false, hasPrinter:true},
+	{id:'Central Appleton Tower Level 1 (Mezzanine)', roomName:'Alison House',
+	building:'Alison House', hasWhiteboard:false,
+	hasGroupSpace:false, hasPrinter:true},
+	{id:'Central Teviot House - Cafe', roomName:'Teviot Study',
+	building:'Teviot', hasWhiteboard:false,
+	hasGroupSpace:false, hasPrinter:false},
+	{id:'Central Hugh Robson Bldg Basement A', roomName:'Basement A',
+	building:'Hugh Robson', hasWhiteboard:false,
+	hasGroupSpace:true, hasPrinter:true},
+	{id:'Central Hugh Robson Bldg Basement B', roomName:'Alison House',
+	building:'Alison House', hasWhiteboard:false,
+	hasGroupSpace:false, hasPrinter:true},
+}
 
 var suggestion=[{distance:0.0001433252,ratio:0.2345,coordinates:[55.2346,-3.342],capacityComp:'11',freeComp:'3',openingHours:'9-5', group:'busness', location:'busnessloc'}]; //[{roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',capacity:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am', type:'lab'}]
 
@@ -136,6 +156,26 @@ function displaySuggestion(){
 	$('#openingValue').text(currentSuggestion.openingHours);
 	$('#roomName').text(currentSuggestion.roomName);
 }
+
+function addDetails(){
+	var newSuggestion = {};
+	newSuggestion.latitude = currentSuggestion.coordinates[0];
+	newSuggestion.longitude = currentSuggestion.coordinates[1];
+	newSuggestion.capacity = currentSuggestion.capacityComp;
+	newSuggestion.current = currentSuggestion.capacityComp-currentSuggestion.freeComp;
+	newSuggestion.openingHours = currentSuggestion.openingHours;
+	newSuggestion.type='lab';
+	newSuggestion.hasComputer='true';
+	
+	
+		
+	//{group:'busness', location:'busnessloc'}
+		
+	//{roomName:'Library Cafe',building:'Main Library',hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true}
+}
+
+
+
 function calculateZoom(){
 	var distance = getDistanceFromLatLonInKm(userLatitude,userLongitude,currentSuggestion.latitude,currentSuggestion.longitude);
 	if (distance<0.25){
@@ -244,6 +284,7 @@ function getDetailed() {
 	details.lo = userLongitude;
 	details.la = userLatitude;
 	details.quiet = ($('#quietBtn').hasClass('selected')?1:0);
+	details.close = ($('#closeBtn').hasClass('selected')?1:0);
 	details.requests=requests;
     details.suggestions = JSON.stringify(suggestion);
 	$.getJSON(SCRIPT_ROOT + '/detailed_suggestion', details, function(data) {
