@@ -16,6 +16,10 @@ var requests = {distance:0.0001433252,ratio:0.2345,coordinates:[55.2346,-3.342],
 $(document).ready(function(){
 	getLocation();
 	
+	$('#visulisationLogo').click(function(){
+		window.location.href='visualisation.html';
+	});
+	
 	$('.selectable').click(function(){
 		if (!$(this).hasClass('selected')){
 			$(this).addClass('selected');

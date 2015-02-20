@@ -121,6 +121,14 @@ body{
 	width:200px;
 }
 
+#visulisationLogo{
+	position:absolute;
+	right:0;
+	top:0;
+	width:200px;
+	cursor: pointer;
+}
+
 #mainInterface{
     width:600px;
 	height:350px;
