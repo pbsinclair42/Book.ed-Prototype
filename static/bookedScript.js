@@ -146,8 +146,8 @@ $(document).ready(function(){
 	});
 	
     $("#yesPls").click(function(){
-		// go to booking/maps as required
-		console.log($('#quietBtn').hasClass('selected')?1:0);
+		// go to Google maps
+		window.location.href= 'https://www.google.com/maps/preview?saddr='+userLatitude+','+userLongitude+'&daddr='+newSuggestion.latitude+','+newSuggestion.longitude+'&dirflg=w';
 	});
 
 	$("#nahM8").click(function(){
