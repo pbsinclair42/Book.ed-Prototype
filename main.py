@@ -73,7 +73,8 @@ def detailed_suggestion():
     if user.previousSuggestions:
         notVisited = True
 
-        for x in apicalls.stillOpen(bestPlaces): #should only query over places that are currenly open
+        #should only query over places that are currenly open
+        for x in apicalls.stillOpen(bestPlaces):
             for y in user.previousSuggestions:
 
                 # if match, then suggestion is a previous suggestion, and should not be given as an answer.
@@ -93,6 +94,7 @@ def detailed_suggestion():
 
     return jsonify(ans)
 
+#routes:
 
 @app.route('/main.html')
 def rMain():
