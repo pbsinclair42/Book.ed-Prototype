@@ -323,3 +323,13 @@ body{
 	position: relative;
 	left:5px;
 }
+
+#goMask{
+	width:580px;
+	height:43px;
+	font-size: 20px;
+	position: relative;
+	left:5px;
+	top:-43px;
+	display:none;
+}
