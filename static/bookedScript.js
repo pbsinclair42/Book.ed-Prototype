@@ -131,6 +131,18 @@ var suggestion=[{distance:0.0001433252,ratio:0.2345,coordinates:[55.2346,-3.342]
 
 //when the page first loads...
 $(document).ready(function(){
+	//wee hack to get data from index page to main without cookie nonsense
+	//if they chose quiet, set up 'quiet' settings
+	if (window.name=="quiet"){
+		$('#closeBtn').removeClass('selected');
+		$('#quietBtn').addClass('selected');
+	//otherwise if they chose late, set up 'late' settings
+	}else if( window.name=="late"){
+		$('#closeBtn').removeClass('selected');
+		$('#lateBtn').addClass('selected');
+	}//otherwise just keep it as it is, with closeBtn selected
+	//clear the data used in the hack
+	window.data="";
 	//get the user's current coordinates
 	//get the suggestion from the server
 	//display the suggestion

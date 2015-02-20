@@ -18,9 +18,11 @@ $(document).ready(function(){
 		goToMain();
 	});
 	$('#closeBtn').click(function(){
+		window.name='close';
 		goToMain();
 	});
 	$('#lateBtn').click(function(){
+		window.name='late';
 		goToMain();
 	});
 });
