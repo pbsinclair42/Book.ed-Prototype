@@ -6,7 +6,6 @@ import apicalls
 import json, ast
 
 # configuration
-DATABASE = '/Users/hanschristiangregersen/PycharmProjects/ILWHack2015/stat.db'
 DEBUG = True
 SECRET_KEY = 'key'
 USERNAME = 'admin'
