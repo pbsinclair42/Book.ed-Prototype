@@ -160,7 +160,7 @@ def dictformonthavg(loc,monthjs):
 
 def datejstopydate(datejs):
 	day = int(datejs2[:2])
-	month = int(datejs[[3:5]])
+	month = int(datejs[3:5])
 	year = int(datejsp[6:])
 	d = datetime.date(year,month,day)
 	return d
