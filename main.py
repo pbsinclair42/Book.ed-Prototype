@@ -84,7 +84,7 @@ def detailed_suggestion():
 
         notVisited = True
 
-        for x in bestPlaces:
+        for x in apicalls.stillOpen(bestPlaces): #should only query over places that are currenly open!
             for y in user.previousSuggestions:
                 #print 'x[location]', x['location'], 'y[location]', y['location']
                 if x['location'] == y['location']:
@@ -123,3 +123,4 @@ def getVis():
 
 if __name__ == "__main__":
     app.run()
+

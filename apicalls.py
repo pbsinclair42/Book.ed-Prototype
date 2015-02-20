@@ -203,36 +203,47 @@ def quietPlaceList(list):
     ordList = ratingQSort(list)
     return ordList
 
-    # not done yet! 
-# def stillOpen():
-#     current_time = time
-#     c = time
-#     l = []
-#     list = listOfDic(getTree())
-#     for x in list:
-#         if x['opening hours'] == '24hr swipe card':
-#             l.append(x)
-#         else:
-#
-#             print x['opening hours'][10:-5]
-#             closeTime = int(x['opening hours'][10:-5])
-#
-#
-#
-#             print x['opening hours'][15:]
-#             if x['opening hours'][15:] == 'PM':
-#                 closeTime += 12
-#
-#             print 'closeTime:', closeTime
-#
-#             print 'c.asctime()', c.asctime()[11:13]
-#             if int(c.asctime()[11:13]) < closeTime:
-#                 l.append(x)
-#
-#
-#
-#
-#     return l
+    # not done yet!
+
+
+
+def stillOpen(list):
+    """
+    given a list of places, returns locations that are open now.
+    :param list:
+    :return: list
+    """
+    c = time
+    l = []
+    for x in list:
+        if x['opening hours'] == '24hr swipe card':
+            l.append(x)
+        else:
+
+            print x['opening hours'][10:-5]
+            closeTime = int(x['opening hours'][10:-5])
+
+            print 'open time', (x['opening hours'][:2])
+            openTime = int(x['opening hours'][:2])
+
+
+            print 'opening house[15:]', x['opening hours'][15:]
+            if x['opening hours'][15:] == 'PM':
+                closeTime += 12
+
+
+            print 'opening house[5:7]', x['opening hours'][5:7]
+            if x['opening hours'][5:7] == 'PM':
+                openTime += 12
+
+            print 'closeTime:', closeTime
+            print 'openTime', openTime
+
+            print 'c.asctime()', c.asctime()[11:13]
+            if int(c.asctime()[11:13]) > openTime and int(c.asctime()[11:13]) < closeTime:
+                l.append(x)
+
+    return l
 
     
     
@@ -277,10 +288,10 @@ def libraryPercentageUsage():
 #
 #
 #
-xmltree = getTree()
-#
-list = listOfDic(xmltree)
-print 'list of dictionaries: \n', list
+# xmltree = getTree()
+# #
+# list = listOfDic(xmltree)
+# print 'list of dictionaries: \n', list
 #
 # distanceList = ratingDistQSort(user, list)
 #
@@ -295,9 +306,8 @@ print 'list of dictionaries: \n', list
 #
 # print 'closestPlace(): ', closestPlace(user)
 
-ordList = stillOpen()
-print 'list of time: \n', ordList
 
 #
 #
 #
+
