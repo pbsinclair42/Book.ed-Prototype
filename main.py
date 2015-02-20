@@ -111,6 +111,10 @@ def rMain():
 @app.route('/get_usage')
 def getUsage():
     return jsonify(apicalls.libraryPercentageUsage())
+    
+@app.route('/get_avg_for2dates')
+def getAvg2Dates():
+    return jsonify(apicalls.libraryPercentageUsage())
 
 @app.route('/visualisation.html')
 def getVis():
