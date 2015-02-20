@@ -52,7 +52,7 @@ def getCoordinates():
 def detailed_suggestion():
     longitude = request.args.get('la', 0, type=float)
     latitude = request.args.get('lo', 0, type=float)
-    quiet = request.args.get('quiet')
+    quiet = request.args.get('quiet', 0, type=int)
     print 'quiet', quiet
 
 
@@ -66,7 +66,7 @@ def detailed_suggestion():
     print user.previousSuggestions
 
 
-    if quiet:
+    if quiet==1:
         bestPlaces = apicalls.quietPlace(user)
     else:
         bestPlaces = apicalls.closestPlace(user)
