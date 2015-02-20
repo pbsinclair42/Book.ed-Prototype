@@ -191,9 +191,11 @@ def avgbetweendates(loc,datejs1,datejs2):
 	for i in range(0,23):
 		for j in [10,25,40,55]:
 			timestr = str(i).zfill(2)+str(j)
-			d.append({
-				str(i).zfill(2)+':'+str(j):averagebetweendatesattime(loc,d1,d2,timestr)
-				})
+			k = averagebetweendatesattime(loc,d1,d2,timestr)
+			d.append(
+				((1 - k)*100) if not k = 1.0 else 50
+				)
+
 
 #update_labs()              #call this at the start of the app
 #scheduled_updates()			#updatedb.py takes care of this
