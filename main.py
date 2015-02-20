@@ -14,18 +14,6 @@ PASSWORD = 'default'
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-def connect_db():
-    return sqlite3.connect(app.config['DATABASE'])
-
-@app.before_request
-def before_request():
-    g.db = connect_db()
-
-@app.teardown_request
-def teardown_request(exception):
-    db = getattr(g, 'db', None)
-    if db is not None:
-        db.close()
 
 
 @app.route('/')
@@ -117,7 +105,7 @@ def getUsage():
     
 @app.route('/get_avg_for2dates')
 def getAvg2Dates():
-    s = request.args.get('startDate)
+    s = request.args.get('startDate')
     e = request.args.get('endDate')
     l = request.args.get('location')
     return jsonify(dblib.avgbetweendates(l, s, e))

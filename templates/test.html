@@ -114,7 +114,7 @@
       details.location = location;
       details.startDate = moment(startDate).format("DD:MM:YYYY");
       details.endDate = moment(endDate).format("DD:MM:YYYY");
-      $.getJSON("http://ilw.data.ed.ac.uk/ILWhack2015/ILWHack2015" + '/get_avg_for2dates', details, function(data) {
+      $.getJSON("http://127.0.0.1:5000" + '/get_avg_for2dates', details, function(data) {
         data.datasets[0].data = data;
         // not sure
         myBarChart = new Chart(ctx).Bar(data, options);
