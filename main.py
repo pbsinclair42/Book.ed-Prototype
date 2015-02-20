@@ -53,7 +53,9 @@ def detailed_suggestion():
     longitude = request.args.get('la', 0, type=float)
     latitude = request.args.get('lo', 0, type=float)
     quiet = request.args.get('quiet', 0, type=int)
+    close = request.args.get('close', 0, type=int)
     print 'quiet', quiet
+    print 'close', close
 
 
     user = apicalls.User_data(longitude, latitude)
@@ -66,8 +68,11 @@ def detailed_suggestion():
     print user.previousSuggestions
 
 
-    if quiet==1:
-        bestPlaces = apicalls.quietPlace(user)
+    if quiet==1 and close==0:
+        bestPlaces = apicalls.quietPlace()
+    elif quiet==1 and close==1:
+        tenClosest = apicalls.closestPlace(user)[0:10]
+        bestPlaces = apicalls.quietPlaceList(tenClosest)
     else:
         bestPlaces = apicalls.closestPlace(user)
 

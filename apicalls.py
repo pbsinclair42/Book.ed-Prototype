@@ -183,10 +183,10 @@ def closestPlace(user):
     orderedList = ratingDistQSort(user, list)
     return orderedList
     
-def quietPlace(user):
+def quietPlace():
     """
     returns an ordered list of the most quiet places based on PC ratio.
-    :param user:
+    :param :
     :return: ordered list dictionaries
     """
     list = listOfDic(getTree())
@@ -194,7 +194,15 @@ def quietPlace(user):
     return orderedList
 
 
-
+def quietPlaceList(list):
+    """
+    given a list of dictionaries, function returns ordered list of dictionaries w.r.t. ratio
+    :param ordered list:
+    :return: ordered list
+    """
+    ordList = ratingQSort(list)
+    return ordList
+    
     
     
     
@@ -235,17 +243,17 @@ def libraryPercentageUsage():
 # test calls:
 
 #
-#user = User_data(55.946103, -3.18656)
+# user = User_data(55.946103, -3.18656)
 #
 #
 #
 #
-#xmltree = getTree()
+# xmltree = getTree()
 #
-#list = listOfDic(xmltree)
+# list = listOfDic(xmltree)
 # print 'list of dictionaries: \n', list
 #
-#distanceList = ratingDistQSort(user, list)
+# distanceList = ratingDistQSort(user, list)
 #
 # print 'ordered list w.r.t. distance \n', distanceList
 #
