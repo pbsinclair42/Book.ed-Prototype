@@ -1,5 +1,0 @@
-DATABASE = '/Users/hanschristiangregersen/PycharmProjects/ILWHack2015/stat.db'
-DEBUG = True
-SECRET_KEY = 'somekey'
-USERNAME = 'admin'
-PASSWORD = 'default'
