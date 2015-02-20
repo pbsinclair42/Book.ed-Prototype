@@ -445,14 +445,19 @@ def stillOpen(list):
 
             openTime = int(x['opening hours'][:2])
 
-            if x['opening hours'][15:] == 'PM':
-                closeTime += 12
+            if x['opening hours'][15:] == 'AM':
+                closeTime += 24
+            else:
+                closeTime +=12
 
+            if x['opening hours'][6:8] == 'PM':
+                closeTime +=12
 
-            if x['opening hours'][5:7] == 'PM':
-                openTime += 12
+            currTime=int(c.asctime()[11:13])
+            if currTime <4:
+                currTime += 24
 
-            if int(c.asctime()[11:13]) > openTime and int(c.asctime()[11:13]) < closeTime:
+            if currTime> openTime and currTime < closeTime:
                 l.append(x)
 
     return l
