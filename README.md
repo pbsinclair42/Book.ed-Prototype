@@ -57,3 +57,9 @@
 
  - [High school yards](http://labmonitor.ucs.ed.ac.uk/myed/index.cfm?fuseaction=Available&lab_group_name=Holyrood%20and%20High%20School%20Yards)
 
+
+![Alt text](https://raw.githubusercontent.com/pbsinclair42/ILWHack2015/master/screenshots/2015-02-20%2003.06.26%20pm.png "Main app")
+
+![Alt text](https://raw.githubusercontent.com/pbsinclair42/ILWHack2015/master/screenshots/2015-02-20%2003.06.56%20pm.png "Customizable options")
+
+![Alt text](https://raw.githubusercontent.com/pbsinclair42/ILWHack2015/master/screenshots/2015-02-20%2003.08.16%20pm.png "Main Library 3D Visualisation")
