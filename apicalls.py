@@ -54,7 +54,7 @@ buildings = [
   'opening hours': '08:30AM - 11:00PM'},
  {'coordinates': (55.944951, -3.188628),
   'name': 'Teviot House',
-  'opening hours': '09:00AM - 12:00AM'}]
+  'opening hours': '09:00AM - 03:00AM'}]
 
 
 
@@ -202,8 +202,18 @@ def quietPlaceList(list):
     """
     ordList = ratingQSort(list)
     return ordList
-    
-    
+
+    # not done yet! 
+# def stillOpen():
+#
+#     l = []
+#     list = listOfDic(getTree())
+#     for x in list:
+#         if x['opening hours'] == '24hr swipe card':
+#             l.append(x)
+#
+#     return l
+
     
     
 def libraryPercentageUsage():
@@ -247,11 +257,10 @@ def libraryPercentageUsage():
 #
 #
 #
+xmltree = getTree()
 #
-# xmltree = getTree()
-#
-# list = listOfDic(xmltree)
-# print 'list of dictionaries: \n', list
+list = listOfDic(xmltree)
+print 'list of dictionaries: \n', list
 #
 # distanceList = ratingDistQSort(user, list)
 #
