@@ -420,8 +420,25 @@ function getSuggestion() {
 	details.la = userLatitude;
 	details.quiet = ($('#quietBtn').hasClass('selected')?1:0);
 	details.close = ($('#closeBtn').hasClass('selected')?1:0);
-    details.suggestions = JSON.stringify(suggestion);
+	details.late = ($('#lateBtn').hasClass('selected')?1:0);
+	details.in = ($('#inBtn').hasClass('selected')? ($('#libraryBtn').hasClass('selected')?'library': ($('#centralBtn').hasClass('selected')?'central': ($('#kingsBtn').hasClass('selected')?'kings':0))):0);
+	if (($('#gotBtn').hasClass('selected'))){
+		details.computer = ($('#computerBtn').hasClass('selected')?1:0);
+		details.whiteboard = ($('#whiteboardBtn').hasClass('selected')?1:0);
+		details.group = ($('#groupSpaceBtn').hasClass('selected')?1:0);
+		details.printer = ($('#printerBtn').hasClass('selected')?1:0);
+	}else{
+		details.computer=0;
+		details.whiteboard=0;
+		details.group=0;
+		details.printer=0;
+	}
+	details.suggestions = JSON.stringify(suggestion);
 	//create the JSON to send to the server}
+	//this JSON will be of the following form:
+	//{ lo:float, la:float, quiet:(0|1), close:(0|1), late:(0|1), in:('library'|'central'|'kings'), computer:(0|1), whiteboard:(0|1), group:(0|1), printer:(0|1) }
+	//Note that all the (0|1) are essentially boolean, it's just JSON was playing up when using actual booleans earlier.  
+	
 	//send this to the server, then populate the display once you get a response
 	$.getJSON(SCRIPT_ROOT + '/detailed_suggestion', details, function(data) {
 		suggestion.push(data)
