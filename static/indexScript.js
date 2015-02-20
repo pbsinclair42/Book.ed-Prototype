@@ -17,15 +17,15 @@ $(document).ready(function(){
 		alert('Suggestions of bookable tutorial rooms are not included in the alpha version'); //we'll include them when the timetabling department give us access to their data (hint hint pls)
 	});
 	$('#quietBtn').click(function(){
-		window.name='quiet';
+		window.name=('quiet'+userLatitude)+userLongitude;
 		goToMain();
 	});
 	$('#closeBtn').click(function(){
-		window.name='close';
+		window.name=('close'+userLatitude)+userLongitude;
 		goToMain();
 	});
 	$('#lateBtn').click(function(){
-		window.name='late';
+		window.name=('latee'+userLatitude)+userLongitude;
 		goToMain();
 	});
 	//set up hyperlinks}
