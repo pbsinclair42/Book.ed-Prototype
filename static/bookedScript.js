@@ -1,12 +1,18 @@
-var userLatitude;
-var userLongitude;
-var optionsExpanded=false;
-var inExpanded=false;
-var gotExpanded=false;
-var SCRIPT_ROOT = 'http://127.0.0.1:5000';
-var currentSuggestion;
-var newSuggestion;
+var userLatitude; //current latitude of user
+var userLongitude; //current longitude of user
+
+var optionsExpanded=false; //whether the options menu is currently expanded
+var inExpanded=false; //whether the 'in...' menu is currently expanded
+var gotExpanded=false; //whether the 'in...' menu is currently expanded
+
+var currentSuggestion; //the suggestion as returned by the server
+var newSuggestion; //the suggestion in the appropriate format for populating the html
+
+var SCRIPT_ROOT = 'http://127.0.0.1:5000'; //the root of the server TODO UPDATE
 //var SCRIPT_ROOT =  'http://ilw.data.ed.ac.uk/book.ed';
+
+// the information missing from the api data
+// all had to be manually entered by hand, so there may be some mistakes still
 var detailsDatabase = [
 	{id:'Central Alison House', roomName:'Alison House',
 	building:'Alison House', hasWhiteboard:false,
@@ -118,16 +124,18 @@ var detailsDatabase = [
 	hasGroupSpace:true, hasPrinter:true},
 ];
 
-var suggestion=[{distance:0.0001433252,ratio:0.2345,coordinates:[55.2346,-3.342],capacityComp:'11',freeComp:'3',openingHours:'9-5', group:'busness', location:'busnessloc'}]; //[{roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',capacity:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am', type:'lab'}]
+//dummy currentSuggestion:
+var suggestion=[{distance:0.0001433252,ratio:0.2345,coordinates:[55.2346,-3.342],capacityComp:'11',freeComp:'3',openingHours:'9-5', group:'busness', location:'busnessloc'}]; 
 
-var requests = {distance:0.0001433252,ratio:0.2345,coordinates:[55.2346,-3.342],capacityComp:'11',freeComp:'3',openingHours:'9-5', group:'busness', location:'busnessloc'};
+//dummy newSuggestion: [{roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',capacity:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am', type:'lab'}]
 
-//{distance:0.0001433252,ratio:0.2345,coordinates:(55.2346,-3.342),capacityComp:'11',freeComp:'3',opening hours:'9-5', group:'busness', location:'busnessloc'}
-
+//when the page first loads...
 $(document).ready(function(){
+	//get the user's current coordinates
 	getLocation();
 	
-    getDetailed();
+	//get the suggestion from the server
+    getSuggestion();
 	displaySuggestion();
 	
 	$('#visulisationLogo').click(function(){
@@ -151,7 +159,7 @@ $(document).ready(function(){
 	});
 
 	$("#nahM8").click(function(){
-        getDetailed();
+        getSuggestion();
 		displaySuggestion();
 	});
 	$('#mooore').click(function(){
@@ -342,34 +350,19 @@ function deg2rad(deg) {
 }
 // functions to do with calculating distances }
 
-// sends cords and waits for data back, which is just success 
-function sendUserCords() {
-    getLocation()
-  $.getJSON(SCRIPT_ROOT + '/user_coordinates', {
-        la: userLatitude,
-        lo: userLongitude
-      }, function(data) {
-      suggestion.push(data)
-        console.log(data);
-      currentSuggestion = suggestion[suggestion.length-1];
-      });
-}
-var i=0;//TODO REMOVE TESTING ONLY
-function getDetailed() {
-	currentSuggestion = {'distance': 0.003695571674313784, 'ratio': 1.0, 'coordinates': [55.948268, -3.183565], 'capacityComp': 27+i, 'freeComp': '27', 'opening hours': '24hr swipe card', 'group': 'Holyrood and High School Yards', 'location': 'Holyrood and High School Yards Moray House Library Level 1'};
-	i++;
+function getSuggestion() {
+	currentSuggestion = {'distance': 0.003695571674313784, 'ratio': 1.0, 'coordinates': [55.948268, -3.183565], 'capacityComp': 27, 'freeComp': '27', 'opening hours': '24hr swipe card', 'group': 'Holyrood and High School Yards', 'location': 'Holyrood and High School Yards Moray House Library Level 1'};
 	getLocation();
     var details = {};
 	details.lo = userLongitude;
 	details.la = userLatitude;
 	details.quiet = ($('#quietBtn').hasClass('selected')?1:0);
 	details.close = ($('#closeBtn').hasClass('selected')?1:0);
-	//details.requests=requests;
     details.suggestions = JSON.stringify(suggestion);
 	$.getJSON(SCRIPT_ROOT + '/detailed_suggestion', details, function(data) {
-		//May need format change etc
 		suggestion.push(data)
         console.log(data)
         currentSuggestion = suggestion[suggestion.length-1];
+		displaySuggestion();
 	});
 }
