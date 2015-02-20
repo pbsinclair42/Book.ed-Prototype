@@ -354,9 +354,10 @@ function sendUserCords() {
       currentSuggestion = suggestion[suggestion.length-1];
       });
 }
-
+var i=0;//TODO REMOVE TESTING ONLY
 function getDetailed() {
-	//currentSuggestion = {'distance': 0.003695571674313784, 'ratio': 1.0, 'coordinates': [55.948268, -3.183565], 'capacityComp': '27', 'freeComp': '27', 'opening hours': '24hr swipe card', 'group': 'Holyrood and High School Yards', 'location': 'Holyrood and High School Yards Moray House Library Level 1'};
+	currentSuggestion = {'distance': 0.003695571674313784, 'ratio': 1.0, 'coordinates': [55.948268, -3.183565], 'capacityComp': 27+i, 'freeComp': '27', 'opening hours': '24hr swipe card', 'group': 'Holyrood and High School Yards', 'location': 'Holyrood and High School Yards Moray House Library Level 1'};
+	i++;
 	getLocation();
     var details = {};
 	details.lo = userLongitude;
