@@ -26,7 +26,7 @@
 			<script>
       $(function() {
         var change = function(){
-          $.getJSON('http://127.0.0.1:5000' + '/get_usage', {}, function(data) {
+          $.getJSON('http://ilw.data.ed.ac.uk/ILWhack2015/ILWHack2015' + '/get_usage', {}, function(data) {
             function getGreenToRed(percent){
               return ''+percent/100+' '+ (100-percent)/100+' '+0;
             }
