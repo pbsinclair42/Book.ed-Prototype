@@ -1,9 +1,12 @@
-var userLatitude=0;
-var userLongitude=0;
+var userLatitude=0; //the user's current latitude
+var userLongitude=0; //the user's current longitude
 
+//when the page is loaded...
 $(document).ready(function(){
+	//get the user's location, but don't do anything with it
 	getLocation();
 	
+	//set up hyperlinks{
 	$('#visulisationLogo').click(function(){
 		window.location.href='visualisation.html';
 	});
@@ -25,13 +28,18 @@ $(document).ready(function(){
 		window.name='late';
 		goToMain();
 	});
+	//set up hyperlinks}
 });
 
+//when the user tries to go to main,
 function goToMain(){
+	//recheck their location
 	getLocation();
+	//if they do have a location, navigate them through to main
 	if(userLatitude!=0&&userLongitude!=0){
 		window.location.href='main.html';
 	}else{
+		//otherwise complain at them til they do
 		alert('Location service must be allowed to use this website.');
 	}
 }
