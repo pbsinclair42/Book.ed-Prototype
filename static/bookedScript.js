@@ -132,19 +132,20 @@ var suggestion=[{distance:0.0001433252,ratio:0.2345,coordinates:[55.2346,-3.342]
 //when the page first loads...
 $(document).ready(function(){
 	//get the user's current coordinates
+	//get the suggestion from the server
+	//display the suggestion
 	getLocation();
 	
-	//get the suggestion from the server
-    getSuggestion();
-	displaySuggestion();
-	
+	//hyperlink to visualisation
 	$('#visulisationLogo').click(function(){
 		window.location.href='visualisation.html';
 	});
+	//hyperlink to home
 	$('#logo').click(function(){
 		window.location.href='/';
 	});
 	
+	//adding ability to toggle selectable elements
 	$('.selectable').click(function(){
 		if (!$(this).hasClass('selected')){
 			$(this).addClass('selected');
@@ -153,15 +154,21 @@ $(document).ready(function(){
 		}
 	});
 	
+	//if they are happy with the suggestion,
     $("#yesPls").click(function(){
-		// go to Google maps
+		// display the walking route there on Google maps
 		window.location.href= 'https://www.google.com/maps/preview?saddr='+userLatitude+','+userLongitude+'&daddr='+newSuggestion.latitude+','+newSuggestion.longitude+'&dirflg=w';
 	});
-
+	
+	//if they want to generate another suggestion,
 	$("#nahM8").click(function(){
-        getSuggestion();
-		displaySuggestion();
+		//get the user's current coordinates
+		//get the suggestion from the server
+		//display the suggestion
+        getLocation();
 	});
+	
+	//toggle displaying more options
 	$('#mooore').click(function(){
 		if (!optionsExpanded){
 			optionsExpanded=true;
@@ -174,9 +181,14 @@ $(document).ready(function(){
 		}
 		
 	});
+	
+	//if they want to see bookable tutorial rooms, say no
 	$("#privateBtn").click(function(){
-		alert('Suggestions of bookable tutorial rooms are not included in the alpha version'); //we'll include them when the timetabling department give us access to their data (hint hint pls)
+		alert('Suggestions of bookable tutorial rooms are not included in the alpha version'); 
+		//we'll include them when the timetabling department give us access to their data (hint hint pls)
 	});
+	
+	//toggle displaying the 'in...' options
 	$('#inBtn').click(function(){
 		if(!inExpanded){
 			inExpanded=true;
@@ -193,6 +205,8 @@ $(document).ready(function(){
 			deselectIns();
 		}
 	});
+	
+	//toggle displaying the 'got...' options
 	$('#gotBtn').click(function(){
 		if(!gotExpanded){
 			gotExpanded=true;
@@ -207,6 +221,8 @@ $(document).ready(function(){
 			deselectGots();
 		}
 	});
+	
+	//On selecting a location, deselect the other locations{
 	$('#libraryBtn').click(function(){
 		deselectIns();
 		$(this).addClass('selected');
@@ -219,14 +235,17 @@ $(document).ready(function(){
 		deselectIns();
 		$(this).addClass('selected');
 	});
+	//On selecting a location, deselect the other locations}
 });
 
+//deselect all the 'in...' buttons
 function deselectIns(){
 	$('#libraryBtn').removeClass('selected');
 	$('#centralBtn').removeClass('selected');
 	$('#kingsBtn').removeClass('selected');
 }
 
+//deselect all the 'got...' buttons
 function deselectGots(){
 	$('#computerBtn').removeClass('selected');
 	$('#whiteboardBtn').removeClass('selected');
@@ -234,10 +253,16 @@ function deselectGots(){
 	$('#printerBtn').removeClass('selected');
 }
 
-//change the display to show details of the new suggestion{
+//functions to do with populating the display {
+
+//change the display to show details of the new suggestion
 function displaySuggestion(){
+	//convert from the JSON returned by the server to the JSON needed to populate the display
 	newSuggestion = addDetails();
+	//update the Google Maps static image using their API
 	document.getElementById('map').src= 'https://maps.googleapis.com/maps/api/staticmap?zoom='+calculateZoom()+calculateViewpoint()+'&size=380x330&key=AIzaSyBcrXTgUVxfXVLj3rh5gIUWyYRpveHMmEs&markers=size:medium%7Clabel:A%7C'+userLatitude+','+userLongitude+'&markers=size:medium%7Clabel:B%7C'+ newSuggestion.latitude+','+ newSuggestion.longitude;
+	
+	//Change the value of each of the parameters displayed to the new suggestion's{
 	$('#buildingName').text(newSuggestion.building);
 	$('#capacityValue').text(newSuggestion.capacity);
 	$('#usageValue').text(newSuggestion.current);
@@ -255,18 +280,25 @@ function displaySuggestion(){
 	}
 	$('#openingValue').text(newSuggestion.openingHours);
 	$('#roomName').text(newSuggestion.roomName);
+	//Change the value of each of the parameters displayed to the new suggestion's}
 }
 
+//convert from the JSON returned by the server to the JSON needed to populate the display
 function addDetails(){
+	//copy directly those that you can{
 	var newSuggestion = {};
 	newSuggestion.latitude = currentSuggestion.coordinates[0];
 	newSuggestion.longitude = currentSuggestion.coordinates[1];
 	newSuggestion.capacity = currentSuggestion.capacityComp;
 	newSuggestion.current = currentSuggestion.capacityComp-currentSuggestion.freeComp;
-	newSuggestion.openingHours = currentSuggestion.openingHours;
-	newSuggestion.type='lab';
-	newSuggestion.hasComputer='true';
+	newSuggestion.openingHours = currentSuggestion['opening hours'];
+	//copy directly those that you can}
+	newSuggestion.type='lab';                //for now, all we have data on are computer labs so we know they are all labs...
+	newSuggestion.hasComputer='true';        //and they all have computers, so we add them directly
+	
+	//search the local database for the room matching the one sent by the server
 	fromDatabase=$.grep(detailsDatabase,function(e){ return e.id==currentSuggestion.location});
+	//if you didn't find it, throw an error
 	if(fromDatabase.length==0){
 		alert('location not found: ' + currentSuggestion.location);
 		newSuggestion.roomName='?';
@@ -275,15 +307,19 @@ function addDetails(){
 		newSuggestion.hasGroupSpace='?';
 		newSuggestion.hasPrinter='?';
 	}else{
+		//otherwise, copy the other details from the local database{
 		newSuggestion.roomName=fromDatabase[0].roomName;
 		newSuggestion.building=fromDatabase[0].building;
 		newSuggestion.hasWhiteboard=fromDatabase[0].hasWhiteboard;
 		newSuggestion.hasGroupSpace=fromDatabase[0].hasGroupSpace;
 		newSuggestion.hasPrinter=fromDatabase[0].hasPrinter;
+		//otherwise, copy the other details from the local database}
 	}
+	
 	return newSuggestion;
 }
 
+//work out how zoomed out the map needs to be
 function calculateZoom(){
 	var distance = getDistanceFromLatLonInKm(userLatitude,userLongitude,newSuggestion.latitude,newSuggestion.longitude);
 	if (distance<0.25){
@@ -295,24 +331,33 @@ function calculateZoom(){
 	}
 	return 15;
 }
+
+//if user is so far away from suggested location that the map would need to be massively zoomed out to show the two points,
+//just show the suggested location on the map and zoom in on that
 function calculateViewpoint(){
 	if (getDistanceFromLatLonInKm(userLatitude,userLongitude,newSuggestion.latitude,newSuggestion.longitude)>=1){
 		return 'center='+newSuggestion.latitude,newSuggestion.longitude;
 	}
 	return '';
 }
-//change the display to show details of the new suggestion}
+
+//functions to do with populating the display }
 
 // functions to do with getting user location {
 function getLocation() {
+	//check that the browser is compatible
     if (navigator.geolocation) {
+		//get the user's current coordinates or throw an error if that's not possible
         navigator.geolocation.getCurrentPosition( showPosition,showError );
     }
 }
+//save the current positions, then get a new suggestion from the server
 function showPosition(position) {
     userLatitude = position.coords.latitude;
 	userLongitude =  position.coords.longitude;
+	getSuggestion();
 }
+//if impossible to get user's current coordinates, display a relevant error message
 function showError(error) {
     switch(error.code) {
         case error.PERMISSION_DENIED:
@@ -332,6 +377,7 @@ function showError(error) {
 // functions to do with getting user location }
 
 // functions to do with calculating distances {
+// blatently stolen from the internet
 function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
   var R = 6371; // Radius of the earth in km
   var dLat = deg2rad(lat2-lat1);  // deg2rad below
@@ -350,19 +396,24 @@ function deg2rad(deg) {
 }
 // functions to do with calculating distances }
 
+//get a suggestion from the server
 function getSuggestion() {
+	//dummy data TODO DELETE
 	currentSuggestion = {'distance': 0.003695571674313784, 'ratio': 1.0, 'coordinates': [55.948268, -3.183565], 'capacityComp': 27, 'freeComp': '27', 'opening hours': '24hr swipe card', 'group': 'Holyrood and High School Yards', 'location': 'Holyrood and High School Yards Moray House Library Level 1'};
-	getLocation();
+	//create the JSON to send to the server{
     var details = {};
 	details.lo = userLongitude;
 	details.la = userLatitude;
 	details.quiet = ($('#quietBtn').hasClass('selected')?1:0);
 	details.close = ($('#closeBtn').hasClass('selected')?1:0);
     details.suggestions = JSON.stringify(suggestion);
+	//create the JSON to send to the server}
+	//send this to the server, then populate the display once you get a response
 	$.getJSON(SCRIPT_ROOT + '/detailed_suggestion', details, function(data) {
 		suggestion.push(data)
         console.log(data)
         currentSuggestion = suggestion[suggestion.length-1];
 		displaySuggestion();
 	});
+	displaySuggestion();//TODO DELETE?
 }
