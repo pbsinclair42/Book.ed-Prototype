@@ -1,6 +1,6 @@
 import sqlite3
 import apicalls
-import ../datetime
+import datetime
 import sched, time
 datetimeformatstr = "%Y-%m-%d %H:%M:%S"
 ###
