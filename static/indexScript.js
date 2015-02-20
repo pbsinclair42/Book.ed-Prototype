@@ -7,7 +7,7 @@ $(document).ready(function(){
 	getLocation();
 	
 	//set up hyperlinks{
-	$('#visulisationLogo').click(function(){
+	$('#visualisationLogo').click(function(){
 		window.location.href='visualisation.html';
 	});
 	$('#logo').click(function(){

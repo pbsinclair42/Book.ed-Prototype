@@ -43,7 +43,7 @@ $(document).ready(function(){
     getSuggestion();
 	
 	//hyperlink to visualisation
-	$('#visulisationLogo').click(function(){
+	$('#visualisationLogo').click(function(){
 		window.location.href='visualisation.html';
 	});
 	//hyperlink to home
