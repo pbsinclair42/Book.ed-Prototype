@@ -1,6 +1,6 @@
 import sqlite3
 import apicalls
-import datetime
+import ../datetime
 import sched, time
 datetimeformatstr = "%Y-%m-%d %H:%M:%S"
 ###
@@ -89,7 +89,7 @@ def ratiosbylocandtime(loc,time):
 def avgratiobylocandtime(loc,time):
 	l = ratiosbylocandtime(loc,time)
 	if len(l) == 0:
-		return 0.0
+		return 1.0
 	return sum(l)/float(len(l))
 
 def ratiobytimeanddate(loc, datetime):
@@ -100,7 +100,7 @@ def ratiobytimeanddate(loc, datetime):
 	if t != []:
 		i = t[0][0]
 	else:
-		i = 0.0
+		i = 1.0
 	dbconnect.close()
 	return i
 
@@ -116,8 +116,7 @@ def dictfordate(loc, datejs):
 	for i in range(0,23):
 		for j in [10,25,40,55]:
 			d.append({
-				'time': str(i).zfill(2)+':'+str(j),
-				'ratio': ratiobytimeanddate(loc, date + ' ' +str(i).zfill(2) + ':' + str(j) + ':%')
+				str(i).zfill(2)+':'+str(j): (1-ratiobytimeanddate(loc, date + ' ' +str(i).zfill(2) + ':' + str(j) + ':%'))*100
 				})
 	return d
 
@@ -126,8 +125,7 @@ def dictforavg(loc):
 	for i in range(0,23):
 		for j in [10,25,40,55]:
 			d.append({
-				'time':str(i).zfill(2)+':'+str(j),
-				'ratio':avgratiobylocandtime(loc,str(i).zfill(2)+':'+str(j))
+				str(i).zfill(2)+':'+str(j):(1-avgratiobylocandtime(loc,str(i).zfill(2)+':'+str(j)))*100
 				})
 	return d
 
@@ -156,9 +154,46 @@ def dictformonthavg(loc,monthjs):
 	for i in range(0,23):
 		for j in [10,25,40,55]:
 			d.append({
-				'time':str(i).zfill(2)+':'+str(j),
-				'ratio':avgbymonthtime(loc,str(i).zfill(2)+str(j),month)
+				str(i).zfill(2)+':'+str(j):avgbymonthtime(loc,str(i).zfill(2)+str(j),month)
 				})
 	return d
+
+def datejstopydate(datejs):
+	day = int(datejs2[:2])
+	month = int(datejs[[3:5]])
+	year = int(datejsp[6:])
+	d = datetime.date(year,month,day)
+	return d
+
+def ratiosbetweendatesattime(loc,date1,date2,time):
+	dbconnect = sqlite3.dbconnect("records.db")
+	curr = dbconnect.curr()
+	l = []
+	while date1 < date2:
+		datestr = str(date1.year)+'-'+str(date1.month)+'-'+str(date1.day)+' '+time+':%'
+		curr.execute("SELECT ratio FROM Record WHERE time LIKE ? AND location LIKE ?",(datestr,loc))
+		t = curr.fetchall()
+		for i in t:
+			l.append(i[0])
+		date1 += datetime.timedelta(day=1)
+	return l
+
+def averagebetweendatesattime(loc,date1,date2,time):
+	l = ratiosbetweendatesattime(loc,date1,date2,time)
+	if l == []:
+		return 1.0
+	else:
+		return sum(l)/float(len(l))
+def avgbetweendates(loc,datejs1,datejs2):
+	d1 = datejstopydate(datejs1)
+	d2 = datejstopydate(datejs2)
+	d = []
+	for i in range(0,23):
+		for j in [10,25,40,55]:
+			timestr = str(i).zfill(2)+str(j)
+			d.append({
+				str(i).zfill(2)+':'+str(j):averagebetweendatesattime(loc,d1,d2,timestr)
+				})
+
 #update_labs()              #call this at the start of the app
 #scheduled_updates()			#updatedb.py takes care of this
