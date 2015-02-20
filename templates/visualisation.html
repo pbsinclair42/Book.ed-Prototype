@@ -5,10 +5,22 @@
     <link rel='stylesheet' type='text/css' href='http://www.x3dom.org/x3dom/release/x3dom.css'></link>
     <script type='text/javascript' src='http://www.x3dom.org/x3dom/release/x3dom.js'></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
-
+	<title>Book.ed</title>
+	<meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport' />
+    <link rel="stylesheet" href="
+    ../static/bookedStyle.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   </head>
-  <body>
-    <script>
+
+
+<body>
+	<img id='logo' src="../static/logo.png"></img>
+	<img id='visulisationLogo' src="../static/visLogo.png"></img>
+	<div id='header'></div>
+    <div id = 'mainInterface'>
+		<div id='suggestion' style='height:540px'>
+        	<h1 style='font-size:30px'>Main Library Visualisation</h1>
+			<script>
       $(function() {
         var change = function(){
           $.getJSON('http://127.0.0.1:5000' + '/get_usage', {}, function(data) {
@@ -33,7 +45,7 @@
         }, 5000);
     })   
     </script>
-    <x3d id='someUniqueId' showStat='false' showLog='false' x='0px' y='0px' width='600px' height='400px'>
+    <x3d id='someUniqueId' showStat='false' showLog='false' x='0px' y='0px' width='588px' height='400px' style='margin-left:-5px; margin-bottom:10px'>
       <scene>
         <navigationInfo avatarSize='0.25 1.75 0.75' headlight='false' type='"EXAMINE" "ANY"'></navigationInfo>
         <background DEF='WO_World' groundColor='0.051 0.051 0.051' skyColor='0.051 0.051 0.051'></background>
@@ -1440,6 +1452,18 @@
         </transform>
       </scene>
     </x3d>
+			<p2 style='text-align: justify; width: 580px; right: auto; position:absolute;'>Here you can see a 3D map of all the computer labs in the Main Library.  On this map, the colour of the lab represents how busy it is, on a scale of green (empty) to red (full).  Grey denotes rooms which aren't labs, while blue denotes study facilities such as printers.  </p2>
+			<p2 style='margin-top:10px position:absolute;top:55'>Controls: Click and drag to rotate, double click to pan to position,scroll to zoom in and out</p2>
+		</div>
+    </div>
+	<!--#suggestion{
+	height: 330px;
+	width: 580px;
+	padding:10px;
+	background-color: rgba(4,24,39,0.9);
+}-->
+
+    
   </body>
 </html>
 
