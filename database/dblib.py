@@ -101,6 +101,7 @@ def ratiobytimeanddate(loc, datetime):
 		i = t[0][0]
 	else:
 		i = 0.0
+	dbconnect.close()
 	return i
 
 def datejstodate(datejs):
@@ -115,20 +116,49 @@ def dictfordate(loc, datejs):
 	for i in range(0,23):
 		for j in [10,25,40,55]:
 			d.append({
-				'time': str(i)+':'+str(j),
+				'time': str(i).zfill(2)+':'+str(j),
 				'ratio': ratiobytimeanddate(loc, date + ' ' +str(i).zfill(2) + ':' + str(j) + ':%')
 				})
 	return d
 
-def dictforavgs(loc):
+def dictforavg(loc):
 	d = []
 	for i in range(0,23):
 		for j in [10,25,40,55]:
 			d.append({
-				'time':str(i)+':'+str(j),
+				'time':str(i).zfill(2)+':'+str(j),
 				'ratio':avgratiobylocandtime(loc,str(i).zfill(2)+':'+str(j))
 				})
 	return d
 
+def ratiosbymonthtime(loc,time,month):
+	dbconnect = sqlite3.connect("records.db")
+	curr = dbconnect.cursor()
+	curr.execute("SELECT ratio FROM Record WHERE time LIKE ? AND location LIKE ?",(month+'-% '+time+':%',loc))
+	t = curr.fetchall()
+	l = []
+	for i in t:
+		l.append(i[0])
+	dbconnect.close()
+	return l
+def avgbymonthtime(loc,time,month):
+	l = ratiosbymonthtime(loc,time,month)
+	if len(l) == 0:
+		return 0.0
+	return sum(l)/float(len(l))
+def jsmonthtomonth(jsmonth):
+	month = jsmonth[:2]
+	year = jsmonth[3:]
+	return year+'-'+month
+def dictformonthavg(loc,monthjs):
+	month = jsmonthtomonth(monthjs)
+	d = []
+	for i in range(0,23):
+		for j in [10,25,40,55]:
+			d.append({
+				'time':str(i).zfill(2)+':'+str(j),
+				'ratio':avgbymonthtime(loc,str(i).zfill(2)+str(j),month)
+				})
+	return d
 #update_labs()              #call this at the start of the app
 #scheduled_updates()			#updatedb.py takes care of this
