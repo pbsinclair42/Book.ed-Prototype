@@ -1,5 +1,6 @@
 var userLatitude=0; //the user's current latitude
 var userLongitude=0; //the user's current longitude
+var gotnames=window.name!="";
 
 //when the page is loaded...
 $(document).ready(function(){
@@ -36,7 +37,7 @@ function goToMain(){
 	//recheck their location
 	getLocation();
 	//if they do have a location, navigate them through to main
-	if(userLatitude!=0&&userLongitude!=0){
+	if(gotnames||(userLatitude!=0&&userLongitude!=0)){
 		window.location.href='main.html';
 	}else{
 		//otherwise complain at them til they do
