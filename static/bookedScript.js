@@ -89,7 +89,7 @@ var detailsDatabase = [
 	{id:'KB Labs KB Centre Level 2 - Side 16 Seat', roomName:'Level 2 Wee Side',
 	building:'KB Centre Library', hasWhiteboard:false,
 	hasGroupSpace:false, hasPrinter:true},
-	{id:'KB Labs KB Centre Level 2 - Side 16 Seat', roomName:'Level 2 Big Side',
+	{id:'KB Labs KB Centre Level 2 - Side 25 Seat', roomName:'Level 2 Big Side',
 	building:'KB Centre Library', hasWhiteboard:false,
 	hasGroupSpace:false, hasPrinter:true},
 	{id:'KB Labs KB Centre Level 3', roomName:'Level 3',
@@ -127,6 +127,9 @@ var requests = {distance:0.0001433252,ratio:0.2345,coordinates:[55.2346,-3.342],
 $(document).ready(function(){
 	getLocation();
 	
+    getDetailed();
+	displaySuggestion();
+	
 	$('#visulisationLogo').click(function(){
 		window.location.href='visualisation.html';
 	});
@@ -149,7 +152,6 @@ $(document).ready(function(){
 
 	$("#nahM8").click(function(){
         getDetailed();
-		currentSuggestion = {'distance': 0.003695571674313784, 'ratio': 1.0, 'coordinates': [55.948268, -3.183565], 'capacityComp': '61', 'freeComp': '61', 'opening hours': '24hr swipe card', 'group': 'Holyrood and High School Yards', 'location': 'Holyrood and High School Yards High School Yards Lab'};
 		displaySuggestion();
 	});
 	$('#mooore').click(function(){
@@ -354,6 +356,7 @@ function sendUserCords() {
 }
 
 function getDetailed() {
+	//currentSuggestion = {'distance': 0.003695571674313784, 'ratio': 1.0, 'coordinates': [55.948268, -3.183565], 'capacityComp': '27', 'freeComp': '27', 'opening hours': '24hr swipe card', 'group': 'Holyrood and High School Yards', 'location': 'Holyrood and High School Yards Moray House Library Level 1'};
 	getLocation();
     var details = {};
 	details.lo = userLongitude;
