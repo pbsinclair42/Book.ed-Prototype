@@ -114,7 +114,9 @@ def getAvg2Dates():
 def getVis():
     return render_template('visualisation.html')
 
-
+@app.route('/test.html')
+def getTest():
+    return render_template('test.html')
 
 
 
