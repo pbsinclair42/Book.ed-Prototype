@@ -33,7 +33,6 @@ $(document).ready(function(){
 		userLatitude=window.name.slice(5,window.name.indexOf('-'));
 		userLongitude=window.name.slice(window.name.indexOf('-'));
 	}
-	alert(userLatitude+','+userLongitude);
 	//clear the data used in the hack
 	window.data="";
 	
