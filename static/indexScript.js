@@ -10,11 +10,11 @@ $(document).ready(function(){
 	$('#logo').click(function(){
 		window.location.href='/';
 	});
-	
 	$("#privateBtn").click(function(){
 		alert('Suggestions of bookable tutorial rooms are not included in the alpha version'); //we'll include them when the timetabling department give us access to their data (hint hint pls)
 	});
 	$('#quietBtn').click(function(){
+		window.name='quiet';
 		goToMain();
 	});
 	$('#closeBtn').click(function(){

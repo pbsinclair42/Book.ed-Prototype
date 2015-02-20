@@ -181,6 +181,8 @@ $(document).ready(function(){
 		//get the suggestion from the server
 		//display the suggestion
         getLocation();
+		window.scrollTo(0,0);
+		$('#mooore').click();
 	});
 	
 	//toggle displaying more options
@@ -217,7 +219,6 @@ $(document).ready(function(){
 			$('#mainInterface').height($('#mainInterface').height() - 45);
 			$('#inMenu').css({'height':'37px'});
 			$('#moreOptions').height($('#moreOptions').height()-45);
-			deselectIns();
 		}
 	});
 	
@@ -235,7 +236,6 @@ $(document).ready(function(){
 			$('#mainInterface').height($('#mainInterface').height() - 45);
 			$('#moreOptions').height($('#moreOptions').height()-45);
 			$('#goBtn').css({'top':0});
-			deselectGots();
 		}
 	});
 	
@@ -254,21 +254,6 @@ $(document).ready(function(){
 	});
 	//On selecting a location, deselect the other locations}
 });
-
-//deselect all the 'in...' buttons
-function deselectIns(){
-	$('#libraryBtn').removeClass('selected');
-	$('#centralBtn').removeClass('selected');
-	$('#kingsBtn').removeClass('selected');
-}
-
-//deselect all the 'got...' buttons
-function deselectGots(){
-	$('#computerBtn').removeClass('selected');
-	$('#whiteboardBtn').removeClass('selected');
-	$('#groupSpaceBtn').removeClass('selected');
-	$('#printerBtn').removeClass('selected');
-}
 
 //functions to do with populating the display {
 
