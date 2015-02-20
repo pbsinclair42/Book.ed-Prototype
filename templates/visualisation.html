@@ -10,22 +10,24 @@
   <body>
     <script>
       $(function() {
-        window.setInterval(function(){
-          $.getJSON('http://127.0.0.1:5000' + '/get_usage', {}, function(data) {
+        var change = $.getJSON('http://127.0.0.1:5000' + '/get_usage', {}, function(data) {
             function getGreenToRed(percent){
               return ''+percent/100+' '+ (100-percent)/100+' '+0;
             }
             $('material[DEF=MA_mat_firts]').attr('diffuseColor', getGreenToRed(data['1']))//'0.8 0.175 0.8'
-            console.log(getGreenToRed(data['1']))
+            console.log(data['1'])
             $('material[DEF=MA_mat_second]').attr('diffuseColor', getGreenToRed(data['2']))//'0.8 0.175 0.8'
-            console.log(getGreenToRed(data['2']))
+            console.log(data['2'])
             $('material[DEF=MA_mat_third]').attr('diffuseColor', getGreenToRed(data['3']))//'0.8 0.175 0.8'
-            console.log(getGreenToRed(data['3']))
+            console.log(data['3'])
             $('material[DEF=MA_mat_fourth]').attr('diffuseColor', getGreenToRed(data['4']))//'0.8 0.175 0.8'
-            console.log(getGreenToRed(data['4']))
+            console.log(data['4'])
             $('material[DEF=MA_mat_ground]').attr('diffuseColor', getGreenToRed(data['g']))//'0.8 0.175 0.8'
-            console.log(getGreenToRed(data['g']))
-          });
+            console.log(data['g'])
+        });
+        change()
+        window.setInterval(function(){
+          change()
         }, 5000);
     })   
     </script>
@@ -39,7 +41,7 @@
     <material DEF='MA_mat_third' ambientIntensity='0.333' diffuseColor='0.096 0.351 0.034'  shininess='0.014'  transparency='0.3'></material>
     <material DEF='MA_mat_fourth' ambientIntensity='0.333' diffuseColor='0.096 0.351 0.034'  shininess='0.014'  transparency='0.3'></material>
     <material DEF='MA_mat_second' ambientIntensity='0.333' diffuseColor='0.096 0.351 0.034'  shininess='0.014'  transparency='0.3'></material>
-    <material DEF='MA_mat_firts' diffuseColor='255 1 0' transparency='0.3'></material>
+    <material DEF='MA_mat_firts' diffuseColor='0.096 0.351 0.034' transparency='0.3'></material>
     <material DEF='MA_mat_ground' ambientIntensity='0.333' diffuseColor='0.096 0.351 0.034'  shininess='0.014'  transparency='0.3'></material>
     <material DEF='MA_mat_other' ambientIntensity='0.333' diffuseColor='0.133 0.133 0.133' shininess='0.029' specularColor='0.203 0.203 0.203'></material>
     <material DEF='MA_mat_plane' ambientIntensity='0.333' diffuseColor='0 0 0' shininess='0.098' specularColor='0.401 0.401 0.401' transparency='0.5'></material>
