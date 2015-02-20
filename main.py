@@ -117,7 +117,10 @@ def getUsage():
     
 @app.route('/get_avg_for2dates')
 def getAvg2Dates():
-    return jsonify(apicalls.libraryPercentageUsage())
+    s = request.args.get('startDate)
+    e = request.args.get('endDate')
+    l = request.args.get('location')
+    return jsonify(dblib.avgbetweendates(l, s, e))
 
 @app.route('/visualisation.html')
 def getVis():
