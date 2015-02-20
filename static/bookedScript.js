@@ -22,10 +22,13 @@ var detailsDatabase = [
 	{id:'Central Hugh Robson Bldg Basement A', roomName:'Basement A',
 	building:'Hugh Robson', hasWhiteboard:false,
 	hasGroupSpace:true, hasPrinter:true},
-	{id:'Central Hugh Robson Bldg Basement B', roomName:'Alison House',
-	building:'Alison House', hasWhiteboard:false,
-	hasGroupSpace:false, hasPrinter:true},
-}
+	{id:'Central Hugh Robson Bldg Basement B', roomName:'Basement B',
+	building:'Hugh Robson', hasWhiteboard:false,
+	hasGroupSpace:true, hasPrinter:true},
+	{id:'Central Main Library Ground', roomName:'Ground floor',
+	building:'Main Library', hasWhiteboard:false,
+	hasGroupSpace:true, hasPrinter:true}
+];
 
 var suggestion=[{distance:0.0001433252,ratio:0.2345,coordinates:[55.2346,-3.342],capacityComp:'11',freeComp:'3',openingHours:'9-5', group:'busness', location:'busnessloc'}]; //[{roomName:'Library Cafe',latitude:55.942705,longitude:-3.189147,building:'Main Library',capacity:28,current:12, hasComputer:true,hasWhiteboard:true,hasGroupSpace:true, hasPrinter:true,openingHours:'7.30am-2.30am', type:'lab'}]
 
