@@ -4,27 +4,25 @@
 
 #### Room suggestions:
 
-- Get front end to talk to back end
-- Make functions in back end which generate the best suggestion for the user based on what they've asked for
-- Prettify front end more?
-- Link to more info when a room is chosen
+- Make more functions in back end which generate the best suggestion for the user based on what they've asked for
 - Push website to sandbox
 
-#### Usage over time:
+#### Visualisations:
 
-- Get database for storing info working
-- Set up automatic database input every 15 minutes
-- Create basic graph using this info
-- Finish basic 3D model of library
-- Change colour of floors based on how busy they were over time
-- Add usage view to website
+- Prettify 3D visualisation on website (make it a webpage of its own right)
+- Add slider to allow you to view historic data on library as well as current
+- Create basic graph(s) using info from database (?)
+
+#### Other:
+
+- Go to bed
 
 #### Long term plans (which we could start investigating if we finish the rest):
 
+- Create 2D heatmap of availability
 - Include tutorial rooms in suggestions
 - Add ability to book tutorial rooms through website
 - Include tutorial rooms in stored database
-- Create 2D map of usage over time
 - Create 3D models of more buildings
 
 
