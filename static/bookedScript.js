@@ -363,7 +363,7 @@ function getDetailed() {
 	details.la = userLatitude;
 	details.quiet = ($('#quietBtn').hasClass('selected')?1:0);
 	details.close = ($('#closeBtn').hasClass('selected')?1:0);
-	details.requests=requests;
+	//details.requests=requests;
     details.suggestions = JSON.stringify(suggestion);
 	$.getJSON(SCRIPT_ROOT + '/detailed_suggestion', details, function(data) {
 		//May need format change etc

@@ -36,7 +36,6 @@ function goToMain(){
 
 // functions to do with getting user location {
 function getLocation() {
-	
     if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition( showPosition,showError );
     }
