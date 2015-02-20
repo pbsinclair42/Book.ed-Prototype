@@ -108,9 +108,10 @@ def getUsage():
     return jsonify(apicalls.libraryPercentageUsage())
 
 @app.route('/visualisation.html')
-
 def getVis():
     return render_template('visualisation.html')
+
+
 
 
 
