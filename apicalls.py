@@ -473,6 +473,19 @@ def stillOpen(list):
 
     return l
 
+
+
+
+def returnBestPlaces(quiet, close, user):
+    if quiet == 1 and close == 0:
+        bestPlaces = apicalls.quietPlace()
+    elif quiet==1 and close==1:
+        tenClosest = closestPlace(user)[0:10]
+        bestPlaces = quietPlaceList(tenClosest)
+    else:
+        bestPlaces = closestPlace(user)
+
+    return bestPlaces
     
     
 def libraryPercentageUsage():

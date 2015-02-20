@@ -50,6 +50,8 @@ def getCoordinates():
 
 @app.route('/detailed_suggestion')
 def detailed_suggestion():
+    #retrieve arguments from get_request
+    suggestions = request.args.get('suggestions')
     longitude = request.args.get('la', 0, type=float)
     latitude = request.args.get('lo', 0, type=float)
     quiet = request.args.get('quiet', 0, type=int)
@@ -60,32 +62,27 @@ def detailed_suggestion():
     daller = request.args.get('in')
     
 
-
+    #Test Prints
     print 'quiet', quiet
     print 'close', close
 
 
+    #Create user with given coordinates
     user = apicalls.User_data(longitude, latitude)
-
-
-    user.previousSuggestions = json.loads(request.args.get('suggestions'))
+    # Create user field of previous suggestions and convert to python dictionary
+    user.previousSuggestions = json.loads(suggestions)
     user.previousSuggestions = json.dumps(user.previousSuggestions).replace("false", "False").replace("true", "True")
     user.previousSuggestions = ast.literal_eval(user.previousSuggestions)
 
+    #Test Print
     print user.previousSuggestions
 
-
-    if quiet==1 and close==0:
-        bestPlaces = apicalls.quietPlace()
-    elif quiet==1 and close==1:
-        tenClosest = apicalls.closestPlace(user)[0:10]
-        bestPlaces = apicalls.quietPlaceList(tenClosest)
-    else:
-        bestPlaces = apicalls.closestPlace(user)
+    #Return a list of the best places best on given parameters
+    bestPlaces = apicalls.returnBestPlaces(quiet, close, user)
+    print bestPlaces
 
 
     ans = None
-
     if user.previousSuggestions:
         print 'user.previousSuggestions', user.previousSuggestions
 
