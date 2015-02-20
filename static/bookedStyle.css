@@ -100,7 +100,7 @@ body{
     background-image: url('../static/background.png');
     background-repeat: no-repeat;
     background-size: cover;
-	height:780px;
+	height:825px;
 }
 
 #header{
@@ -166,7 +166,7 @@ body{
 
 #roominfo{
 	margin-top: 5px;
-    width:210px;
+    width:200px;
     display:block;
 	position: relative;
 	top:-340px;
@@ -213,7 +213,7 @@ body{
 	top:-40px;
 	display:none;
 	background-color: rgba(4,24,39,0.9);
-	height:210px;
+	height:260px;
 	padding:5;
 }
 
@@ -252,7 +252,7 @@ body{
 
 #inBtn{
 	position:absolute;
-	left:274px;
+	left:258px;
 }
 
 #inDropdown{
@@ -269,7 +269,7 @@ body{
 
 #centralBtn{
 	position: absolute;
-	left:230px;
+	left:214px;
 }
 
 #kingsBtn{
@@ -286,7 +286,7 @@ body{
 
 #gotBtn{
 	position:absolute;
-	left:269px;
+	left:253px;
 }
 
 #gotDropdown{
@@ -303,15 +303,23 @@ body{
 
 #whiteboardBtn{
 	position:absolute;
-	left:170px;
+	left:160px;
 }
 
 #groupSpaceBtn{
 	position: absolute;
-	left:330px;
+	left:310px;
 }
 
 #printerBtn{
 	position: absolute;
 	right:25px;
+}
+
+#goBtn{
+	width:580px;
+	font-size: 20px;
+	padding: 8 10 8 10;
+	position: relative;
+	left:5px;
 }
