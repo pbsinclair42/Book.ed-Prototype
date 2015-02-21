@@ -8,7 +8,7 @@ var gotExpanded=false; //whether the 'in...' menu is currently expanded
 var currentSuggestion; //the suggestion as returned by the server
 var newSuggestion; //the suggestion in the appropriate format for populating the html
 
-var SCRIPT_ROOT = 'http://127.0.0.1:5000'; //the root of the server TODO UPDATE
+var SCRIPT_ROOT = 'http://0.0.0.0:5000'; //the root of the server TODO UPDATE
 
 //dummy currentSuggestion:
 var suggestion=[{distance:0.0001433252,ratio:0.2345,coordinates:[55.2346,-3.342],capacityComp:'11',freeComp:'3',openingHours:'9-5', group:'busness', location:'busnessloc'}]; 
