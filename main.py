@@ -41,10 +41,11 @@ def detailed_suggestion():
     latitude = request.args.get('lo', 0, type=float)
     quiet = request.args.get('quiet', 0, type=int)
     close = request.args.get('close', 0, type=int)
+    late = request.args.get('late', 0, type=int)
     printer = request.args.get('printer', 0, type=int)
-    group = request.args.get('group', 0, type=int)
+    groupSpace = request.args.get('group', 0, type=int)
     whiteboard = request.args.get('whiteboard', 0, type=int)
-    daller = request.args.get('in')
+    inGroup = request.args.get('in')
     
 
     #Test Prints
@@ -63,7 +64,7 @@ def detailed_suggestion():
     print user.previousSuggestions
 
     #Return a list of the best places best on given parameters
-    bestPlaces = apicalls.returnBestPlaces(quiet, close, user)
+    bestPlaces = apicalls.returnBestPlaces(quiet, close, user, late)
     #Test print
     print 'bestPlaces:', bestPlaces
 
@@ -85,7 +86,7 @@ def detailed_suggestion():
             if notVisited:
                 ans = x
                 break
-            notVisited = True #for re-initialization.
+            notVisited = True  #for re-initialization.
 
     # if the above didn't work, just return the best one.
     if ans == None:

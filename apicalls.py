@@ -485,7 +485,7 @@ def openLate(list):
 
             currentTime = int(c.ctime()[11:13])
             if currentTime < 12:
-                currentTime+= 24
+                currentTime += 24
 
             if currentTime+3 < closeTime:
                 l.append(x)
@@ -495,7 +495,7 @@ def openLate(list):
 
 
 # TODO implement more parameters..
-def returnBestPlaces(quiet, close, user):
+def returnBestPlaces(quiet, close, user, late):
     """
     given parameters returns a list of bestPlaces
     :param quiet:
@@ -511,6 +511,8 @@ def returnBestPlaces(quiet, close, user):
     else:
         bestPlaces = closestPlace(user)
 
+    if late == 1:
+        bestPlaces = openLate(bestPlaces)
 
     return bestPlaces
     
@@ -557,10 +559,10 @@ def libraryPercentageUsage():
 #
 #
 #
-xmltree = getTree()
-
-list = listOfDic(xmltree)
-print 'openlist', openLate(list)
+# xmltree = getTree()
+#
+# list = listOfDic(xmltree)
+# print 'openlist', openLate(list)
 #print 'list of dictionaries: \n', list
 #
 # distanceList = ratingDistQSort(user, list)
